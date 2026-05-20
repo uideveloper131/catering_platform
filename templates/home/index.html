@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+<h1>Multi Brand Catering Platform</h1>
+
+<h3>Brands</h3>
+
+{% for brand in brands %}
+
+<p>{{ brand.name }}</p>
+
+{% endfor %}
+
+<hr>
+
+<h3>Menu Items</h3>
+
+{% for item in menu_items %}
+
+<p>
+{{ item.name }}
+-
+{{ item.brand }}
+-
+${{ item.price }}
+</p>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}
