@@ -1,0 +1,45 @@
+<div class="row">
+
+{% for brand in brands %}
+
+<div class="col-md-4 mb-4">
+
+<a href="{% url 'brand_detail' brand.id %}"
+
+style="text-decoration:none;color:black;">
+
+<div class="card shadow h-100">
+
+{% if brand.image %}
+
+<img src="{{brand.image.url}}"
+class="card-img-top"
+style="height:250px;object-fit:cover;">
+
+{% endif %}
+
+<div class="card-body">
+
+<h3>
+
+{{brand.name}}
+
+</h3>
+
+<p>
+
+{{brand.description|truncatewords:15}}
+
+</p>
+
+</div>
+
+</div>
+
+</a>
+
+</div>
+
+{% endfor %}
+
+</div>

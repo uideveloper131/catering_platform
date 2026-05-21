@@ -2,34 +2,483 @@
 
 {% block content %}
 
-<div class="container mt-5">
 
-<h1>Multi Brand Catering Platform</h1>
+<!-- HERO SECTION -->
 
-<h3>Brands</h3>
+<section class="bg-dark text-white py-5">
+
+<div class="container">
+
+<div class="row align-items-center">
+
+<div class="col-lg-6">
+
+<h1 class="display-3 fw-bold">
+
+Premium Multi-Brand
+Catering Experience
+
+</h1>
+
+<p class="lead mt-4">
+
+Wedding • Corporate • Birthday • Anniversary • Private Events • Cultural Celebrations
+
+</p>
+
+<p>
+
+Serving multiple brands with customized menus and unforgettable dining experiences.
+
+</p>
+
+<div class="mt-4">
+
+<a
+href="/request-quote/"
+class="btn btn-warning btn-lg">
+
+Request Quote
+
+</a>
+
+<a
+href="/brands/"
+class="btn btn-outline-light btn-lg ms-2">
+
+Explore Brands
+
+</a>
+
+</div>
+
+</div>
+
+
+<div class="col-lg-6">
+
+<img
+src="https://images.unsplash.com/photo-1555244162-803834f70033?w=1000"
+class="img-fluid rounded shadow"
+alt="Catering">
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- BRANDS -->
+
+<section
+id="brands"
+class="py-5">
+
+<div class="container">
+
+<h2 class="text-center fw-bold mb-5">
+
+Our Catering Brands
+
+</h2>
+
+<div class="row">
 
 {% for brand in brands %}
 
-<p>{{ brand.name }}</p>
+<div class="col-md-4 mb-4">
 
-{% endfor %}
+<a
+href="{% url 'brand_detail' brand.id %}"
+style="text-decoration:none;color:black;">
 
-<hr>
+<div class="card border-0 shadow h-100">
 
-<h3>Menu Items</h3>
+{% if brand.image %}
 
-{% for item in menu_items %}
+<img
+src="{{brand.image.url}}"
+class="card-img-top"
+style="height:250px;object-fit:cover;">
+
+{% endif %}
+
+<div class="card-body text-center">
+
+<h4>
+
+{{brand.name}}
+
+</h4>
 
 <p>
-{{ item.name }}
--
-{{ item.brand }}
--
-${{ item.price }}
+
+{{brand.description|truncatewords:15}}
+
 </p>
+
+</div>
+
+</div>
+
+</a>
+
+</div>
 
 {% endfor %}
 
 </div>
+
+</div>
+
+</section>
+
+
+
+<!-- FEATURED MENU -->
+
+<section class="bg-light py-5">
+
+<div class="container">
+
+<h2 class="text-center fw-bold mb-5">
+
+Featured Menu Items
+
+</h2>
+
+<div class="row">
+
+{% for item in menu_items %}
+
+<div class="col-md-4 mb-4">
+
+<div class="card border-0 shadow h-100">
+
+{% if item.image %}
+
+<img
+src="{{item.image.url}}"
+class="card-img-top"
+style="height:250px;object-fit:cover;">
+
+{% endif %}
+
+<div class="card-body">
+
+<h4>
+
+{{item.name}}
+
+</h4>
+
+<p>
+
+{{item.description}}
+
+</p>
+
+<p class="fw-bold">
+
+${{item.price}}
+
+</p>
+
+<span class="badge bg-dark">
+
+{{item.brand}}
+
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- SERVICES -->
+
+<section class="py-5">
+
+<div class="container">
+
+<h2 class="text-center fw-bold mb-5">
+
+Our Catering Services
+
+</h2>
+
+<div class="row">
+
+
+<div class="col-md-3 mb-4">
+
+<div class="card p-4 shadow h-100 text-center">
+
+<h1>💒</h1>
+
+<h4>
+
+Wedding Catering
+
+</h4>
+
+<p>
+
+Elegant catering experiences for weddings.
+
+</p>
+
+</div>
+
+</div>
+
+
+<div class="col-md-3 mb-4">
+
+<div class="card p-4 shadow h-100 text-center">
+
+<h1>🏢</h1>
+
+<h4>
+
+Corporate Catering
+
+</h4>
+
+<p>
+
+Professional catering for business events.
+
+</p>
+
+</div>
+
+</div>
+
+
+<div class="col-md-3 mb-4">
+
+<div class="card p-4 shadow h-100 text-center">
+
+<h1>🎂</h1>
+
+<h4>
+
+Birthday Events
+
+</h4>
+
+<p>
+
+Customized birthday catering solutions.
+
+</p>
+
+</div>
+
+</div>
+
+
+<div class="col-md-3 mb-4">
+
+<div class="card p-4 shadow h-100 text-center">
+
+<h1>🎉</h1>
+
+<h4>
+
+Private Events
+
+</h4>
+
+<p>
+
+Tailored catering for special occasions.
+
+</p>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- GALLERY PREVIEW -->
+
+<section class="bg-light py-5">
+
+<div class="container">
+
+<h2 class="text-center fw-bold mb-5">
+
+Event Gallery
+
+</h2>
+
+<div class="text-center">
+
+<p>
+
+Explore our catering setups, dishes, and event experiences.
+
+</p>
+
+<a
+href="/gallery/"
+class="btn btn-dark">
+
+View Gallery
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- TESTIMONIALS -->
+
+<section class="py-5">
+
+<div class="container">
+
+<h2 class="text-center fw-bold mb-5">
+
+Customer Experiences
+
+</h2>
+
+<div class="row">
+
+<div class="col-md-4 mb-4">
+
+<div class="card shadow p-4 h-100">
+
+⭐⭐⭐⭐⭐
+
+<p class="mt-3">
+
+Amazing food quality and outstanding service.
+
+</p>
+
+<h5>
+
+John D
+
+</h5>
+
+</div>
+
+</div>
+
+
+<div class="col-md-4 mb-4">
+
+<div class="card shadow p-4 h-100">
+
+⭐⭐⭐⭐⭐
+
+<p class="mt-3">
+
+Everything was organized perfectly.
+
+</p>
+
+<h5>
+
+Michael S
+
+</h5>
+
+</div>
+
+</div>
+
+
+<div class="col-md-4 mb-4">
+
+<div class="card shadow p-4 h-100">
+
+⭐⭐⭐⭐⭐
+
+<p class="mt-3">
+
+Our guests loved the food and presentation.
+
+</p>
+
+<h5>
+
+Sarah W
+
+</h5>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- CTA -->
+
+<section class="bg-warning py-5">
+
+<div class="container text-center">
+
+<h2>
+
+Need Catering For Your Event?
+
+</h2>
+
+<p>
+
+Request a personalized quote and let us create your perfect event experience.
+
+</p>
+
+<a
+href="/request-quote/"
+class="btn btn-dark btn-lg">
+
+Request Quote
+
+</a>
+
+</div>
+
+</section>
 
 {% endblock %}

@@ -1,0 +1,122 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+{% block content %}
+
+<h1 class="mb-4">
+
+Inquiry Management
+
+</h1>
+
+
+<form method="GET">
+
+<div class="input-group mb-4">
+
+<input
+type="text"
+name="search"
+class="form-control"
+placeholder="Search customer name..."
+>
+
+<button class="btn btn-dark">
+
+Search
+
+</button>
+
+</div>
+
+</form>
+
+
+<div class="card shadow">
+
+<div class="card-body">
+
+<table class="table table-hover">
+
+<thead>
+
+<tr>
+
+<th>Name</th>
+
+<th>Email</th>
+
+<th>Phone</th>
+
+<th>Event</th>
+
+<th>Guests</th>
+
+<th>Status</th>
+
+<th>Date</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for inquiry in inquiries %}
+
+<tr>
+
+<td>
+
+{{inquiry.full_name}}
+
+</td>
+
+<td>
+
+{{inquiry.email}}
+
+</td>
+
+<td>
+
+{{inquiry.phone}}
+
+</td>
+
+<td>
+
+{{inquiry.event_type}}
+
+</td>
+
+<td>
+
+{{inquiry.guests}}
+
+</td>
+
+<td>
+
+{{inquiry.status}}
+
+</td>
+
+<td>
+
+{{inquiry.created}}
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+{% endblock %}

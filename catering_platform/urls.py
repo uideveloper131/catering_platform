@@ -24,6 +24,11 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
     path('', include('core.urls') ),
+    path('request-quote/', include('inquiries.urls')),
+    path('dashboard/', include('dashboard.urls')),
+    path('accounts/',include( 'django.contrib.auth.urls' )),
+    path( 'brands/', include('brands.urls')),
+    path('gallery/', include('gallery.urls')),
 ]
 
 urlpatterns += static(

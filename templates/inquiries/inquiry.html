@@ -1,0 +1,312 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container my-5">
+
+<div class="row justify-content-center">
+
+<div class="col-lg-10">
+
+<div class="card shadow border-0 p-5">
+
+<h1 class="text-center mb-3">
+
+Request Catering Quote
+
+</h1>
+
+<p class="text-center text-muted mb-4">
+
+We'll respond within 24–48 hours
+
+</p>
+
+{% if messages %}
+
+{% for message in messages %}
+
+<div class="alert alert-success">
+
+{{message}}
+
+</div>
+
+{% endfor %}
+
+{% endif %}
+
+
+<form method="POST">
+
+{% csrf_token %}
+
+<h2 class="mb-4">
+
+Contact Information
+
+</h2>
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+<label>
+Full Name *
+</label>
+
+{{form.full_name}}
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label>
+Email *
+</label>
+
+{{form.email}}
+
+</div>
+
+</div>
+
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+<label>
+Phone *
+</label>
+
+{{form.phone}}
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label>
+Company / Organization
+</label>
+
+{{form.company}}
+
+</div>
+
+</div>
+
+<hr>
+
+
+<h2 class="mb-4">
+
+Event Details
+
+</h2>
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+<label>
+Event Type *
+</label>
+
+{{form.event_type}}
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label>
+Event Date *
+</label>
+
+{{form.event_date}}
+
+</div>
+
+</div>
+
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+<label>
+Flexible Date
+</label>
+
+<br>
+
+{{form.flexible_date}}
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label>
+Event Time
+</label>
+
+{{form.event_time}}
+
+</div>
+
+</div>
+
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+<label>
+Guests *
+</label>
+
+{{form.guests}}
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label>
+Venue
+</label>
+
+{{form.venue}}
+
+</div>
+
+</div>
+
+
+<div class="mb-3">
+
+<label>
+Indoor / Outdoor
+</label>
+
+{{form.indoor_outdoor}}
+
+</div>
+
+<hr>
+
+
+<h2 class="mb-4">
+
+Food Preferences
+
+</h2>
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+<label>
+Cuisine Preference *
+</label>
+
+{{form.cuisine}}
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label>
+Service Style *
+</label>
+
+{{form.service_style}}
+
+</div>
+
+</div>
+
+
+<div class="mb-3">
+
+<label>
+Dietary Requirements
+</label>
+
+{{form.dietary_requirements}}
+
+</div>
+
+
+<div class="mb-3">
+
+<label>
+Services Needed
+</label>
+
+{{form.services_needed}}
+
+</div>
+
+<hr>
+
+
+<h2 class="mb-4">
+
+Budget & Logistics
+
+</h2>
+
+<div class="mb-3">
+
+<label>
+Budget *
+</label>
+
+{{form.budget}}
+
+</div>
+
+
+<div class="mb-3">
+
+<label>
+Tell us about your event
+</label>
+
+{{form.event_details}}
+
+</div>
+
+
+<div class="mb-3">
+
+<label>
+How did you hear about us?
+</label>
+
+{{form.hear_about}}
+
+</div>
+
+
+<div class="text-center">
+
+<button class="btn btn-warning btn-lg">
+
+Request Quote
+
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

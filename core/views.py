@@ -14,8 +14,10 @@ def home(request):
     )[:6]
 
     context = {
+
         'brands': brands,
         'menu_items': menu_items
+
     }
 
     return render(

@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="py-5 bg-dark text-white">
+
+<div class="container text-center">
+
+{% if brand.image %}
+
+<img src="{{brand.image.url}}"
+class="img-fluid rounded mb-4"
+style="height:250px;width:100%;object-fit:cover;">
+
+{% endif %}
+
+<h1>
+
+{{brand.name}}
+
+</h1>
+
+{% if brand.description %}
+
+<p class="lead">
+
+{{brand.description}}
+
+</p>
+
+{% endif %}
+
+<a href="/request-quote/"
+class="btn btn-warning btn-lg mt-3">
+
+Request Catering Quote
+
+</a>
+
+</div>
+
+</section>
+
+
+<section class="py-5">
+
+<div class="container">
+
+<h2 class="text-center mb-5">
+
+Featured Menu
+
+</h2>
+
+
+<div class="row">
+
+{% for item in menu_items %}
+
+<div class="col-md-4 mb-4">
+
+<div class="card shadow h-100">
+
+{% if item.image %}
+
+<img src="{{item.image.url}}"
+class="card-img-top"
+style="height:250px;object-fit:cover;">
+
+{% endif %}
+
+<div class="card-body">
+
+<h4>
+
+{{item.name}}
+
+</h4>
+
+<p>
+
+{{item.description}}
+
+</p>
+
+<p>
+
+<strong>
+
+${{item.price}}
+
+</strong>
+
+</p>
+
+<span class="badge bg-dark">
+
+{{item.category}}
+
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+{% empty %}
+
+<div class="text-center">
+
+<h4>
+
+No menu items available
+
+</h4>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="bg-warning py-5">
+
+<div class="container text-center">
+
+<h2>
+
+Need Catering For Your Event?
+
+</h2>
+
+<p>
+
+Customize your menu and request a quote today.
+
+</p>
+
+<a href="/request-quote/"
+class="btn btn-dark btn-lg">
+
+Request Quote
+
+</a>
+
+</div>
+
+</section>
+
+{% endblock %}

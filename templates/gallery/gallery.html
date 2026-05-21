@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="py-5">
+
+<div class="container">
+
+<h1 class="text-center mb-5">
+
+Our Catering Gallery
+
+</h1>
+
+<div class="row">
+
+{% for image in images %}
+
+<div class="col-md-4 mb-4">
+
+<div class="card shadow">
+
+<img src="{{image.image.url}}"
+class="card-img-top"
+style="height:300px;object-fit:cover;">
+
+<div class="card-body">
+
+<h5>
+
+{{image.title}}
+
+</h5>
+
+<p>
+
+{{image.category}}
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</section>
+
+{% endblock %}

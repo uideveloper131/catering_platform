@@ -1,0 +1,120 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+{% block content %}
+
+<h1 class="mb-5">
+
+Dashboard Overview
+
+</h1>
+
+
+<div class="row">
+
+<div class="col-md-3">
+
+<div class="card shadow p-4 text-center">
+
+<h5>Total Inquiries</h5>
+
+<h2>{{total_inquiries}}</h2>
+
+</div>
+
+</div>
+
+
+<div class="col-md-3">
+
+<div class="card shadow p-4 text-center">
+
+<h5>New Inquiries</h5>
+
+<h2>{{new_inquiries}}</h2>
+
+</div>
+
+</div>
+
+
+<div class="col-md-3">
+
+<div class="card shadow p-4 text-center">
+
+<h5>Total Brands</h5>
+
+<h2>{{total_brands}}</h2>
+
+</div>
+
+</div>
+
+
+<div class="col-md-3">
+
+<div class="card shadow p-4 text-center">
+
+<h5>Menu Items</h5>
+
+<h2>{{total_menu}}</h2>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card shadow mt-5">
+
+<div class="card-header">
+
+<h4>
+
+Recent Catering Inquiries
+
+</h4>
+
+</div>
+
+<div class="card-body">
+
+<table class="table">
+
+<thead>
+
+<tr>
+
+<th>Name</th>
+<th>Event</th>
+<th>Guests</th>
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for inquiry in recent_inquiries %}
+
+<tr>
+
+<td>{{inquiry.full_name}}</td>
+<td>{{inquiry.event_type}}</td>
+<td>{{inquiry.guests}}</td>
+<td>{{inquiry.status}}</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+{% endblock %}
