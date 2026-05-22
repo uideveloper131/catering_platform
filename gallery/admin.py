@@ -9,7 +9,8 @@ class GalleryAdmin(admin.ModelAdmin):
 
         'title',
         'category',
-        'active'
+        'active',
+        'created'
 
     )
 
@@ -18,4 +19,16 @@ class GalleryAdmin(admin.ModelAdmin):
         'category',
         'active'
 
+    )
+
+    search_fields=(
+
+        'title',
+        'category'
+
+    )
+
+    ordering=(
+
+        '-created',
     )

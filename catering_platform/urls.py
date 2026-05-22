@@ -29,6 +29,8 @@ urlpatterns = [
     path('accounts/',include( 'django.contrib.auth.urls' )),
     path( 'brands/', include('brands.urls')),
     path('gallery/', include('gallery.urls')),
+
+
 ]
 
 urlpatterns += static(

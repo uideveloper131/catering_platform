@@ -15,7 +15,13 @@ Catering Platform
 
 <p>
 
-Premium multi-brand catering services for weddings, corporate events, birthdays, private events, and special occasions.
+Premium Multi-Brand Catering Services
+
+</p>
+
+<p>
+
+Wedding • Corporate • Birthday • Private Events
 
 </p>
 
@@ -23,7 +29,7 @@ Premium multi-brand catering services for weddings, corporate events, birthdays,
 
 
 
-<div class="col-md-2 mb-4">
+<div class="col-md-4 mb-4">
 
 <h5>
 
@@ -35,7 +41,8 @@ Quick Links
 
 <li>
 
-<a href="/"
+<a
+href="/"
 class="text-white text-decoration-none">
 
 Home
@@ -46,7 +53,8 @@ Home
 
 <li>
 
-<a href="/brands/"
+<a
+href="/brands/"
 class="text-white text-decoration-none">
 
 Brands
@@ -57,7 +65,8 @@ Brands
 
 <li>
 
-<a href="/gallery/"
+<a
+href="/gallery/"
 class="text-white text-decoration-none">
 
 Gallery
@@ -68,10 +77,23 @@ Gallery
 
 <li>
 
-<a href="/request-quote/"
+<a
+href="/contact/"
 class="text-white text-decoration-none">
 
-Request Quote
+Contact
+
+</a>
+
+</li>
+
+<li>
+
+<a
+href="/faq/"
+class="text-white text-decoration-none">
+
+FAQ
 
 </a>
 
@@ -83,66 +105,39 @@ Request Quote
 
 
 
-<div class="col-md-3 mb-4">
+<div class="col-md-4 mb-4">
 
 <h5>
 
-Our Brands
+Contact Information
 
 </h5>
 
-<ul class="list-unstyled">
-
-<li>Joe's Italian</li>
-
-<li>Vira's Indian Kitchen</li>
-
-<li>Flavors Indian Lounge</li>
-
-<li>Namaste Indian Kitchen</li>
-
-<li>Jai Indian Kitchen</li>
-
-<li>Kwality Ice Cream & Grill</li>
-
-<li>Nawabi Hyderabad House</li>
-
-</ul>
-
-</div>
-
-
-
-<div class="col-md-3 mb-4">
-
-<h5>
-
-Contact Info
-
-</h5>
+{% if contact %}
 
 <p>
 
-📧 info@cateringplatform.com
+📧 {{contact.email}}
 
 </p>
 
 <p>
 
-📞 +1 XXX-XXX-XXXX
+📞 {{contact.phone}}
 
 </p>
 
 <p>
 
-📍 Arkansas, USA
+📍 {{contact.address}}
 
 </p>
 
-</div>
+{% endif %}
 
 </div>
 
+</div>
 
 <hr>
 

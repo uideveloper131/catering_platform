@@ -2,15 +2,16 @@ from django.shortcuts import render
 from .models import Gallery
 
 
-def gallery(request):
+def gallery_view(request):
 
-    images=Gallery.objects.filter(
+    gallery_items=Gallery.objects.filter(
         active=True
     )
 
     context={
 
-        'images':images
+        'gallery_items':gallery_items
+
     }
 
     return render(

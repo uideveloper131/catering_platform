@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="py-5">
+
+<div class="container">
+
+<div class="row mb-5">
+
+<div class="col-md-6">
+
+<img
+src="{{event.image.url}}"
+class="img-fluid rounded shadow">
+
+</div>
+
+<div class="col-md-6">
+
+<h1 class="fw-bold">
+
+{{event.title}}
+
+</h1>
+
+<hr>
+
+<p>
+
+{{event.description}}
+
+</p>
+
+<a
+href="/request-quote/"
+class="btn btn-warning btn-lg mt-3">
+
+Request Quote
+
+</a>
+
+</div>
+
+</div>
+
+
+
+<!-- MENU SECTION -->
+
+<h2 class="fw-bold mb-4">
+
+Recommended Menu
+
+</h2>
+
+<div class="row">
+
+{% for menu in event.event_menus.all %}
+
+<div class="col-md-4 mb-4">
+
+<div class="card shadow h-100">
+
+{% if menu.menu_item.image %}
+
+<img
+src="{{menu.menu_item.image.url}}"
+class="card-img-top"
+style="height:250px;object-fit:cover;">
+
+{% endif %}
+
+<div class="card-body">
+
+<h5>
+
+{{menu.menu_item.name}}
+
+</h5>
+
+<p>
+
+{{menu.menu_item.description|truncatewords:12}}
+
+</p>
+
+<p class="fw-bold">
+
+${{menu.menu_item.price}}
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+
+
+<!-- PACKAGE SECTION -->
+
+<h2 class="fw-bold mt-5 mb-4">
+
+Available Packages
+
+</h2>
+
+<div class="row">
+
+{% for package in event.event_packages.all %}
+
+<div class="col-md-4 mb-4">
+
+<div class="card shadow h-100">
+
+<img
+src="{{package.package.image.url}}"
+class="card-img-top"
+style="height:250px;object-fit:cover;">
+
+<div class="card-body">
+
+<h4>
+
+{{package.package.title}}
+
+</h4>
+
+<h5 class="text-warning">
+
+{{package.package.price}}
+
+</h5>
+
+<p>
+
+{{package.package.subtitle}}
+
+</p>
+
+<a
+href="{% url 'offer_detail' package.package.id %}"
+class="btn btn-dark">
+
+View Package
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</section>
+
+{% endblock %}
