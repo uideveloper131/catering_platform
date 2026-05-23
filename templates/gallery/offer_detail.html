@@ -2,85 +2,367 @@
 
 {% block content %}
 
-<section class="py-5">
+<!-- =========================
+        OFFER HERO
+========================= -->
 
-<div class="container">
+<section class="offer-hero">
 
-<div class="row">
+    <div class="container">
 
-<div class="col-md-6">
+        <div class="row align-items-center g-5">
 
-<img
-src="{{offer.image.url}}"
-class="img-fluid rounded shadow">
+            <!-- IMAGE -->
 
-</div>
+            <div class="col-lg-6">
+
+                <div class="offer-image-wrapper">
+
+                    {% if offer.image %}
+
+                    <img
+                        src="{{offer.image.url}}"
+                        class="offer-main-image"
+                        alt="{{offer.title}}">
+
+                    {% else %}
+
+                    <img
+                        src="https://images.unsplash.com/photo-1555244162-803834f70033?w=1000"
+                        class="offer-main-image"
+                        alt="{{offer.title}}">
+
+                    {% endif %}
+
+                </div>
+
+            </div>
 
 
-<div class="col-md-6">
+            <!-- CONTENT -->
 
-<h1>
+            <div class="col-lg-6">
 
-{{offer.title}}
+                <span class="offer-tag">
 
-</h1>
+                    PREMIUM PACKAGE
 
-<h3 class="text-warning">
+                </span>
 
-{{offer.price}}
+                <h1 class="offer-title">
 
-</h3>
+                    {{offer.title}}
 
-<h5>
+                </h1>
 
-{{offer.subtitle}}
+                <div class="offer-price">
 
-</h5>
+                    {{offer.price}}
 
-<hr>
+                </div>
 
-<p>
+                <p class="offer-description">
 
-{{offer.description}}
+                    {{offer.description}}
 
-</p>
+                </p>
 
-<hr>
+                <!-- FEATURES -->
 
-<h4>
+                <div class="features-box">
 
-Package Includes
+                    <h4>
 
-</h4>
+                        Package Includes
 
-<ul class="list-group">
+                    </h4>
 
-{% for feature in offer.features.all %}
+                    <ul class="features-list">
 
-<li class="list-group-item">
+                        {% for feature in features %}
 
-✓ {{feature.feature}}
+                        <li>
 
-</li>
+                            <span class="feature-icon">
 
-{% endfor %}
+                                ✓
 
-</ul>
+                            </span>
 
-<a
-href="/request-quote/"
-class="btn btn-warning btn-lg">
+                            {{feature.feature}}
 
-Request Quote
+                        </li>
 
-</a>
+                        {% empty %}
 
-</div>
+                        <li>
 
-</div>
+                            Package features will be updated soon
 
-</div>
+                        </li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                </div>
+
+{#                <!-- BUTTON -->#}
+{##}
+{#                <a#}
+{#                    href="/inquiry/"#}
+{#                    class="request-btn">#}
+{##}
+{#                    Request Package#}
+{##}
+{#                </a>#}
+
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
+
+
+
+<style>
+
+/* =========================
+        GLOBAL
+========================= */
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#ffffff;
+    overflow-x:hidden;
+}
+
+/* =========================
+        HERO SECTION
+========================= */
+
+.offer-hero{
+    background:linear-gradient(
+    135deg,
+    #111111,
+    #1f2937
+    );
+    padding:110px 0 90px;
+    position:relative;
+    overflow:hidden;
+}
+
+.offer-hero::before{
+    content:'';
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:rgba(255,193,7,.08);
+    border-radius:50%;
+    top:-180px;
+    right:-140px;
+}
+
+/* =========================
+        IMAGE
+========================= */
+
+.offer-image-wrapper{
+    position:relative;
+    z-index:2;
+}
+
+.offer-main-image{
+    width:100%;
+    height:560px;
+    object-fit:cover;
+    border-radius:32px;
+    box-shadow:0 25px 60px rgba(0,0,0,.35);
+}
+
+/* =========================
+        CONTENT
+========================= */
+
+.offer-tag{
+    display:inline-block;
+    background:#ffc107;
+    color:#111111;
+    padding:10px 22px;
+    border-radius:40px;
+    font-size:14px;
+    font-weight:700;
+    margin-bottom:24px;
+    letter-spacing:.5px;
+}
+
+.offer-title{
+    color:#ffffff;
+    font-size:60px;
+    font-weight:800;
+    line-height:1.1;
+    margin-bottom:24px;
+}
+
+.offer-price{
+    display:inline-block;
+    background:rgba(255,255,255,.08);
+    color:#ffc107;
+    padding:14px 24px;
+    border-radius:50px;
+    font-size:24px;
+    font-weight:700;
+    margin-bottom:28px;
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.offer-description{
+    color:#d1d5db;
+    font-size:18px;
+    line-height:1.9;
+    margin-bottom:35px;
+}
+
+/* =========================
+        FEATURES
+========================= */
+
+.features-box{
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.08);
+    padding:30px;
+    border-radius:28px;
+    margin-bottom:35px;
+}
+
+.features-box h4{
+    color:#ffffff;
+    font-size:24px;
+    font-weight:700;
+    margin-bottom:24px;
+}
+
+.features-list{
+    list-style:none;
+    padding:0;
+    margin:0;
+}
+
+.features-list li{
+    display:flex;
+    align-items:flex-start;
+    gap:14px;
+    color:#d1d5db;
+    margin-bottom:18px;
+    line-height:1.7;
+    font-size:16px;
+}
+
+.feature-icon{
+    width:28px;
+    height:28px;
+    background:#ffc107;
+    color:#111111;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:14px;
+    font-weight:700;
+    flex-shrink:0;
+}
+
+/* =========================
+        BUTTON
+========================= */
+
+.request-btn{
+    display:inline-block;
+    background:#ffc107;
+    color:#111111;
+    padding:16px 36px;
+    border-radius:50px;
+    font-size:15px;
+    font-weight:700;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.request-btn:hover{
+    background:#ffcd39;
+    color:#111111;
+}
+
+/* =========================
+        TABLET
+========================= */
+
+@media(max-width:992px){
+
+    .offer-hero{
+        padding:90px 0 70px;
+        text-align:center;
+    }
+
+    .offer-title{
+        font-size:48px;
+    }
+
+    .offer-main-image{
+        height:450px;
+    }
+
+    .features-list li{
+        justify-content:flex-start;
+        text-align:left;
+    }
+
+}
+
+/* =========================
+        MOBILE
+========================= */
+
+@media(max-width:768px){
+
+    .offer-title{
+        font-size:36px;
+    }
+
+    .offer-description{
+        font-size:16px;
+    }
+
+    .offer-main-image{
+        height:320px;
+    }
+
+    .offer-price{
+        font-size:20px;
+        padding:12px 20px;
+    }
+
+    .features-box{
+        padding:24px;
+    }
+
+    .features-box h4{
+        font-size:22px;
+    }
+
+    .features-list li{
+        font-size:15px;
+    }
+
+    .request-btn{
+        width:100%;
+        text-align:center;
+    }
+
+}
+
+</style>
 
 {% endblock %}

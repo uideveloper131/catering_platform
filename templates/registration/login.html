@@ -2,72 +2,332 @@
 
 {% block content %}
 
-<div class="container my-5">
+<!-- =========================
+        LOGIN SECTION
+========================= -->
 
-<div class="row justify-content-center">
+<section class="login-section">
 
-<div class="col-md-5">
+    <div class="container">
 
-<div class="card shadow p-5">
+        <div class="row justify-content-center align-items-center min-vh-100">
 
-<h2 class="text-center mb-4">
+            <div class="col-lg-5 col-md-8">
 
-Admin Login
+                <div class="login-card">
 
-</h2>
+                    <!-- LOGO -->
 
-<form method="POST">
+                    <div class="login-logo">
 
-{% csrf_token %}
+                        🍽
 
-<div class="mb-3">
+                    </div>
 
-<label>
+                    <!-- HEADER -->
 
-Username
+                    <span class="login-tag">
 
-</label>
+                        ADMIN PANEL
 
-<input
-type="text"
-name="username"
-class="form-control"
->
+                    </span>
 
-</div>
+                    <h1>
 
+                        Welcome Back
 
-<div class="mb-3">
+                    </h1>
 
-<label>
+                    <p>
 
-Password
+                        Login to manage catering bookings,
+                        offers, events, and customer requests.
 
-</label>
-
-<input
-type="password"
-name="password"
-class="form-control"
->
-
-</div>
+                    </p>
 
 
-<button class="btn btn-warning w-100">
+                    <!-- FORM -->
 
-Login
+                    <form method="POST">
 
-</button>
+                        {% csrf_token %}
 
-</form>
+                        <!-- USERNAME -->
 
-</div>
+                        <div class="mb-4">
 
-</div>
+                            <label>
 
-</div>
+                                Username
 
-</div>
+                            </label>
+
+                            <input
+                                type="text"
+                                name="username"
+                                class="form-control"
+                                placeholder="Enter username"
+                                required>
+
+                        </div>
+
+
+                        <!-- PASSWORD -->
+
+                        <div class="mb-4">
+
+                            <label>
+
+                                Password
+
+                            </label>
+
+                            <input
+                                type="password"
+                                name="password"
+                                class="form-control"
+                                placeholder="Enter password"
+                                required>
+
+                        </div>
+
+
+                        <!-- BUTTON -->
+
+                        <button
+                            type="submit"
+                            class="login-btn">
+
+                            Login To Dashboard
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<style>
+
+/* =========================
+        GLOBAL
+========================= */
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f8fafc;
+    overflow-x:hidden;
+}
+
+/* =========================
+        LOGIN SECTION
+========================= */
+
+.login-section{
+    min-height:100vh;
+    background:linear-gradient(
+    135deg,
+    rgba(17,17,17,.96),
+    rgba(25,25,25,.96)
+    ),
+    url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600');
+    background-size:cover;
+    background-position:center;
+    position:relative;
+    overflow:hidden;
+    padding:40px 0;
+}
+
+.login-section::before{
+    content:'';
+    position:absolute;
+    width:450px;
+    height:450px;
+    background:rgba(255,193,7,.08);
+    border-radius:50%;
+    top:-180px;
+    right:-120px;
+}
+
+/* =========================
+        LOGIN CARD
+========================= */
+
+.login-card{
+    position:relative;
+    z-index:2;
+    background:#ffffff;
+    padding:50px;
+    border-radius:36px;
+    box-shadow:0 25px 60px rgba(0,0,0,.18);
+    border:1px solid rgba(255,255,255,.08);
+    text-align:center;
+}
+
+/* =========================
+        LOGO
+========================= */
+
+.login-logo{
+    width:90px;
+    height:90px;
+    background:#fff4d6;
+    color:#111111;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:42px;
+    margin:0 auto 24px;
+}
+
+/* =========================
+        HEADER
+========================= */
+
+.login-tag{
+    display:inline-block;
+    background:#ffc107;
+    color:#111111;
+    padding:10px 22px;
+    border-radius:40px;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:22px;
+    letter-spacing:.5px;
+}
+
+.login-card h1{
+    font-size:46px;
+    font-weight:800;
+    color:#111111;
+    margin-bottom:16px;
+}
+
+.login-card p{
+    color:#6b7280;
+    line-height:1.8;
+    margin-bottom:38px;
+    font-size:16px;
+}
+
+/* =========================
+        FORM
+========================= */
+
+label{
+    display:block;
+    text-align:left;
+    margin-bottom:12px;
+    font-size:15px;
+    font-weight:600;
+    color:#111111;
+}
+
+.form-control{
+    width:100%;
+    border:none;
+    background:#f8fafc;
+    padding:16px 20px;
+    border-radius:18px;
+    font-size:15px;
+    color:#111111;
+    border:1px solid transparent;
+    transition:.3s;
+}
+
+.form-control:focus{
+    outline:none;
+    box-shadow:none;
+    border-color:#ffc107;
+    background:#ffffff;
+}
+
+/* =========================
+        BUTTON
+========================= */
+
+.login-btn{
+    width:100%;
+    border:none;
+    background:#ffc107;
+    color:#111111;
+    padding:16px 24px;
+    border-radius:50px;
+    font-size:16px;
+    font-weight:700;
+    transition:.3s;
+}
+
+.login-btn:hover{
+    background:#ffcd39;
+}
+
+/* =========================
+        TABLET
+========================= */
+
+@media(max-width:992px){
+
+    .login-card{
+        padding:40px;
+    }
+
+    .login-card h1{
+        font-size:40px;
+    }
+
+}
+
+/* =========================
+        MOBILE
+========================= */
+
+@media(max-width:768px){
+
+    .login-section{
+        padding:20px 0;
+    }
+
+    .login-card{
+        padding:30px 22px;
+        border-radius:28px;
+    }
+
+    .login-logo{
+        width:75px;
+        height:75px;
+        font-size:34px;
+    }
+
+    .login-card h1{
+        font-size:32px;
+    }
+
+    .login-card p{
+        font-size:15px;
+    }
+
+    .form-control{
+        padding:15px 18px;
+    }
+
+    .login-btn{
+        padding:15px 20px;
+        font-size:15px;
+    }
+
+}
+
+</style>
 
 {% endblock %}

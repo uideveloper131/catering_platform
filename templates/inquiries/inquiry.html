@@ -2,311 +2,838 @@
 
 {% block content %}
 
-<div class="container my-5">
+<!-- =========================
+        HERO SECTION
+========================= -->
 
-<div class="row justify-content-center">
+<section class="quote-hero">
 
-<div class="col-lg-10">
+    <div class="container">
 
-<div class="card shadow border-0 p-5">
+        <div class="hero-content">
 
-<h1 class="text-center mb-3">
+            <span class="hero-tag">
 
-Request Catering Quote
+                REQUEST QUOTATION
 
-</h1>
+            </span>
 
-<p class="text-center text-muted mb-4">
+            <h1>
 
-We'll respond within 24–48 hours
+                Plan Your Perfect
+                Catering Experience
 
-</p>
+            </h1>
 
-{% if messages %}
+            <p>
 
-{% for message in messages %}
+                Share your event details and receive a customized
+                catering quotation tailored to your celebration.
 
-<div class="alert alert-success">
+            </p>
 
-{{message}}
+        </div>
 
-</div>
+    </div>
 
-{% endfor %}
+</section>
 
-{% endif %}
 
+<!-- =========================
+        FORM SECTION
+========================= -->
 
-<form method="POST">
+<section class="quote-section">
 
-{% csrf_token %}
+    <div class="container">
 
-<h2 class="mb-4">
+        <div class="row justify-content-center">
 
-Contact Information
+            <div class="col-xl-10">
 
-</h2>
+                <div class="quote-card">
 
-<div class="row">
+                    <!-- SUCCESS MESSAGE -->
 
-<div class="col-md-6 mb-3">
+                    {% if messages %}
 
-<label>
-Full Name *
-</label>
+                    {% for message in messages %}
 
-{{form.full_name}}
+                    <div class="success-alert">
 
-</div>
+                        {{message}}
 
-<div class="col-md-6 mb-3">
+                    </div>
 
-<label>
-Email *
-</label>
+                    {% endfor %}
 
-{{form.email}}
+                    {% endif %}
 
-</div>
 
-</div>
+                    <form method="POST">
 
+                        {% csrf_token %}
 
-<div class="row">
+                        <!-- =========================
+                                CONTACT INFO
+                        ========================== -->
 
-<div class="col-md-6 mb-3">
+                        <div class="form-section">
 
-<label>
-Phone *
-</label>
+                            <div class="section-header">
 
-{{form.phone}}
+                                <span class="section-tag">
 
-</div>
+                                    CONTACT INFORMATION
 
-<div class="col-md-6 mb-3">
+                                </span>
 
-<label>
-Company / Organization
-</label>
+                                <h2>
 
-{{form.company}}
+                                    Personal Details
 
-</div>
+                                </h2>
 
-</div>
+                            </div>
 
-<hr>
+                            <div class="row">
 
+                                <div class="col-md-6 mb-4">
 
-<h2 class="mb-4">
+                                    <label>
 
-Event Details
+                                        Full Name *
 
-</h2>
+                                    </label>
 
-<div class="row">
+                                    {{form.full_name}}
 
-<div class="col-md-6 mb-3">
+                                    <div class="error-text">
 
-<label>
-Event Type *
-</label>
+                                        {{form.full_name.errors}}
 
-{{form.event_type}}
+                                    </div>
 
-</div>
+                                </div>
 
-<div class="col-md-6 mb-3">
 
-<label>
-Event Date *
-</label>
+                                <div class="col-md-6 mb-4">
 
-{{form.event_date}}
+                                    <label>
 
-</div>
+                                        Email Address *
 
-</div>
+                                    </label>
 
+                                    {{form.email}}
 
-<div class="row">
+                                    <div class="error-text">
 
-<div class="col-md-6 mb-3">
+                                        {{form.email.errors}}
 
-<label>
-Flexible Date
-</label>
+                                    </div>
 
-<br>
+                                </div>
 
-{{form.flexible_date}}
+                            </div>
 
-</div>
 
-<div class="col-md-6 mb-3">
+                            <div class="row">
 
-<label>
-Event Time
-</label>
+                                <div class="col-md-6 mb-4">
 
-{{form.event_time}}
+                                    <label>
 
-</div>
+                                        Phone Number *
 
-</div>
+                                    </label>
 
+                                    {{form.phone}}
 
-<div class="row">
+                                    <div class="error-text">
 
-<div class="col-md-6 mb-3">
+                                        {{form.phone.errors}}
 
-<label>
-Guests *
-</label>
+                                    </div>
 
-{{form.guests}}
+                                </div>
 
-</div>
 
-<div class="col-md-6 mb-3">
+                                <div class="col-md-6 mb-4">
 
-<label>
-Venue
-</label>
+                                    <label>
 
-{{form.venue}}
+                                        Company / Organization
 
-</div>
+                                    </label>
 
-</div>
+                                    {{form.company}}
 
+                                </div>
 
-<div class="mb-3">
+                            </div>
 
-<label>
-Indoor / Outdoor
-</label>
+                        </div>
 
-{{form.indoor_outdoor}}
 
-</div>
+                        <!-- =========================
+                                EVENT DETAILS
+                        ========================== -->
 
-<hr>
+                        <div class="form-section">
 
+                            <div class="section-header">
 
-<h2 class="mb-4">
+                                <span class="section-tag">
 
-Food Preferences
+                                    EVENT DETAILS
 
-</h2>
+                                </span>
 
-<div class="row">
+                                <h2>
 
-<div class="col-md-6 mb-3">
+                                    Event Information
 
-<label>
-Cuisine Preference *
-</label>
+                                </h2>
 
-{{form.cuisine}}
+                            </div>
 
-</div>
+                            <div class="row">
 
-<div class="col-md-6 mb-3">
+                                <div class="col-md-6 mb-4">
 
-<label>
-Service Style *
-</label>
+                                    <label>
 
-{{form.service_style}}
+                                        Event Type *
 
-</div>
+                                    </label>
 
-</div>
+                                    {{form.event_type}}
 
+                                </div>
 
-<div class="mb-3">
 
-<label>
-Dietary Requirements
-</label>
+                                <div class="col-md-6 mb-4">
 
-{{form.dietary_requirements}}
+                                    <label>
 
-</div>
+                                        Event Date *
 
+                                    </label>
 
-<div class="mb-3">
+                                    {{form.event_date}}
 
-<label>
-Services Needed
-</label>
+                                    <div class="error-text">
 
-{{form.services_needed}}
+                                        {{form.event_date.errors}}
 
-</div>
+                                    </div>
 
-<hr>
+                                </div>
 
+                            </div>
 
-<h2 class="mb-4">
 
-Budget & Logistics
+                            <div class="row">
 
-</h2>
+                                <div class="col-md-6 mb-4">
 
-<div class="mb-3">
+                                    <label>
 
-<label>
-Budget *
-</label>
+                                        Flexible Date
 
-{{form.budget}}
+                                    </label>
 
-</div>
+                                    <div class="checkbox-wrapper">
 
+                                        {{form.flexible_date}}
 
-<div class="mb-3">
+                                    </div>
 
-<label>
-Tell us about your event
-</label>
+                                </div>
 
-{{form.event_details}}
 
-</div>
+                                <div class="col-md-6 mb-4">
 
+                                    <label>
 
-<div class="mb-3">
+                                        Event Time
 
-<label>
-How did you hear about us?
-</label>
+                                    </label>
 
-{{form.hear_about}}
+                                    {{form.event_time}}
 
-</div>
+                                </div>
 
+                            </div>
 
-<div class="text-center">
 
-<button class="btn btn-warning btn-lg">
+                            <div class="row">
 
-Request Quote
+                                <div class="col-md-6 mb-4">
 
-</button>
+                                    <label>
 
-</div>
+                                        Number Of Guests *
 
-</form>
+                                    </label>
 
-</div>
+                                    {{form.guests}}
 
-</div>
+                                </div>
 
-</div>
 
-</div>
+                                <div class="col-md-6 mb-4">
+
+                                    <label>
+
+                                        Venue Location
+
+                                    </label>
+
+                                    {{form.venue}}
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="mb-4">
+
+                                <label>
+
+                                    Indoor / Outdoor
+
+                                </label>
+
+                                {{form.indoor_outdoor}}
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================
+                                FOOD
+                        ========================== -->
+
+                        <div class="form-section">
+
+                            <div class="section-header">
+
+                                <span class="section-tag">
+
+                                    FOOD PREFERENCES
+
+                                </span>
+
+                                <h2>
+
+                                    Catering Preferences
+
+                                </h2>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-6 mb-4">
+
+                                    <label>
+
+                                        Cuisine Preference *
+
+                                    </label>
+
+                                    {{form.cuisine}}
+
+                                    <div class="error-text">
+
+                                        {{form.cuisine.errors}}
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="col-md-6 mb-4">
+
+                                    <label>
+
+                                        Service Style *
+
+                                    </label>
+
+                                    {{form.service_style}}
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="mb-4">
+
+                                <label>
+
+                                    Dietary Requirements
+
+                                </label>
+
+                                {{form.dietary_requirements}}
+
+                            </div>
+
+
+                            <div class="mb-4">
+
+                                <label>
+
+                                    Services Needed
+
+                                </label>
+
+                                {{form.services_needed}}
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================
+                                BUDGET
+                        ========================== -->
+
+                        <div class="form-section">
+
+                            <div class="section-header">
+
+                                <span class="section-tag">
+
+                                    BUDGET & LOGISTICS
+
+                                </span>
+
+                                <h2>
+
+                                    Additional Information
+
+                                </h2>
+
+                            </div>
+
+                            <div class="mb-4">
+
+                                <label>
+
+                                    Budget *
+
+                                </label>
+
+                                {{form.budget}}
+
+                                <div class="error-text">
+
+                                    {{form.budget.errors}}
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="mb-4">
+
+                                <label>
+
+                                    Tell Us About Your Event
+
+                                </label>
+
+                                {{form.event_details}}
+
+                            </div>
+
+
+                            <div class="mb-4">
+
+                                <label>
+
+                                    How Did You Hear About Us?
+
+                                </label>
+
+                                {{form.hear_about}}
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- BUTTON -->
+
+                        <div class="text-center mt-5">
+
+                            <button
+                                type="submit"
+                                class="submit-btn">
+
+                                Request Catering Quote
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<style>
+
+/* =========================
+        GLOBAL
+========================= */
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#ffffff;
+    overflow-x:hidden;
+}
+
+/* =========================
+        HERO SECTION
+========================= */
+
+.quote-hero{
+    background:linear-gradient(
+    135deg,
+    rgba(17,17,17,.96),
+    rgba(25,25,25,.96)
+    ),
+    url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600');
+    background-size:cover;
+    background-position:center;
+    padding:120px 0 90px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.quote-hero::before{
+    content:'';
+    position:absolute;
+    width:450px;
+    height:450px;
+    background:rgba(255,193,7,.08);
+    border-radius:50%;
+    top:-180px;
+    right:-120px;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+}
+
+.hero-tag{
+    display:inline-block;
+    background:#ffc107;
+    color:#111111;
+    padding:10px 22px;
+    border-radius:40px;
+    font-size:14px;
+    font-weight:700;
+    margin-bottom:24px;
+}
+
+.quote-hero h1{
+    color:#ffffff;
+    font-size:68px;
+    font-weight:800;
+    line-height:1.1;
+    margin-bottom:20px;
+}
+
+.quote-hero p{
+    color:#d1d5db;
+    max-width:720px;
+    margin:auto;
+    line-height:1.9;
+    font-size:18px;
+}
+
+/* =========================
+        FORM SECTION
+========================= */
+
+.quote-section{
+    padding:100px 0;
+    background:#f8fafc;
+}
+
+.quote-card{
+    background:#ffffff;
+    padding:50px;
+    border-radius:36px;
+    border:1px solid #f1f1f1;
+    box-shadow:0 15px 45px rgba(0,0,0,.06);
+}
+
+/* =========================
+        SUCCESS ALERT
+========================= */
+
+.success-alert{
+    background:#ecfdf3;
+    color:#027a48;
+    padding:18px 22px;
+    border-radius:18px;
+    margin-bottom:35px;
+    font-weight:600;
+}
+
+/* =========================
+        FORM SECTION
+========================= */
+
+.form-section{
+    margin-bottom:60px;
+}
+
+.section-header{
+    margin-bottom:35px;
+}
+
+.section-tag{
+    display:inline-block;
+    background:#fff4d6;
+    color:#d18b00;
+    padding:8px 16px;
+    border-radius:30px;
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:18px;
+}
+
+.section-header h2{
+    font-size:34px;
+    font-weight:800;
+    color:#111111;
+}
+
+/* =========================
+        LABELS
+========================= */
+
+label{
+    display:block;
+    margin-bottom:12px;
+    font-size:15px;
+    font-weight:600;
+    color:#111111;
+}
+
+/* =========================
+        INPUTS
+========================= */
+
+input,
+select,
+textarea{
+    width:100%;
+    border:none;
+    background:#f8fafc;
+    padding:16px 20px;
+    border-radius:18px;
+    font-size:15px;
+    color:#111111;
+    border:1px solid transparent;
+    transition:.3s;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    outline:none;
+    box-shadow:none;
+    border-color:#ffc107;
+    background:#ffffff;
+}
+
+textarea{
+    resize:none;
+    min-height:140px;
+}
+
+/* =========================
+        CHECKBOX
+========================= */
+
+.checkbox-wrapper{
+    display:flex;
+    align-items:center;
+    height:58px;
+}
+
+input[type="checkbox"]{
+    width:22px;
+    height:22px;
+    accent-color:#ffc107;
+}
+
+/* =========================
+        BUTTON
+========================= */
+
+.submit-btn{
+    background:#ffc107;
+    color:#111111;
+    border:none;
+    padding:18px 42px;
+    border-radius:50px;
+    font-size:16px;
+    font-weight:700;
+    transition:.3s;
+}
+
+.submit-btn:hover{
+    background:#ffcd39;
+}
+
+/* =========================
+        ERROR
+========================= */
+
+.error-text{
+    margin-top:8px;
+    color:#dc2626;
+    font-size:14px;
+}
+
+.error-text ul{
+    list-style:none;
+    padding:0;
+    margin:0;
+}
+
+/* =========================
+        TABLET
+========================= */
+
+@media(max-width:992px){
+
+    .quote-hero{
+        padding:100px 0 80px;
+    }
+
+    .quote-hero h1{
+        font-size:52px;
+    }
+
+    .quote-card{
+        padding:40px;
+    }
+
+}
+
+/* =========================
+        MOBILE
+========================= */
+
+@media(max-width:768px){
+
+    .quote-section{
+        padding:70px 0;
+    }
+
+    .quote-hero{
+        padding:90px 0 70px;
+    }
+
+    .quote-hero h1{
+        font-size:38px;
+    }
+
+    .quote-hero p{
+        font-size:16px;
+    }
+
+    .quote-card{
+        padding:28px 22px;
+        border-radius:26px;
+    }
+
+    .section-header h2{
+        font-size:28px;
+    }
+
+    .submit-btn{
+        width:100%;
+    }
+
+}
+
+</style>
+
+
+<script>
+
+document.addEventListener(
+
+'DOMContentLoaded',
+
+function(){
+
+const dateField = document.querySelector(
+'input[type="date"]'
+);
+
+const today = new Date()
+.toISOString()
+.split('T')[0];
+
+if(dateField){
+
+dateField.min = today;
+
+}
+
+const phoneField = document.querySelector(
+'[name="phone"]'
+);
+
+if(phoneField){
+
+phoneField.addEventListener(
+
+'input',
+
+function(){
+
+this.value = this.value.replace(
+
+/[^0-9+]/g,
+
+''
+
+);
+
+}
+
+);
+
+}
+
+});
+
+</script>
 
 {% endblock %}

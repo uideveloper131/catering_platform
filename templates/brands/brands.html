@@ -1,45 +1,425 @@
-<div class="row">
+{% extends 'base.html' %}
 
-{% for brand in brands %}
+{% block content %}
 
-<div class="col-md-4 mb-4">
+<!-- =========================
+        HERO SECTION
+========================= -->
 
-<a href="{% url 'brand_detail' brand.id %}"
+<section class="brands-hero">
 
-style="text-decoration:none;color:black;">
+    <div class="container">
 
-<div class="card shadow h-100">
+        <div class="hero-content">
 
-{% if brand.image %}
+            <span class="hero-tag">
 
-<img src="{{brand.image.url}}"
-class="card-img-top"
-style="height:250px;object-fit:cover;">
+                PREMIUM BRANDS
 
-{% endif %}
+            </span>
 
-<div class="card-body">
+            <h1>
 
-<h3>
+                Our Catering Brands
 
-{{brand.name}}
+            </h1>
 
-</h3>
+            <p>
 
-<p>
+                Explore our premium restaurant brands offering
+                unique cuisines, elegant dining experiences,
+                and unforgettable catering services.
 
-{{brand.description|truncatewords:15}}
+            </p>
 
-</p>
+        </div>
 
-</div>
+    </div>
 
-</div>
+</section>
 
-</a>
 
-</div>
+<!-- =========================
+        BRANDS SECTION
+========================= -->
 
-{% endfor %}
+<section class="brands-section">
 
-</div>
+    <div class="container">
+
+        <div class="row">
+
+            {% for brand in brands %}
+
+            <div class="col-lg-3 col-md-6 mb-4">
+
+                <a
+                    href="{% url 'brand_detail' brand.id %}"
+                    class="brand-link">
+
+                    <div class="brand-card">
+
+                        <!-- IMAGE -->
+
+                        {% if brand.image %}
+
+                        <div class="brand-image-wrapper">
+
+                            <img
+                                src="{{brand.image.url}}"
+                                class="brand-image"
+                                alt="{{brand.name}}">
+
+                        </div>
+
+                        {% endif %}
+
+                        <!-- CONTENT -->
+
+                        <div class="brand-content">
+
+                            <span class="brand-badge">
+
+                                Premium Dining
+
+                            </span>
+
+                            <h4>
+
+                                {{brand.name}}
+
+                            </h4>
+
+                            <p>
+
+                                {{brand.description|truncatewords:16}}
+
+                            </p>
+
+                            <span class="brand-btn">
+
+                                Explore Brand →
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+            {% empty %}
+
+            <div class="col-12">
+
+                <div class="empty-box">
+
+                    <h3>
+
+                        No Brands Available
+
+                    </h3>
+
+                    <p>
+
+                        Catering brands will be updated soon.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<style>
+
+/* =========================
+        GLOBAL
+========================= */
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#ffffff;
+    overflow-x:hidden;
+}
+
+/* =========================
+        HERO SECTION
+========================= */
+
+.brands-hero{
+    background:linear-gradient(
+    135deg,
+    rgba(17,17,17,.96),
+    rgba(25,25,25,.96)
+    ),
+    url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600');
+    background-size:cover;
+    background-position:center;
+    padding:120px 0 90px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.brands-hero::before{
+    content:'';
+    position:absolute;
+    width:450px;
+    height:450px;
+    background:rgba(255,193,7,.08);
+    border-radius:50%;
+    top:-180px;
+    right:-120px;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+}
+
+.hero-tag{
+    display:inline-block;
+    background:#ffc107;
+    color:#111111;
+    padding:10px 22px;
+    border-radius:40px;
+    font-size:14px;
+    font-weight:700;
+    margin-bottom:24px;
+    letter-spacing:.5px;
+}
+
+.brands-hero h1{
+    color:#ffffff;
+    font-size:68px;
+    font-weight:800;
+    margin-bottom:20px;
+}
+
+.brands-hero p{
+    color:#d1d5db;
+    max-width:720px;
+    margin:auto;
+    line-height:1.9;
+    font-size:18px;
+}
+
+/* =========================
+        BRANDS SECTION
+========================= */
+
+.brands-section{
+    padding:100px 0;
+    background:#f8fafc;
+}
+
+/* =========================
+        BRAND LINK
+========================= */
+
+.brand-link{
+    text-decoration:none;
+    color:inherit;
+}
+
+/* =========================
+        BRAND CARD
+========================= */
+
+.brand-card{
+    background:#ffffff;
+    border-radius:30px;
+    overflow:hidden;
+    height:100%;
+    border:1px solid #f1f1f1;
+    box-shadow:0 12px 40px rgba(0,0,0,.06);
+    transition:.35s;
+}
+
+.brand-card:hover{
+    transform:translateY(-6px);
+}
+
+/* =========================
+        IMAGE
+========================= */
+
+.brand-image-wrapper{
+    overflow:hidden;
+    position:relative;
+}
+
+.brand-image{
+    width:100%;
+    height:280px;
+    object-fit:cover;
+    transition:.4s;
+}
+
+.brand-card:hover .brand-image{
+    transform:scale(1.05);
+}
+
+/* =========================
+        CONTENT
+========================= */
+
+.brand-content{
+    padding:28px;
+}
+
+.brand-badge{
+    display:inline-block;
+    background:#fff4d6;
+    color:#d18b00;
+    padding:8px 16px;
+    border-radius:30px;
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:18px;
+}
+
+.brand-content h4{
+    font-size:24px;
+    font-weight:700;
+    color:#111111;
+    margin-bottom:15px;
+}
+
+.brand-content p{
+    color:#6b7280;
+    line-height:1.9;
+    font-size:15px;
+    margin-bottom:22px;
+    min-height:85px;
+}
+
+/* =========================
+        BUTTON
+========================= */
+
+.brand-btn{
+    display:inline-block;
+    background:#111111;
+    color:#ffffff;
+    padding:13px 22px;
+    border-radius:50px;
+    font-size:14px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.brand-card:hover .brand-btn{
+    background:#ffc107;
+    color:#111111;
+}
+
+/* =========================
+        EMPTY BOX
+========================= */
+
+.empty-box{
+    background:#ffffff;
+    padding:80px 30px;
+    border-radius:30px;
+    text-align:center;
+    box-shadow:0 10px 35px rgba(0,0,0,.05);
+}
+
+.empty-box h3{
+    font-size:36px;
+    font-weight:800;
+    margin-bottom:15px;
+    color:#111111;
+}
+
+.empty-box p{
+    color:#6b7280;
+    font-size:17px;
+}
+
+/* =========================
+        TABLET
+========================= */
+
+@media(max-width:992px){
+
+    .brands-hero{
+        padding:100px 0 80px;
+    }
+
+    .brands-hero h1{
+        font-size:52px;
+    }
+
+}
+
+/* =========================
+        MOBILE
+========================= */
+
+@media(max-width:768px){
+
+    .brands-section{
+        padding:70px 0;
+    }
+
+    .brands-hero{
+        padding:90px 0 70px;
+    }
+
+    .brands-hero h1{
+        font-size:38px;
+        line-height:1.2;
+    }
+
+    .brands-hero p{
+        font-size:16px;
+    }
+
+    .brand-image{
+        height:240px;
+    }
+
+    .brand-content{
+        padding:22px;
+    }
+
+    .brand-content h4{
+        font-size:22px;
+    }
+
+    .brand-content p{
+        min-height:auto;
+    }
+
+    .brand-btn{
+        width:100%;
+        text-align:center;
+    }
+
+    .empty-box{
+        padding:60px 20px;
+    }
+
+    .empty-box h3{
+        font-size:28px;
+    }
+
+}
+
+</style>
+
+{% endblock %}

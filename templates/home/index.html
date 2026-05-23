@@ -2,499 +2,1281 @@
 
 {% block content %}
 
-<!-- HERO SECTION -->
+<!-- =========================
+        HERO SECTION
+========================= -->
 
-<section class="bg-dark text-white py-5">
+<section class="hero-section">
 
-<div class="container">
+    <div class="container">
 
-<div class="row align-items-center">
+        <div class="row align-items-center min-vh-100">
 
-<div class="col-lg-6">
+            <div class="col-lg-6">
 
-<h1 class="display-3 fw-bold">
+                <span class="hero-badge">
+                    Premium Catering Experience
+                </span>
 
-Premium Multi-Brand
-Catering Experience
+                <h1 class="hero-title">
 
-</h1>
+                    Elegant Catering
+                    For Every Occasion
 
-<p class="lead mt-4">
+                </h1>
 
-Wedding • Corporate • Birthday • Anniversary • Private Events • Cultural Celebrations
+                <p class="hero-description">
 
-</p>
+                    Wedding • Corporate • Birthday • Anniversary •
+                    Private Parties • Cultural Celebrations
 
-<p>
+                </p>
 
-Serving multiple brands with customized menus and unforgettable dining experiences.
+                <div class="hero-buttons">
 
-</p>
+                    <a
+                        href="/request-quote/"
+                        class="btn hero-btn-primary">
 
-<div class="mt-4">
+                        Request Quote
 
-<a
-href="/request-quote/"
-class="btn btn-warning btn-lg">
+                    </a>
 
-Request Quote
+                    <a
+                        href="/brands/"
+                        class="btn hero-btn-secondary">
 
-</a>
+                        Explore Brands
 
-<a
-href="/brands/"
-class="btn btn-outline-light btn-lg ms-2">
+                    </a>
 
-Explore Brands
+                </div>
 
-</a>
+                <div class="hero-stats">
 
-</div>
+                    <div class="hero-stat">
 
-</div>
+                        <h3>
+                            500+
+                        </h3>
 
-<div class="col-lg-6">
+                        <p>
+                            Events Served
+                        </p>
 
-<img
-src="https://images.unsplash.com/photo-1555244162-803834f70033?w=1000"
-class="img-fluid rounded shadow"
-alt="Catering">
+                    </div>
 
-</div>
+                    <div class="hero-stat">
 
-</div>
+                        <h3>
+                            50+
+                        </h3>
 
-</div>
+                        <p>
+                            Premium Menus
+                        </p>
+
+                    </div>
+
+                    <div class="hero-stat">
+
+                        <h3>
+                            4.9★
+                        </h3>
+
+                        <p>
+                            Customer Rating
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <div class="hero-image-box">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1555244162-803834f70033?w=1200"
+                        class="hero-image"
+                        alt="Catering">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
-<!-- STATISTICS -->
-
-<section class="py-5 bg-light">
-
-<div class="container">
-
-<div class="row text-center">
-
-{% for stat in statistics %}
-
-<div class="col-md-3 mb-4">
-
-<div class="card shadow border-0 p-4">
-
-<h1 class="fw-bold text-warning">
-
-{{stat.value}}
-
-</h1>
-
-<h5>
-
-{{stat.title}}
-
-</h5>
-
-</div>
-
-</div>
-
-{% endfor %}
-
-</div>
-
-</div>
-
-</section>
-
-<!-- BRANDS -->
-
-<section
-id="brands"
-class="py-5">
-
-<div class="container">
-
-<h2 class="text-center fw-bold mb-5">
-
-Our Catering Brands
-
-</h2>
-
-<div class="row">
-
-{% for brand in brands %}
-
-<div class="col-md-4 mb-4">
-
-<a
-href="{% url 'brand_detail' brand.id %}"
-style="text-decoration:none;color:black;">
-
-<div class="card border-0 shadow h-100">
-
-{% if brand.image %}
-
-<img
-src="{{brand.image.url}}"
-class="card-img-top"
-style="height:250px;object-fit:cover;">
-
-{% endif %}
-
-<div class="card-body text-center">
-
-<h4>
-
-{{brand.name}}
-
-</h4>
-
-<p>
-
-{{brand.description|truncatewords:15}}
-
-</p>
-
-</div>
-
-</div>
-
-</a>
-
-</div>
-
-{% endfor %}
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- FEATURED MENU -->
-
-<section class="bg-light py-5">
-
-<div class="container">
-
-<h2 class="text-center fw-bold mb-5">
-
-Featured Menu Items
-
-</h2>
-
-<div class="row">
-
-{% for item in menu_items %}
-
-<div class="col-md-4 mb-4">
-
-<div class="card border-0 shadow h-100">
-
-{% if item.image %}
-
-<img
-src="{{item.image.url}}"
-class="card-img-top"
-style="height:250px;object-fit:cover;">
-
-{% endif %}
-
-<div class="card-body">
-
-<h4>
-
-{{item.name}}
-
-</h4>
-
-<p>
-
-{{item.description}}
-
-</p>
-
-<p class="fw-bold">
-
-${{item.price}}
-
-</p>
-
-<span class="badge bg-dark">
-
-{{item.brand}}
-
-</span>
-
-</div>
-
-</div>
-
-</div>
-
-{% endfor %}
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- DYNAMIC SERVICES -->
-
-<section class="py-5">
-
-<div class="container">
-
-<h2 class="text-center fw-bold mb-5">
-
-Our Catering Services
-
-</h2>
-
-<div class="row">
-
-{% for service in services %}
-
-<div class="col-md-4 mb-4">
-
-<div class="card border-0 shadow h-100">
-
-{% if service.image %}
-
-<img
-src="{{service.image.url}}"
-class="card-img-top"
-style="height:250px;object-fit:cover;">
-
-{% endif %}
-
-<div class="card-body text-center">
-
-<h4>
-
-{{service.title}}
-
-</h4>
-
-<p>
-
-{{service.description|truncatewords:15}}
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-{% empty %}
-
-<div class="text-center">
-
-<h4>
-
-No services available
-
-</h4>
-
-</div>
-
-{% endfor %}
-
-</div>
-
-</div>
-
-</section>
-
-<!-- GALLERY PREVIEW -->
-
-<section class="bg-light py-5">
-
-<div class="container">
-
-<h2 class="text-center fw-bold mb-5">
-
-Event Gallery
-
-</h2>
-
-<div class="row">
-
-{% for item in gallery_items %}
-
-<div class="col-md-4 mb-4">
-
-<div class="card shadow border-0">
-
-<img
-src="{{item.image.url}}"
-class="card-img-top"
-style="height:250px;object-fit:cover;">
-
-<div class="card-body text-center">
-
-<h5>
-
-{{item.title}}
-
-</h5>
-
-<p>
-
-{{item.category}}
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-{% endfor %}
-
-</div>
-
-<div class="text-center mt-4">
-
-<a
-href="/gallery/"
-class="btn btn-dark btn-lg">
-
-View Complete Gallery
-
-</a>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- TESTIMONIALS -->
-
-<section class="py-5">
-
-<div class="container">
-
-<h2 class="text-center fw-bold mb-5">
-
-Customer Experiences
-
-</h2>
-
-<div class="row">
-
-{% for testimonial in testimonials %}
-
-<div class="col-md-4 mb-4">
-
-<div class="card shadow p-4 h-100">
-
-<h5>
-
-{{testimonial.rating}} ⭐
-
-</h5>
-
-<p class="mt-3">
-
-{{testimonial.review}}
-
-</p>
-
-<h5>
-
-{{testimonial.customer_name}}
-
-</h5>
-
-</div>
-
-</div>
-
-{% empty %}
-
-<div class="text-center">
-
-No testimonials available
-
-</div>
-
-{% endfor %}
-
-</div>
-
-</div>
-
-</section>
-
-{#<!-- CTA -->#}
 {##}
-{#<section class="bg-warning py-5">#}
+{#<!-- =========================#}
+{#        STATISTICS#}
+{#========================= -->#}
 {##}
-{#<div class="container text-center">#}
+{#<section class="stats-section">#}
 {##}
-{#<h2>#}
+{#    <div class="container">#}
 {##}
-{#{{cta.title}}#}
+{#        <div class="row">#}
 {##}
-{#</h2>#}
+{#            {% for stat in statistics %}#}
 {##}
-{#<p>#}
+{#            <div class="col-lg-3 col-md-6 col-6 mb-4">#}
 {##}
-{#{{cta.description}}#}
+{#                <div class="stats-card">#}
 {##}
-{#</p>#}
+{#                    <h2>#}
+{#                        {{stat.value}}#}
+{#                    </h2>#}
 {##}
-{#<a#}
-{#href="/request-quote/"#}
-{#class="btn btn-dark btn-lg">#}
+{#                    <p>#}
+{#                        {{stat.title}}#}
+{#                    </p>#}
 {##}
-{#{{cta.button_text}}#}
+{#                </div>#}
 {##}
-{#</a>#}
+{#            </div>#}
 {##}
-{#</div>#}
+{#            {% endfor %}#}
+{##}
+{#        </div>#}
+{##}
+{#    </div>#}
 {##}
 {#</section>#}
 
-<!-- CTA -->
 
-<section class="bg-warning py-5">
+<!-- =========================
+        BRANDS
+========================= -->
 
-<div class="container text-center">
+<section class="section-padding">
 
-<h2>
+    <div class="container">
 
-Need Catering For Your Event?
+        <div class="section-header">
 
-</h2>
+            <span class="section-tag">
+                OUR BRANDS
+            </span>
 
-<p>
+            <h2 class="section-title">
+                Premium Catering Brands
+            </h2>
 
-Request a personalized quote and let us create your perfect event experience.
+            <p class="section-description">
 
-</p>
+                Discover our premium catering partners delivering
+                unforgettable dining experiences.
 
-<a
-href="/request-quote/"
-class="btn btn-dark btn-lg">
+            </p>
 
-Request Quote
+        </div>
 
-</a>
+        <div class="row">
 
-</div>
+            {% for brand in brands %}
+
+            <div class="col-lg-3 col-md-6 mb-4">
+
+                <a
+                    href="{% url 'brand_detail' brand.id %}"
+                    class="text-decoration-none">
+
+                    <div class="premium-card">
+
+                        {% if brand.image %}
+
+                        <div class="card-image-wrapper">
+
+                            <img
+                                src="{{brand.image.url}}"
+                                class="premium-card-image"
+                                alt="{{brand.name}}">
+
+                        </div>
+
+                        {% endif %}
+
+                        <div class="premium-card-content">
+
+                            <h4>
+                                {{brand.name}}
+                            </h4>
+
+                            <p>
+                                {{brand.description|truncatewords:15}}
+                            </p>
+
+                            <span class="card-link">
+
+                                Explore Brand →
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
 
 </section>
+
+
+<!-- =========================
+        FEATURED MENU
+========================= -->
+
+<section class="menu-section">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <span class="section-tag">
+                FEATURED MENU
+            </span>
+
+            <h2 class="section-title">
+                Signature Dishes
+            </h2>
+
+        </div>
+
+        <div class="row">
+
+            {% for item in menu_items %}
+
+            <div class="col-lg-4 col-md-6 mb-4">
+
+                <div class="food-card">
+
+                    {% if item.image %}
+
+                    <img
+                        src="{{item.image.url}}"
+                        class="food-image"
+                        alt="{{item.name}}">
+
+                    {% endif %}
+
+                    <div class="food-content">
+
+                        <div class="food-top">
+
+                            <h4>
+                                {{item.name}}
+                            </h4>
+
+                            <span class="food-badge">
+                                {{item.brand}}
+                            </span>
+
+                        </div>
+
+                        <p>
+                            {{item.description|truncatewords:18}}
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+        SERVICES
+========================= -->
+
+<section class="section-padding">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <span class="section-tag">
+                EVENT SERVICES
+            </span>
+
+            <h2 class="section-title">
+                Catering We Provide
+            </h2>
+
+            <p class="section-description">
+
+                Professional catering services designed
+                for every special event and celebration.
+
+            </p>
+
+        </div>
+
+        <div class="row">
+
+            {% for event in events %}
+
+            <div class="col-lg-3 col-md-6 mb-4">
+
+                <a
+                    href="{% url 'event_detail' event.id %}"
+                    class="text-decoration-none">
+
+                    <div class="premium-card">
+
+                        {% if event.image %}
+
+                        <img
+                            src="{{event.image.url}}"
+                            class="premium-card-image"
+                            alt="{{event.title}}">
+
+                        {% endif %}
+
+                        <div class="premium-card-content">
+
+                            <h4>
+                                {{event.title}}
+                            </h4>
+
+                            <p>
+                                {{event.description|truncatewords:12}}
+                            </p>
+
+                            <span class="card-link">
+
+                                View Details →
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+        GALLERY
+========================= -->
+
+{#<section class="gallery-section">#}
+{##}
+{#    <div class="container">#}
+{##}
+{#        <div class="section-header">#}
+{##}
+{#            <span class="section-tag gallery-tag">#}
+{#                EVENT GALLERY#}
+{#            </span>#}
+{##}
+{#            <h2 class="section-title text-white">#}
+{#                Memorable Event Moments#}
+{#            </h2>#}
+{##}
+{#        </div>#}
+{##}
+{#        <div class="row">#}
+{##}
+{#            {% for item in gallery_items %}#}
+{##}
+{#            <div class="col-lg-4 col-md-6 mb-4">#}
+{##}
+{#                <div class="gallery-card">#}
+{##}
+{#                    <img#}
+{#                        src="{{item.image.url}}"#}
+{#                        class="gallery-image"#}
+{#                        alt="{{item.title}}">#}
+{##}
+{#                    <div class="gallery-overlay">#}
+{##}
+{#                        <h5>#}
+{#                            {{item.title}}#}
+{#                        </h5>#}
+{##}
+{#                        <p>#}
+{#                            {{item.category}}#}
+{#                        </p>#}
+{##}
+{#                    </div>#}
+{##}
+{#                </div>#}
+{##}
+{#            </div>#}
+{##}
+{#            {% endfor %}#}
+{##}
+{#        </div>#}
+{##}
+{#    </div>#}
+{##}
+{#</section>#}
+
+
+<!-- =========================
+        TESTIMONIALS
+========================= -->
+
+<section class="testimonial-section">
+
+    <div class="container">
+
+        <div class="section-header text-center">
+
+            <span class="section-tag">
+                TESTIMONIALS
+            </span>
+
+            <h2 class="section-title text-white">
+                What Customers Say
+            </h2>
+
+            <p class="testimonial-subtitle">
+
+                Real experiences from our happy customers
+
+            </p>
+
+        </div>
+
+        <!-- SAME LOGIC -->
+
+        <div class="testimonial-wrapper">
+
+            {% for testimonial in testimonials %}
+
+            <div class="testimonial-item">
+
+                <div class="testimonial-card">
+
+                    <div class="stars">
+
+                        ⭐⭐⭐⭐⭐
+
+                    </div>
+
+                    <p class="testimonial-text">
+
+                        "{{testimonial.review|truncatewords:28}}"
+
+                    </p>
+
+                    <div class="testimonial-user">
+
+                        <div class="testimonial-avatar">
+
+                            {{testimonial.customer_name|first}}
+
+                        </div>
+
+                        <div>
+
+                            <h5>
+                                {{testimonial.customer_name}}
+                            </h5>
+
+                            <small>
+                                Verified Customer
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+            FAQ
+========================= -->
+
+<section class="faq-section">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <span class="section-tag">
+                FAQ
+            </span>
+
+            <h2 class="section-title">
+                Frequently Asked Questions
+            </h2>
+
+        </div>
+
+        <div class="accordion" id="faqAccordion">
+
+            {% for faq in faqs %}
+
+            <div class="accordion-item">
+
+                <h2 class="accordion-header">
+
+                    <button
+                        class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#faq{{forloop.counter}}">
+
+                        {{faq.question}}
+
+                    </button>
+
+                </h2>
+
+                <div
+                    id="faq{{forloop.counter}}"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#faqAccordion">
+
+                    <div class="accordion-body">
+
+                        {{faq.answer}}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+            CTA
+========================= -->
+
+<section class="cta-section">
+
+    <div class="container text-center">
+
+        <h2>
+
+            Need Catering For Your Event?
+
+        </h2>
+
+        <p>
+
+            Get a customized catering quote for your next celebration.
+
+        </p>
+
+        <a
+            href="/request-quote/"
+            class="btn cta-btn">
+
+            Request Quote
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<style>
+
+/* =========================
+        GLOBAL
+========================= */
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#ffffff;
+    color:#111111;
+    overflow-x:hidden;
+}
+
+.section-padding{
+    padding:100px 0;
+}
+
+.section-header{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.section-tag{
+    display:inline-block;
+    padding:10px 20px;
+    border-radius:40px;
+    background:#fff3d4;
+    color:#c98a00;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:20px;
+    letter-spacing:1px;
+}
+
+.section-title{
+    font-size:50px;
+    font-weight:800;
+    color:#111111;
+    margin-bottom:18px;
+}
+
+.section-description{
+    max-width:700px;
+    margin:auto;
+    color:#6b7280;
+    line-height:1.9;
+    font-size:17px;
+}
+
+/* =========================
+        HERO
+========================= */
+
+.hero-section{
+    background:#111111;
+    position:relative;
+    overflow:hidden;
+    padding:60px 0;
+}
+
+.hero-section::before{
+    content:'';
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:rgba(255,193,7,.08);
+    border-radius:50%;
+    top:-180px;
+    right:-180px;
+}
+
+.hero-badge{
+    display:inline-block;
+    background:#ffc107;
+    color:#111111;
+    padding:10px 22px;
+    border-radius:40px;
+    font-weight:700;
+    font-size:14px;
+    margin-bottom:28px;
+}
+
+.hero-title{
+    color:#ffffff;
+    font-size:72px;
+    line-height:1.1;
+    font-weight:800;
+    margin-bottom:25px;
+}
+
+.hero-description{
+    color:#d1d5db;
+    font-size:18px;
+    line-height:1.9;
+    max-width:600px;
+}
+
+.hero-buttons{
+    margin-top:38px;
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+}
+
+.hero-btn-primary{
+    background:#ffc107;
+    color:#111111;
+    padding:15px 36px;
+    border-radius:50px;
+    font-weight:700;
+    border:none;
+}
+
+.hero-btn-secondary{
+    background:rgba(255,255,255,.08);
+    color:#ffffff;
+    border:1px solid rgba(255,255,255,.12);
+    padding:15px 36px;
+    border-radius:50px;
+    font-weight:700;
+}
+
+.hero-image-box{
+    position:relative;
+}
+
+.hero-image{
+    width:100%;
+    border-radius:32px;
+    box-shadow:0 25px 60px rgba(0,0,0,.35);
+}
+
+.hero-stats{
+    display:flex;
+    gap:20px;
+    margin-top:45px;
+    flex-wrap:wrap;
+}
+
+.hero-stat{
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.08);
+    padding:20px 26px;
+    border-radius:24px;
+    min-width:140px;
+    text-align:center;
+}
+
+.hero-stat h3{
+    color:#ffc107;
+    font-size:30px;
+    font-weight:800;
+    margin-bottom:5px;
+}
+
+.hero-stat p{
+    color:#d1d5db;
+    margin:0;
+    font-size:14px;
+}
+
+/* =========================
+        STATS
+========================= */
+
+.stats-section{
+    padding:80px 0 40px;
+    background:#ffffff;
+}
+
+.stats-card{
+    background:#ffffff;
+    padding:35px 20px;
+    border-radius:28px;
+    text-align:center;
+    box-shadow:0 10px 40px rgba(0,0,0,.06);
+    border:1px solid #f3f4f6;
+}
+
+.stats-card h2{
+    color:#f4b400;
+    font-size:42px;
+    font-weight:800;
+}
+
+.stats-card p{
+    color:#6b7280;
+    margin:0;
+}
+
+/* =========================
+        CARDS
+========================= */
+
+.premium-card{
+    background:#ffffff;
+    border-radius:30px;
+    overflow:hidden;
+    height:100%;
+    box-shadow:0 12px 40px rgba(0,0,0,.06);
+    border:1px solid #f3f4f6;
+}
+
+.premium-card-image{
+    width:100%;
+    height:260px;
+    object-fit:cover;
+}
+
+.premium-card-content{
+    padding:28px;
+}
+
+.premium-card-content h4{
+    color:#111111;
+    font-weight:700;
+    margin-bottom:14px;
+}
+
+.premium-card-content p{
+    color:#6b7280;
+    line-height:1.8;
+}
+
+.card-link{
+    display:inline-block;
+    margin-top:16px;
+    color:#f4b400;
+    font-weight:700;
+}
+
+/* =========================
+        MENU
+========================= */
+
+.menu-section{
+    background:#f8fafc;
+    padding:100px 0;
+}
+
+.food-card{
+    background:#ffffff;
+    border-radius:30px;
+    overflow:hidden;
+    height:100%;
+    box-shadow:0 10px 40px rgba(0,0,0,.06);
+    border:1px solid #f3f4f6;
+}
+
+.food-image{
+    width:100%;
+    height:280px;
+    object-fit:cover;
+}
+
+.food-content{
+    padding:28px;
+}
+
+.food-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    margin-bottom:15px;
+}
+
+.food-top h4{
+    margin:0;
+    font-weight:700;
+}
+
+.food-badge{
+    background:#111111;
+    color:#ffffff;
+    padding:7px 14px;
+    border-radius:30px;
+    font-size:12px;
+}
+
+.food-content p{
+    color:#6b7280;
+    line-height:1.8;
+}
+
+/* =========================
+        GALLERY
+========================= */
+
+.gallery-section{
+    background:#111111;
+    padding:100px 0;
+}
+
+.gallery-tag{
+    background:rgba(255,255,255,.08);
+    color:#ffffff;
+}
+
+.gallery-card{
+    position:relative;
+    overflow:hidden;
+    border-radius:30px;
+}
+
+.gallery-image{
+    width:100%;
+    height:360px;
+    object-fit:cover;
+}
+
+.gallery-overlay{
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    padding:28px;
+    background:linear-gradient(
+    transparent,
+    rgba(0,0,0,.92)
+    );
+}
+
+.gallery-overlay h5{
+    color:#ffffff;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.gallery-overlay p{
+    color:#d1d5db;
+    margin:0;
+}
+
+/* =========================
+        TESTIMONIALS
+========================= */
+
+.testimonial-section{
+    background:#161616;
+    padding:100px 0;
+    overflow:hidden;
+}
+
+.testimonial-subtitle{
+    color:#d1d5db;
+    margin-top:14px;
+    font-size:17px;
+}
+
+.testimonial-wrapper{
+    display:flex;
+    gap:28px;
+    overflow-x:auto;
+    scroll-behavior:smooth;
+    padding:10px 5px;
+}
+
+.testimonial-wrapper::-webkit-scrollbar{
+    display:none;
+}
+
+.testimonial-item{
+    min-width:380px;
+    flex-shrink:0;
+}
+
+.testimonial-card{
+    background:#222222;
+    border-radius:30px;
+    padding:35px;
+    border:1px solid rgba(255,255,255,.06);
+}
+
+.stars{
+    font-size:20px;
+    margin-bottom:20px;
+}
+
+.testimonial-text{
+    color:#f3f4f6;
+    line-height:1.9;
+    margin-bottom:28px;
+}
+
+.testimonial-user{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.testimonial-avatar{
+    width:65px;
+    height:65px;
+    border-radius:50%;
+    background:#ffc107;
+    color:#111111;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    font-weight:700;
+}
+
+.testimonial-user h5{
+    color:#ffffff;
+    margin-bottom:4px;
+}
+
+.testimonial-user small{
+    color:#d1d5db;
+}
+
+/* =========================
+        FAQ
+========================= */
+
+.faq-section{
+    padding:100px 0;
+    background:#ffffff;
+}
+
+.accordion-item{
+    border:none;
+    border-radius:24px !important;
+    overflow:hidden;
+    margin-bottom:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
+}
+
+.accordion-button{
+    padding:24px;
+    background:#ffffff;
+    color:#111111;
+    font-weight:600;
+    font-size:18px;
+}
+
+.accordion-button:not(.collapsed){
+    background:#ffc107;
+    color:#111111;
+    box-shadow:none;
+}
+
+.accordion-body{
+    padding:24px;
+    color:#6b7280;
+    line-height:1.9;
+}
+
+/* =========================
+        CTA
+========================= */
+
+.cta-section{
+    background:linear-gradient(
+    135deg,
+    #ffc107,
+    #f4b400
+    );
+    padding:100px 0;
+}
+
+.cta-section h2{
+    color:#111111;
+    font-size:56px;
+    font-weight:800;
+    margin-bottom:18px;
+}
+
+.cta-section p{
+    color:#333333;
+    font-size:18px;
+}
+
+.cta-btn{
+    background:#111111;
+    color:#ffffff;
+    padding:16px 38px;
+    border-radius:50px;
+    font-weight:700;
+    margin-top:25px;
+}
+
+/* =========================
+        MOBILE
+========================= */
+
+@media(max-width:992px){
+
+    .hero-section{
+        text-align:center;
+    }
+
+    .hero-title{
+        font-size:52px;
+    }
+
+    .hero-buttons{
+        justify-content:center;
+    }
+
+    .hero-stats{
+        justify-content:center;
+    }
+
+    .hero-image{
+        margin-top:50px;
+    }
+
+    .section-title{
+        font-size:40px;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .section-padding,
+    .menu-section,
+    .gallery-section,
+    .testimonial-section,
+    .faq-section,
+    .cta-section{
+        padding:70px 0;
+    }
+
+    .hero-title{
+        font-size:38px;
+    }
+
+    .hero-description{
+        font-size:16px;
+    }
+
+    .section-title{
+        font-size:30px;
+    }
+
+    .hero-buttons{
+        flex-direction:column;
+    }
+
+    .hero-btn-primary,
+    .hero-btn-secondary{
+        width:100%;
+    }
+
+    .hero-stat{
+        width:100%;
+    }
+
+    .testimonial-item{
+        min-width:300px;
+    }
+
+    .testimonial-card{
+        padding:25px;
+    }
+
+    .gallery-image{
+        height:280px;
+    }
+
+    .cta-section h2{
+        font-size:36px;
+    }
+
+}
+
+</style>
+
+
+<!-- =========================
+    TESTIMONIAL AUTO SLIDER
+========================= -->
+
+<script>
+
+document.addEventListener(
+
+'DOMContentLoaded',
+
+function(){
+
+const slider = document.querySelector(
+'.testimonial-wrapper'
+);
+
+let scrollAmount = 0;
+
+function autoScroll(){
+
+scrollAmount += 1;
+
+slider.scrollLeft = scrollAmount;
+
+if(
+
+scrollAmount >=
+slider.scrollWidth - slider.clientWidth
+
+){
+
+scrollAmount = 0;
+
+}
+
+}
+
+let slide = setInterval(
+autoScroll,
+30
+);
+
+/* Pause On Hover */
+
+slider.addEventListener(
+
+'mouseenter',
+
+()=>{
+
+clearInterval(slide);
+
+}
+
+);
+
+slider.addEventListener(
+
+'mouseleave',
+
+()=>{
+
+slide = setInterval(
+
+autoScroll,
+
+30
+
+);
+
+}
+
+);
+
+}
+
+);
+
+</script>
 
 {% endblock %}

@@ -5,37 +5,33 @@ from .models import Category, MenuItem
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
 
-    list_display = (
-        'name',
-        'active',
-    )
+    list_display=(
 
-    list_filter = (
-        'active',
-    )
-
-    search_fields = (
         'name',
+        'active'
+
     )
 
 
 @admin.register(MenuItem)
 class MenuItemAdmin(admin.ModelAdmin):
 
-    list_display = (
+    list_display=(
+
         'name',
         'brand',
         'category',
-        'price',
-        'available',
+        'available'
     )
 
-    list_filter = (
+    list_filter=(
+
         'brand',
         'category',
-        'available',
+        'available'
     )
 
-    search_fields = (
+    search_fields=(
+
         'name',
     )

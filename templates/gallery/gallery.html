@@ -2,54 +2,347 @@
 
 {% block content %}
 
-<section class="py-5">
+<!-- =========================
+        GALLERY HERO
+========================= -->
 
-<div class="container">
+<section class="gallery-hero">
 
-<h1 class="text-center mb-5">
+    <div class="container">
 
-Our Catering Gallery
+        <div class="gallery-hero-content">
 
-</h1>
+            <span class="gallery-tag">
+                EVENT GALLERY
+            </span>
 
-<div class="row">
+            <h1>
 
-{% for image in images %}
+                Our Catering Gallery
 
-<div class="col-md-4 mb-4">
+            </h1>
 
-<div class="card shadow">
+            <p>
 
-<img src="{{image.image.url}}"
-class="card-img-top"
-style="height:300px;object-fit:cover;">
+                Explore our premium catering experiences,
+                elegant event setups, signature dishes,
+                and unforgettable celebrations.
 
-<div class="card-body">
+            </p>
 
-<h5>
+        </div>
 
-{{image.title}}
-
-</h5>
-
-<p>
-
-{{image.category}}
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-{% endfor %}
-
-</div>
-
-</div>
+    </div>
 
 </section>
+
+
+<!-- =========================
+        GALLERY SECTION
+========================= -->
+
+<section class="gallery-section">
+
+    <div class="container">
+
+        <div class="row">
+
+            {% for image in images %}
+
+            <div class="col-lg-4 col-md-6 mb-4">
+
+                <div class="gallery-card">
+
+                    <!-- IMAGE -->
+
+                    <div class="gallery-image-wrapper">
+
+                        <img
+                            src="{{image.image.url}}"
+                            class="gallery-image"
+                            alt="{{image.title}}">
+
+                    </div>
+
+                    <!-- CONTENT -->
+
+                    <div class="gallery-content">
+
+                        <span class="gallery-category">
+
+                            {{image.category}}
+
+                        </span>
+
+                        <h4>
+
+                            {{image.title}}
+
+                        </h4>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <div class="col-12">
+
+                <div class="empty-gallery">
+
+                    <h3>
+                        Gallery Coming Soon
+                    </h3>
+
+                    <p>
+                        New event photos will be updated shortly.
+                    </p>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<style>
+
+/* =========================
+        GLOBAL
+========================= */
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#ffffff;
+    overflow-x:hidden;
+}
+
+/* =========================
+        HERO SECTION
+========================= */
+
+.gallery-hero{
+    background:linear-gradient(
+    135deg,
+    rgba(17,17,17,.96),
+    rgba(25,25,25,.96)
+    ),
+    url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600');
+    background-size:cover;
+    background-position:center;
+    padding:120px 0 90px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.gallery-hero::before{
+    content:'';
+    position:absolute;
+    width:450px;
+    height:450px;
+    background:rgba(255,193,7,.08);
+    border-radius:50%;
+    top:-180px;
+    right:-120px;
+}
+
+.gallery-hero-content{
+    position:relative;
+    z-index:2;
+}
+
+.gallery-tag{
+    display:inline-block;
+    background:#ffc107;
+    color:#111111;
+    padding:10px 22px;
+    border-radius:40px;
+    font-size:14px;
+    font-weight:700;
+    margin-bottom:25px;
+    letter-spacing:.5px;
+}
+
+.gallery-hero h1{
+    color:#ffffff;
+    font-size:68px;
+    font-weight:800;
+    margin-bottom:20px;
+}
+
+.gallery-hero p{
+    color:#d1d5db;
+    max-width:720px;
+    margin:auto;
+    line-height:1.9;
+    font-size:18px;
+}
+
+/* =========================
+        GALLERY SECTION
+========================= */
+
+.gallery-section{
+    padding:100px 0;
+    background:#f8fafc;
+}
+
+/* =========================
+        CARD
+========================= */
+
+.gallery-card{
+    background:#ffffff;
+    border-radius:30px;
+    overflow:hidden;
+    height:100%;
+    box-shadow:0 12px 40px rgba(0,0,0,.06);
+    border:1px solid #f1f1f1;
+    transition:.35s;
+}
+
+.gallery-card:hover{
+    transform:translateY(-6px);
+}
+
+/* =========================
+        IMAGE
+========================= */
+
+.gallery-image-wrapper{
+    overflow:hidden;
+    position:relative;
+}
+
+.gallery-image{
+    width:100%;
+    height:320px;
+    object-fit:cover;
+    transition:.4s;
+}
+
+.gallery-card:hover .gallery-image{
+    transform:scale(1.05);
+}
+
+/* =========================
+        CONTENT
+========================= */
+
+.gallery-content{
+    padding:28px;
+}
+
+.gallery-category{
+    display:inline-block;
+    background:#fff4d6;
+    color:#d18b00;
+    padding:8px 16px;
+    border-radius:30px;
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:16px;
+}
+
+.gallery-content h4{
+    font-size:24px;
+    font-weight:700;
+    color:#111111;
+    margin:0;
+    line-height:1.4;
+}
+
+/* =========================
+        EMPTY STATE
+========================= */
+
+.empty-gallery{
+    background:#ffffff;
+    padding:80px 30px;
+    border-radius:30px;
+    text-align:center;
+    box-shadow:0 10px 35px rgba(0,0,0,.05);
+}
+
+.empty-gallery h3{
+    font-size:36px;
+    font-weight:800;
+    margin-bottom:16px;
+    color:#111111;
+}
+
+.empty-gallery p{
+    color:#6b7280;
+    font-size:17px;
+}
+
+/* =========================
+        MOBILE
+========================= */
+
+@media(max-width:992px){
+
+    .gallery-hero{
+        padding:100px 0 80px;
+    }
+
+    .gallery-hero h1{
+        font-size:52px;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .gallery-section{
+        padding:70px 0;
+    }
+
+    .gallery-hero{
+        padding:90px 0 70px;
+    }
+
+    .gallery-hero h1{
+        font-size:38px;
+        line-height:1.2;
+    }
+
+    .gallery-hero p{
+        font-size:16px;
+    }
+
+    .gallery-image{
+        height:260px;
+    }
+
+    .gallery-content{
+        padding:22px;
+    }
+
+    .gallery-content h4{
+        font-size:20px;
+    }
+
+    .empty-gallery{
+        padding:60px 20px;
+    }
+
+    .empty-gallery h3{
+        font-size:28px;
+    }
+
+}
+
+</style>
 
 {% endblock %}

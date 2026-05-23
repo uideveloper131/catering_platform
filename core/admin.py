@@ -1,6 +1,10 @@
+from .models import FAQ, Service, Testimonial, ContactInfo, CTASection, Statistic, OfferPackage, PackageFeature, EventService, EventMenu, EventPackage, ContactMessage
 from django.contrib import admin
-from .models import FAQ, Service, Testimonial, ContactInfo, CTASection, Statistic, OfferPackage, PackageFeature, EventService, EventMenu, EventPackage
-
+from .models import (
+    EventService,
+    EventMenu,
+    EventPackage
+)
 @admin.register(FAQ)
 class FAQAdmin(admin.ModelAdmin):
 
@@ -80,6 +84,25 @@ class ContactInfoAdmin(admin.ModelAdmin):
 
     )
 
+@admin.register(ContactMessage)
+class ContactMessageAdmin(admin.ModelAdmin):
+
+    list_display=(
+
+        'full_name',
+        'email',
+        'subject',
+        'created'
+
+    )
+
+    search_fields=(
+
+        'full_name',
+        'email'
+
+    )
+
 @admin.register(CTASection)
 class CTASectionAdmin(admin.ModelAdmin):
 
@@ -152,20 +175,23 @@ class OfferPackageAdmin(
     ]
 
 
+
 class EventMenuInline(
     admin.TabularInline
 ):
 
-    model=EventMenu
-    extra=1
+    model = EventMenu
+    extra = 1
+
 
 
 class EventPackageInline(
     admin.TabularInline
 ):
 
-    model=EventPackage
-    extra=1
+    model = EventPackage
+    extra = 1
+
 
 
 @admin.register(EventService)
@@ -173,16 +199,81 @@ class EventServiceAdmin(
     admin.ModelAdmin
 ):
 
-    list_display=(
+    list_display = (
 
         'title',
-        'active'
+        'active',
+        'created'
 
     )
 
-    inlines=[
+    list_filter = (
+
+        'active',
+    )
+
+    search_fields = (
+
+        'title',
+        'description'
+    )
+
+    ordering = (
+
+        '-created',
+    )
+
+    inlines = [
 
         EventMenuInline,
         EventPackageInline
 
     ]
+
+
+
+@admin.register(EventMenu)
+class EventMenuAdmin(
+    admin.ModelAdmin
+):
+
+    list_display = (
+
+        'event',
+        'menu_item'
+    )
+
+    list_filter = (
+
+        'event',
+    )
+
+    search_fields = (
+
+        'event__title',
+        'menu_item__name'
+    )
+
+
+
+@admin.register(EventPackage)
+class EventPackageAdmin(
+    admin.ModelAdmin
+):
+
+    list_display = (
+
+        'event',
+        'package'
+    )
+
+    list_filter = (
+
+        'event',
+    )
+
+    search_fields = (
+
+        'event__title',
+        'package__title'
+    )

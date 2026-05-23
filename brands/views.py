@@ -23,12 +23,11 @@ def brands(request):
 
 def brand_detail(request,id):
 
-    brand=get_object_or_404(
-        Brand,
+    brand = Brand.objects.get(
         id=id
     )
 
-    menu_items=MenuItem.objects.filter(
+    menu_items = MenuItem.objects.filter(
         brand=brand
     )
 
@@ -36,9 +35,11 @@ def brand_detail(request,id):
 
         'brand':brand,
         'menu_items':menu_items
+
     }
 
     return render(
+
         request,
         'brands/brand_detail.html',
         context

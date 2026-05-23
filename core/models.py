@@ -62,24 +62,40 @@ class Testimonial(models.Model):
 
 class ContactInfo(models.Model):
 
-    email=models.EmailField()
+    address=models.TextField()
+
     phone=models.CharField(
         max_length=20
     )
 
-    address=models.TextField()
-    instagram=models.URLField(
+    email=models.EmailField()
+
+    business_hours=models.CharField(
+        max_length=200,
         blank=True,
         null=True
     )
+
+    google_map=models.URLField(
+        blank=True,
+        null=True
+    )
+
     facebook=models.URLField(
         blank=True,
         null=True
     )
+
+    instagram=models.URLField(
+        blank=True,
+        null=True
+    )
+
     youtube=models.URLField(
         blank=True,
         null=True
     )
+
     active=models.BooleanField(
         default=True
     )
@@ -87,6 +103,31 @@ class ContactInfo(models.Model):
     def __str__(self):
 
         return self.email
+
+
+
+class ContactMessage(models.Model):
+
+    full_name=models.CharField(
+        max_length=100
+    )
+
+    email=models.EmailField()
+
+    subject=models.CharField(
+        max_length=200
+    )
+
+    message=models.TextField()
+
+    created=models.DateTimeField(
+        auto_now_add=True
+    )
+
+
+    def __str__(self):
+
+        return self.full_name
 
 class CTASection(models.Model):
     title=models.CharField(
@@ -125,29 +166,39 @@ class Statistic(models.Model):
         return self.title
 
 class OfferPackage(models.Model):
+
     title=models.CharField(
         max_length=200
     )
+
     subtitle=models.CharField(
         max_length=200,
         blank=True,
         null=True
     )
+
     image=models.ImageField(
-        upload_to='offers/'
+        upload_to='offers/',
+        blank=True,
+        null=True
     )
+
     price=models.CharField(
         max_length=50
     )
+
     description=models.TextField()
+
     active=models.BooleanField(
         default=True
     )
+
     created=models.DateTimeField(
         auto_now_add=True
     )
 
     def __str__(self):
+
         return self.title
 
 class PackageFeature(models.Model):
@@ -168,21 +219,22 @@ class PackageFeature(models.Model):
 
 class EventService(models.Model):
     title=models.CharField(
-        max_length=100
-    )
-    image=models.ImageField(
-        upload_to='event_services/'
+        max_length=200
     )
     description=models.TextField()
+    image=models.ImageField(
+        upload_to='events/',
+        blank=True,
+        null=True
+    )
     active=models.BooleanField(
         default=True
     )
     created=models.DateTimeField(
         auto_now_add=True
     )
-
-
     def __str__(self):
+
         return self.title
 
 class EventMenu(models.Model):

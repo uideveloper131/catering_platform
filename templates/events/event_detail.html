@@ -2,168 +2,657 @@
 
 {% block content %}
 
-<section class="py-5">
+<!-- =========================
+        EVENT HERO
+========================= -->
 
-<div class="container">
+<section class="event-hero">
 
-<div class="row mb-5">
+    <div class="container">
 
-<div class="col-md-6">
+        <div class="row align-items-center g-5">
 
-<img
-src="{{event.image.url}}"
-class="img-fluid rounded shadow">
+            <!-- IMAGE -->
 
-</div>
+            <div class="col-lg-6">
 
-<div class="col-md-6">
+                <div class="event-image-wrapper">
 
-<h1 class="fw-bold">
+                    {% if event.image %}
 
-{{event.title}}
+                    <img
+                        src="{{event.image.url}}"
+                        class="event-main-image"
+                        alt="{{event.title}}">
 
-</h1>
+                    {% else %}
 
-<hr>
+                    <img
+                        src="https://images.unsplash.com/photo-1555244162-803834f70033?w=1000"
+                        class="event-main-image"
+                        alt="{{event.title}}">
 
-<p>
+                    {% endif %}
 
-{{event.description}}
+                </div>
 
-</p>
+            </div>
 
-<a
-href="/request-quote/"
-class="btn btn-warning btn-lg mt-3">
 
-Request Quote
+            <!-- CONTENT -->
 
-</a>
+            <div class="col-lg-6">
 
-</div>
+                <span class="event-tag">
 
-</div>
+                    PREMIUM EVENT
 
+                </span>
 
+                <h1 class="event-title">
 
-<!-- MENU SECTION -->
+                    {{event.title}}
 
-<h2 class="fw-bold mb-4">
+                </h1>
 
-Recommended Menu
+                <p class="event-description">
 
-</h2>
+                    {{event.description}}
 
-<div class="row">
+                </p>
 
-{% for menu in event.event_menus.all %}
+                <div class="event-buttons">
 
-<div class="col-md-4 mb-4">
+                    <a
+                        href="/request-quote/"
+                        class="request-btn">
 
-<div class="card shadow h-100">
+                        Request Quote
 
-{% if menu.menu_item.image %}
+                    </a>
 
-<img
-src="{{menu.menu_item.image.url}}"
-class="card-img-top"
-style="height:250px;object-fit:cover;">
+                </div>
 
-{% endif %}
+            </div>
 
-<div class="card-body">
+        </div>
 
-<h5>
-
-{{menu.menu_item.name}}
-
-</h5>
-
-<p>
-
-{{menu.menu_item.description|truncatewords:12}}
-
-</p>
-
-<p class="fw-bold">
-
-${{menu.menu_item.price}}
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-{% endfor %}
-
-</div>
-
-
-
-<!-- PACKAGE SECTION -->
-
-<h2 class="fw-bold mt-5 mb-4">
-
-Available Packages
-
-</h2>
-
-<div class="row">
-
-{% for package in event.event_packages.all %}
-
-<div class="col-md-4 mb-4">
-
-<div class="card shadow h-100">
-
-<img
-src="{{package.package.image.url}}"
-class="card-img-top"
-style="height:250px;object-fit:cover;">
-
-<div class="card-body">
-
-<h4>
-
-{{package.package.title}}
-
-</h4>
-
-<h5 class="text-warning">
-
-{{package.package.price}}
-
-</h5>
-
-<p>
-
-{{package.package.subtitle}}
-
-</p>
-
-<a
-href="{% url 'offer_detail' package.package.id %}"
-class="btn btn-dark">
-
-View Package
-
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-{% endfor %}
-
-</div>
-
-</div>
+    </div>
 
 </section>
+
+
+<!-- =========================
+        MENU SECTION
+========================= -->
+
+<section class="menu-section">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <span class="section-tag">
+
+                RECOMMENDED MENU
+
+            </span>
+
+            <h2>
+
+                Signature Menu Items
+
+            </h2>
+
+        </div>
+
+        <div class="row">
+
+            {% for menu in event.event_menus.all %}
+
+            <div class="col-lg-4 col-md-6 mb-4">
+
+                <div class="premium-card">
+
+                    <!-- IMAGE -->
+
+                    <div class="card-image-wrapper">
+
+                        {% if menu.menu_item.image %}
+
+                        <img
+                            src="{{menu.menu_item.image.url}}"
+                            class="premium-card-image"
+                            alt="{{menu.menu_item.name}}">
+
+                        {% else %}
+
+                        <img
+                            src="https://images.unsplash.com/photo-1544025162-d76694265947?w=1000"
+                            class="premium-card-image"
+                            alt="{{menu.menu_item.name}}">
+
+                        {% endif %}
+
+                    </div>
+
+                    <!-- CONTENT -->
+
+                    <div class="premium-card-content">
+
+                        <div class="menu-top">
+
+                            <h4>
+
+                                {{menu.menu_item.name}}
+
+                            </h4>
+
+{#                            <span class="price-tag">#}
+{##}
+{#                                {{menu.menu_item.price}}#}
+{##}
+{#                            </span>#}
+
+                        </div>
+
+                        <p>
+
+                            {{menu.menu_item.description|truncatewords:15}}
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <div class="col-12">
+
+                <div class="empty-box">
+
+                    <h3>
+
+                        No Menu Items Available
+
+                    </h3>
+
+                    <p>
+
+                        Recommended menu items will be updated soon.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+        PACKAGE SECTION
+========================= -->
+
+<section class="package-section">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <span class="section-tag">
+
+                EVENT PACKAGES
+
+            </span>
+
+            <h2>
+
+                Available Packages
+
+            </h2>
+
+        </div>
+
+        <div class="row">
+
+            {% for package in event.event_packages.all %}
+
+            <div class="col-lg-4 col-md-6 mb-4">
+
+                <div class="premium-card">
+
+                    <!-- IMAGE -->
+
+                    <div class="card-image-wrapper">
+
+                        {% if package.package.image %}
+
+                        <img
+                            src="{{package.package.image.url}}"
+                            class="premium-card-image"
+                            alt="{{package.package.title}}">
+
+                        {% else %}
+
+                        <img
+                            src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1000"
+                            class="premium-card-image"
+                            alt="{{package.package.title}}">
+
+                        {% endif %}
+
+                    </div>
+
+                    <!-- CONTENT -->
+
+                    <div class="premium-card-content">
+
+                        <span class="package-price">
+
+                            {{package.package.price}}
+
+                        </span>
+
+                        <h4>
+
+                            {{package.package.title}}
+
+                        </h4>
+
+                        <p>
+
+                            {{package.package.subtitle}}
+
+                        </p>
+
+                        <a
+                            href="{% url 'offer_detail' package.package.id %}"
+                            class="package-btn">
+
+                            View Package →
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <div class="col-12">
+
+                <div class="empty-box">
+
+                    <h3>
+
+                        No Packages Available
+
+                    </h3>
+
+                    <p>
+
+                        Event packages will be updated shortly.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<style>
+
+/* =========================
+        GLOBAL
+========================= */
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#ffffff;
+    overflow-x:hidden;
+}
+
+/* =========================
+        HERO SECTION
+========================= */
+
+.event-hero{
+    background:linear-gradient(
+    135deg,
+    #111111,
+    #1f2937
+    );
+    padding:110px 0 90px;
+    position:relative;
+    overflow:hidden;
+}
+
+.event-hero::before{
+    content:'';
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:rgba(255,193,7,.08);
+    border-radius:50%;
+    top:-180px;
+    right:-140px;
+}
+
+.event-image-wrapper{
+    position:relative;
+    z-index:2;
+}
+
+.event-main-image{
+    width:100%;
+    height:520px;
+    object-fit:cover;
+    border-radius:32px;
+    box-shadow:0 25px 60px rgba(0,0,0,.35);
+}
+
+.event-tag{
+    display:inline-block;
+    background:#ffc107;
+    color:#111111;
+    padding:10px 22px;
+    border-radius:40px;
+    font-size:14px;
+    font-weight:700;
+    margin-bottom:24px;
+}
+
+.event-title{
+    color:#ffffff;
+    font-size:60px;
+    font-weight:800;
+    margin-bottom:24px;
+    line-height:1.1;
+}
+
+.event-description{
+    color:#d1d5db;
+    font-size:18px;
+    line-height:1.9;
+    margin-bottom:35px;
+}
+
+.request-btn{
+    display:inline-block;
+    background:#ffc107;
+    color:#111111;
+    padding:15px 34px;
+    border-radius:50px;
+    font-size:15px;
+    font-weight:700;
+    text-decoration:none;
+}
+
+.request-btn:hover{
+    background:#ffcd39;
+    color:#111111;
+}
+
+/* =========================
+        SECTION
+========================= */
+
+.menu-section,
+.package-section{
+    padding:100px 0;
+}
+
+.package-section{
+    background:#f8fafc;
+}
+
+.section-header{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.section-tag{
+    display:inline-block;
+    background:#fff4d6;
+    color:#d18b00;
+    padding:9px 18px;
+    border-radius:30px;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:18px;
+}
+
+.section-header h2{
+    font-size:48px;
+    font-weight:800;
+    color:#111111;
+}
+
+/* =========================
+        CARD
+========================= */
+
+.premium-card{
+    background:#ffffff;
+    border-radius:30px;
+    overflow:hidden;
+    height:100%;
+    box-shadow:0 12px 40px rgba(0,0,0,.06);
+    border:1px solid #f3f4f6;
+    transition:.35s;
+}
+
+.premium-card:hover{
+    transform:translateY(-6px);
+}
+
+.card-image-wrapper{
+    overflow:hidden;
+}
+
+.premium-card-image{
+    width:100%;
+    height:280px;
+    object-fit:cover;
+    transition:.4s;
+}
+
+.premium-card:hover .premium-card-image{
+    transform:scale(1.05);
+}
+
+.premium-card-content{
+    padding:28px;
+}
+
+/* =========================
+        MENU CARD
+========================= */
+
+.menu-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    margin-bottom:16px;
+}
+
+.menu-top h4{
+    margin:0;
+    font-size:24px;
+    font-weight:700;
+    color:#111111;
+}
+
+.price-tag{
+    background:#111111;
+    color:#ffffff;
+    padding:8px 14px;
+    border-radius:30px;
+    font-size:12px;
+    font-weight:700;
+}
+
+.premium-card-content p{
+    color:#6b7280;
+    line-height:1.9;
+    margin-bottom:0;
+}
+
+/* =========================
+        PACKAGE CARD
+========================= */
+
+.package-price{
+    display:inline-block;
+    background:#ffc107;
+    color:#111111;
+    padding:8px 16px;
+    border-radius:30px;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:18px;
+}
+
+.package-btn{
+    display:inline-block;
+    margin-top:20px;
+    background:#111111;
+    color:#ffffff;
+    padding:13px 24px;
+    border-radius:50px;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:600;
+}
+
+.package-btn:hover{
+    background:#ffc107;
+    color:#111111;
+}
+
+/* =========================
+        EMPTY BOX
+========================= */
+
+.empty-box{
+    background:#ffffff;
+    padding:80px 30px;
+    border-radius:30px;
+    text-align:center;
+    box-shadow:0 10px 35px rgba(0,0,0,.05);
+}
+
+.empty-box h3{
+    font-size:34px;
+    font-weight:800;
+    margin-bottom:15px;
+    color:#111111;
+}
+
+.empty-box p{
+    color:#6b7280;
+    font-size:17px;
+}
+
+/* =========================
+        TABLET
+========================= */
+
+@media(max-width:992px){
+
+    .event-hero{
+        padding:90px 0 70px;
+        text-align:center;
+    }
+
+    .event-title{
+        font-size:48px;
+    }
+
+    .event-main-image{
+        height:450px;
+    }
+
+    .section-header h2{
+        font-size:38px;
+    }
+
+}
+
+/* =========================
+        MOBILE
+========================= */
+
+@media(max-width:768px){
+
+    .menu-section,
+    .package-section{
+        padding:70px 0;
+    }
+
+    .event-title{
+        font-size:36px;
+    }
+
+    .event-description{
+        font-size:16px;
+    }
+
+    .event-main-image{
+        height:320px;
+    }
+
+    .section-header h2{
+        font-size:30px;
+    }
+
+    .premium-card-content{
+        padding:22px;
+    }
+
+    .menu-top{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .package-btn,
+    .request-btn{
+        width:100%;
+        text-align:center;
+    }
+
+    .empty-box{
+        padding:60px 20px;
+    }
+
+    .empty-box h3{
+        font-size:28px;
+    }
+
+}
+
+</style>
 
 {% endblock %}

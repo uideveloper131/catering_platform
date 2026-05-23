@@ -2,87 +2,453 @@
 
 {% block content %}
 
-<section class="py-5">
+<!-- =========================
+        HERO SECTION
+========================= -->
 
-<div class="container">
+<section class="offers-hero">
 
-<h1 class="text-center fw-bold mb-5">
+    <div class="container">
 
-Special Offers & Packages
+        <div class="hero-content">
 
-</h1>
+            <span class="hero-tag">
 
-<div class="row">
+                EXCLUSIVE PACKAGES
 
-{% for offer in offers %}
+            </span>
 
-<div class="col-md-4 mb-4">
+            <h1>
 
-<div class="card shadow border-0 h-100">
+                Offers & Packages
 
-<img
-src="{{offer.image.url}}"
-class="card-img-top"
-style="height:250px;object-fit:cover;">
+            </h1>
 
-<div class="card-body">
+            <p>
 
-<h4>
+                Discover our premium catering packages,
+                special event offers, and luxury dining
+                experiences designed for unforgettable celebrations.
 
-{{offer.title}}
+            </p>
 
-</h4>
+        </div>
 
-<h5 class="text-warning">
-
-{{offer.price}}
-
-</h5>
-
-<p>
-
-{{offer.subtitle}}
-
-</p>
-
-<p>
-
-{{offer.description|truncatewords:20}}
-
-</p>
-
-<a
-href="{% url 'offer_detail' offer.id %}"
-class="btn btn-warning">
-
-View Details
-
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-{% empty %}
-
-<div class="text-center">
-
-<h4>
-
-No offers available
-
-</h4>
-
-</div>
-
-{% endfor %}
-
-</div>
-
-</div>
+    </div>
 
 </section>
+
+
+<!-- =========================
+        OFFERS SECTION
+========================= -->
+
+<section class="offers-section">
+
+    <div class="container">
+
+        <div class="row">
+
+            {% for offer in offers %}
+
+            <div class="col-lg-4 col-md-6 mb-4">
+
+                <a
+                    href="{% url 'offer_detail' offer.id %}"
+                    class="offer-link">
+
+                    <div class="offer-card">
+
+                        <!-- IMAGE -->
+
+                        <div class="offer-image-wrapper">
+
+                            {% if offer.image %}
+
+                            <img
+                                src="{{offer.image.url}}"
+                                class="offer-image"
+                                alt="{{offer.title}}">
+
+                            {% else %}
+
+                            <img
+                                src="https://images.unsplash.com/photo-1555244162-803834f70033?w=1000"
+                                class="offer-image"
+                                alt="{{offer.title}}">
+
+                            {% endif %}
+
+                            <!-- PRICE -->
+
+                            <div class="offer-price">
+
+                                {{offer.price}}
+
+                            </div>
+
+                        </div>
+
+                        <!-- CONTENT -->
+
+                        <div class="offer-content">
+
+                            <span class="offer-badge">
+
+                                Premium Catering
+
+                            </span>
+
+                            <h3>
+
+                                {{offer.title}}
+
+                            </h3>
+
+                            <p>
+
+                                {{offer.subtitle}}
+
+                            </p>
+
+                            <span class="offer-btn">
+
+                                View Details →
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+            {% empty %}
+
+            <div class="col-12">
+
+                <div class="empty-box">
+
+                    <h3>
+
+                        No Offers Available
+
+                    </h3>
+
+                    <p>
+
+                        New catering offers and packages
+                        will be updated soon.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<style>
+
+/* =========================
+        GLOBAL
+========================= */
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#ffffff;
+    overflow-x:hidden;
+}
+
+/* =========================
+        HERO SECTION
+========================= */
+
+.offers-hero{
+    background:linear-gradient(
+    135deg,
+    rgba(17,17,17,.96),
+    rgba(25,25,25,.96)
+    ),
+    url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600');
+    background-size:cover;
+    background-position:center;
+    padding:120px 0 90px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.offers-hero::before{
+    content:'';
+    position:absolute;
+    width:450px;
+    height:450px;
+    background:rgba(255,193,7,.08);
+    border-radius:50%;
+    top:-180px;
+    right:-120px;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+}
+
+.hero-tag{
+    display:inline-block;
+    background:#ffc107;
+    color:#111111;
+    padding:10px 22px;
+    border-radius:40px;
+    font-size:14px;
+    font-weight:700;
+    margin-bottom:24px;
+    letter-spacing:.5px;
+}
+
+.offers-hero h1{
+    color:#ffffff;
+    font-size:68px;
+    font-weight:800;
+    margin-bottom:20px;
+}
+
+.offers-hero p{
+    color:#d1d5db;
+    max-width:720px;
+    margin:auto;
+    line-height:1.9;
+    font-size:18px;
+}
+
+/* =========================
+        OFFERS SECTION
+========================= */
+
+.offers-section{
+    padding:100px 0;
+    background:#f8fafc;
+}
+
+/* =========================
+        LINK
+========================= */
+
+.offer-link{
+    text-decoration:none;
+    color:inherit;
+}
+
+/* =========================
+        CARD
+========================= */
+
+.offer-card{
+    background:#ffffff;
+    border-radius:30px;
+    overflow:hidden;
+    height:100%;
+    border:1px solid #f1f1f1;
+    box-shadow:0 12px 40px rgba(0,0,0,.06);
+    transition:.35s;
+}
+
+.offer-card:hover{
+    transform:translateY(-6px);
+}
+
+/* =========================
+        IMAGE
+========================= */
+
+.offer-image-wrapper{
+    position:relative;
+    overflow:hidden;
+}
+
+.offer-image{
+    width:100%;
+    height:280px;
+    object-fit:cover;
+    transition:.4s;
+}
+
+.offer-card:hover .offer-image{
+    transform:scale(1.05);
+}
+
+/* =========================
+        PRICE
+========================= */
+
+.offer-price{
+    position:absolute;
+    top:20px;
+    right:20px;
+    background:#ffc107;
+    color:#111111;
+    padding:10px 18px;
+    border-radius:40px;
+    font-size:14px;
+    font-weight:700;
+    box-shadow:0 8px 25px rgba(0,0,0,.15);
+}
+
+/* =========================
+        CONTENT
+========================= */
+
+.offer-content{
+    padding:28px;
+}
+
+.offer-badge{
+    display:inline-block;
+    background:#fff4d6;
+    color:#d18b00;
+    padding:8px 16px;
+    border-radius:30px;
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:18px;
+}
+
+.offer-content h3{
+    font-size:28px;
+    font-weight:700;
+    color:#111111;
+    margin-bottom:15px;
+    line-height:1.3;
+}
+
+.offer-content p{
+    color:#6b7280;
+    line-height:1.9;
+    font-size:15px;
+    margin-bottom:24px;
+}
+
+/* =========================
+        BUTTON
+========================= */
+
+.offer-btn{
+    display:inline-block;
+    background:#111111;
+    color:#ffffff;
+    padding:13px 22px;
+    border-radius:50px;
+    font-size:14px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.offer-card:hover .offer-btn{
+    background:#ffc107;
+    color:#111111;
+}
+
+/* =========================
+        EMPTY BOX
+========================= */
+
+.empty-box{
+    background:#ffffff;
+    padding:80px 30px;
+    border-radius:30px;
+    text-align:center;
+    box-shadow:0 10px 35px rgba(0,0,0,.05);
+}
+
+.empty-box h3{
+    font-size:36px;
+    font-weight:800;
+    margin-bottom:15px;
+    color:#111111;
+}
+
+.empty-box p{
+    color:#6b7280;
+    font-size:17px;
+}
+
+/* =========================
+        TABLET
+========================= */
+
+@media(max-width:992px){
+
+    .offers-hero{
+        padding:100px 0 80px;
+    }
+
+    .offers-hero h1{
+        font-size:52px;
+    }
+
+}
+
+/* =========================
+        MOBILE
+========================= */
+
+@media(max-width:768px){
+
+    .offers-section{
+        padding:70px 0;
+    }
+
+    .offers-hero{
+        padding:90px 0 70px;
+    }
+
+    .offers-hero h1{
+        font-size:38px;
+        line-height:1.2;
+    }
+
+    .offers-hero p{
+        font-size:16px;
+    }
+
+    .offer-image{
+        height:240px;
+    }
+
+    .offer-content{
+        padding:22px;
+    }
+
+    .offer-content h3{
+        font-size:24px;
+    }
+
+    .offer-btn{
+        width:100%;
+        text-align:center;
+    }
+
+    .empty-box{
+        padding:60px 20px;
+    }
+
+    .empty-box h3{
+        font-size:28px;
+    }
+
+}
+
+</style>
 
 {% endblock %}

@@ -5,15 +5,20 @@ from .models import Brand
 @admin.register(Brand)
 class BrandAdmin(admin.ModelAdmin):
 
-    list_display = (
+    list_display=(
+
         'name',
         'active',
+        'created'
+
     )
 
-    list_filter = (
+    list_filter=(
+
         'active',
     )
 
-    search_fields = (
+    search_fields=(
+
         'name',
     )
