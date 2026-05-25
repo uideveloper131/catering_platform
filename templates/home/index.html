@@ -236,74 +236,74 @@
 </section>
 
 
-<!-- =========================
-        FEATURED MENU
-========================= -->
-
-<section class="menu-section">
-
-    <div class="container">
-
-        <div class="section-header">
-
-            <span class="section-tag">
-                FEATURED MENU
-            </span>
-
-            <h2 class="section-title">
-                Signature Dishes
-            </h2>
-
-        </div>
-
-        <div class="row">
-
-            {% for item in menu_items %}
-
-            <div class="col-lg-4 col-md-6 mb-4">
-
-                <div class="food-card">
-
-                    {% if item.image %}
-
-                    <img
-                        src="{{item.image.url}}"
-                        class="food-image"
-                        alt="{{item.name}}">
-
-                    {% endif %}
-
-                    <div class="food-content">
-
-                        <div class="food-top">
-
-                            <h4>
-                                {{item.name}}
-                            </h4>
-
-                            <span class="food-badge">
-                                {{item.brand}}
-                            </span>
-
-                        </div>
-
-                        <p>
-                            {{item.description|truncatewords:18}}
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            {% endfor %}
-
-        </div>
-
-    </div>
-
-</section>
+{#<!-- =========================#}
+{#        FEATURED MENU#}
+{#========================= -->#}
+{##}
+{#<section class="menu-section">#}
+{##}
+{#    <div class="container">#}
+{##}
+{#        <div class="section-header">#}
+{##}
+{#            <span class="section-tag">#}
+{#                FEATURED MENU#}
+{#            </span>#}
+{##}
+{#            <h2 class="section-title">#}
+{#                Signature Dishes#}
+{#            </h2>#}
+{##}
+{#        </div>#}
+{##}
+{#        <div class="row">#}
+{##}
+{#            {% for item in menu_items %}#}
+{##}
+{#            <div class="col-lg-4 col-md-6 mb-4">#}
+{##}
+{#                <div class="food-card">#}
+{##}
+{#                    {% if item.image %}#}
+{##}
+{#                    <img#}
+{#                        src="{{item.image.url}}"#}
+{#                        class="food-image"#}
+{#                        alt="{{item.name}}">#}
+{##}
+{#                    {% endif %}#}
+{##}
+{#                    <div class="food-content">#}
+{##}
+{#                        <div class="food-top">#}
+{##}
+{#                            <h4>#}
+{#                                {{item.name}}#}
+{#                            </h4>#}
+{##}
+{#                            <span class="food-badge">#}
+{#                                {{item.brand}}#}
+{#                            </span>#}
+{##}
+{#                        </div>#}
+{##}
+{#                        <p>#}
+{#                            {{item.description|truncatewords:18}}#}
+{#                        </p>#}
+{##}
+{#                    </div>#}
+{##}
+{#                </div>#}
+{##}
+{#            </div>#}
+{##}
+{#            {% endfor %}#}
+{##}
+{#        </div>#}
+{##}
+{#    </div>#}
+{##}
+{#</section>#}
 
 
 <!-- =========================
@@ -348,11 +348,17 @@
                         {% if event.image %}
 
                         <img
-                            src="{{event.image.url}}"
-                            class="premium-card-image"
-                            alt="{{event.title}}">
+                        src="{{event.image.url}}"
+                        class="event-image">
+
+                        {% else %}
+
+                        <img
+                        src="https://images.unsplash.com/photo-1555244162-803834f70033?w=1000"
+                        class="event-image">
 
                         {% endif %}
+
 
                         <div class="premium-card-content">
 
@@ -1171,7 +1177,7 @@ body{
 
     .hero-btn-primary,
     .hero-btn-secondary{
-        width:100%;
+        width:60%;
     }
 
     .hero-stat{

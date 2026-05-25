@@ -1,0 +1,41 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+{% block content %}
+
+<h2 class="fw-bold mb-4">
+
+Gallery
+
+</h2>
+
+<div class="row">
+
+{% for item in gallery %}
+
+<div class="col-md-3 mb-4">
+
+<div class="card border-0 shadow-sm">
+
+<img
+src="{{item.image.url}}"
+style="height:200px;object-fit:cover">
+
+<div class="card-body">
+
+<h6>
+
+{{item.title}}
+
+</h6>
+
+</div>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

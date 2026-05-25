@@ -2,25 +2,48 @@
 
 {% block content %}
 
-<h1 class="mb-4">
+<h2 class="fw-bold mb-4">
 
 Inquiry Management
 
-</h1>
+</h2>
 
+<div class="card p-4 border-0 shadow-sm">
 
 <form method="GET">
 
-<div class="input-group mb-4">
+<div class="row">
+
+<div class="col-md-6">
 
 <input
 type="text"
 name="search"
 class="form-control"
-placeholder="Search customer name..."
->
+placeholder="Search customer">
 
-<button class="btn btn-dark">
+</div>
+
+<div class="col-md-4">
+
+<select
+name="status"
+class="form-select">
+
+<option value="">All Status</option>
+
+<option>New</option>
+<option>Pending</option>
+<option>Contacted</option>
+<option>Confirmed</option>
+
+</select>
+
+</div>
+
+<div class="col-md-2">
+
+<button class="btn btn-warning w-100">
 
 Search
 
@@ -28,32 +51,26 @@ Search
 
 </div>
 
+</div>
+
 </form>
 
+</div>
 
-<div class="card shadow">
+<div class="card border-0 shadow-sm mt-4">
 
-<div class="card-body">
+<div class="table-responsive">
 
-<table class="table table-hover">
+<table class="table">
 
 <thead>
 
 <tr>
 
 <th>Name</th>
-
-<th>Email</th>
-
-<th>Phone</th>
-
 <th>Event</th>
-
 <th>Guests</th>
-
 <th>Status</th>
-
-<th>Date</th>
 
 </tr>
 
@@ -65,47 +82,13 @@ Search
 
 <tr>
 
-<td>
+<td>{{inquiry.full_name}}</td>
 
-{{inquiry.full_name}}
+<td>{{inquiry.event_type}}</td>
 
-</td>
+<td>{{inquiry.guests}}</td>
 
-<td>
-
-{{inquiry.email}}
-
-</td>
-
-<td>
-
-{{inquiry.phone}}
-
-</td>
-
-<td>
-
-{{inquiry.event_type}}
-
-</td>
-
-<td>
-
-{{inquiry.guests}}
-
-</td>
-
-<td>
-
-{{inquiry.status}}
-
-</td>
-
-<td>
-
-{{inquiry.created}}
-
-</td>
+<td>{{inquiry.status}}</td>
 
 </tr>
 

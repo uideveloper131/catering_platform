@@ -1,0 +1,51 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+{% block content %}
+
+<h2 class="fw-bold mb-4">
+
+Offers & Packages
+
+</h2>
+
+<div class="row">
+
+{% for offer in offers %}
+
+<div class="col-md-4 mb-4">
+
+<div class="card border-0 shadow-sm">
+
+{% if offer.image %}
+
+<img
+src="{{offer.image.url}}"
+style="height:250px;object-fit:cover">
+
+{% endif %}
+
+<div class="card-body">
+
+<h5>
+
+{{offer.title}}
+
+</h5>
+
+<p>
+
+{{offer.price}}
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

@@ -57,10 +57,19 @@
 
                     <div class="service-image-wrapper">
 
+                        {% if event.image %}
+
                         <img
-                            src="{{event.image.url}}"
-                            class="service-image"
-                            alt="{{event.title}}">
+                        src="{{event.image.url}}"
+                        class="event-image">
+
+                        {% else %}
+
+                        <img
+                        src="https://images.unsplash.com/photo-1555244162-803834f70033?w=1000"
+                        class="event-image">
+
+                        {% endif %}
 
                     </div>
 
