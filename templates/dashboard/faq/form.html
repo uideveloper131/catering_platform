@@ -1,0 +1,30 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+{% block content %}
+
+<div class="card shadow border-0 p-4">
+
+<h3>
+
+{{title}}
+
+</h3>
+
+<form method="POST">
+
+{% csrf_token %}
+
+{{form.as_p}}
+
+<button
+class="btn btn-warning">
+
+Save FAQ
+
+</button>
+
+</form>
+
+</div>
+
+{% endblock %}

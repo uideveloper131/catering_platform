@@ -1,0 +1,80 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+{% block content %}
+
+<div class="dashboard-card">
+
+<div class="d-flex justify-content-between mb-4">
+
+<h2>
+
+CTA Management
+
+</h2>
+
+<a
+href="{% url 'add_cta' %}"
+class="btn btn-warning">
+
+Add CTA
+
+</a>
+
+</div>
+
+
+<table class="table">
+
+<thead>
+
+<tr>
+
+<th>Title</th>
+<th>Button</th>
+<th>Actions</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for cta in ctas %}
+
+<tr>
+
+<td>{{cta.title}}</td>
+
+<td>{{cta.button_text}}</td>
+
+<td>
+
+<a
+href="{% url 'edit_cta' cta.id %}"
+class="btn btn-primary btn-sm">
+
+Edit
+
+</a>
+
+<a
+href="{% url 'delete_cta' cta.id %}"
+class="btn btn-danger btn-sm">
+
+Delete
+
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+{% endblock %}

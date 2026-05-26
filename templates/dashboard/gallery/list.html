@@ -1,0 +1,114 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between mb-4">
+
+<h2>
+
+Gallery Management
+
+</h2>
+
+<a
+href="{% url 'add_gallery' %}"
+class="btn btn-warning">
+
+Add Image
+
+</a>
+
+</div>
+
+
+<form method="GET">
+
+<input
+type="text"
+name="search"
+class="form-control mb-4"
+placeholder="Search Gallery">
+
+</form>
+
+
+<div class="card shadow border-0">
+
+<div class="table-responsive">
+
+<table class="table">
+
+<thead>
+
+<tr>
+
+<th>Image</th>
+<th>Title</th>
+<th>Category</th>
+<th>Actions</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for item in gallery %}
+
+<tr>
+
+<td>
+
+<img
+src="{{item.image.url}}"
+width="80"
+height="80"
+style="border-radius:10px;object-fit:cover;">
+
+</td>
+
+<td>
+
+{{item.title}}
+
+</td>
+
+<td>
+
+{{item.category}}
+
+</td>
+
+<td>
+
+<a
+href="{% url 'edit_gallery' item.id %}"
+class="btn btn-primary btn-sm">
+
+Edit
+
+</a>
+
+<a
+href="{% url 'delete_gallery' item.id %}"
+class="btn btn-danger btn-sm">
+
+Delete
+
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+{% endblock %}

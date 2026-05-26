@@ -1,0 +1,79 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+{% block content %}
+
+<div class="dashboard-card">
+
+<div class="d-flex justify-content-between mb-4">
+
+<h2>
+
+Statistics Management
+
+</h2>
+
+<a
+href="{% url 'add_statistic' %}"
+class="btn btn-warning">
+
+Add Statistic
+
+</a>
+
+</div>
+
+<table class="table">
+
+<thead>
+
+<tr>
+
+<th>Title</th>
+<th>Value</th>
+<th>Actions</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for stat in statistics %}
+
+<tr>
+
+<td>{{stat.title}}</td>
+
+<td>{{stat.value}}</td>
+
+<td>
+
+<a
+href="{% url 'edit_statistic' stat.id %}"
+class="btn btn-primary btn-sm">
+
+Edit
+
+</a>
+
+<a
+href="{% url 'delete_statistic' stat.id %}"
+class="btn btn-danger btn-sm">
+
+Delete
+
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+{% endblock %}

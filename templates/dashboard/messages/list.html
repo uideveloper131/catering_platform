@@ -1,0 +1,123 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+{% block content %}
+
+<div class="dashboard-card">
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+<h2>
+
+Contact Messages
+
+</h2>
+
+</div>
+
+
+<form method="GET">
+
+<input
+type="text"
+name="search"
+class="form-control mb-4"
+placeholder="Search customer">
+
+</form>
+
+
+<div class="table-responsive">
+
+<table class="table">
+
+<thead>
+
+<tr>
+
+<th>Name</th>
+<th>Email</th>
+<th>Subject</th>
+<th>Date</th>
+<th>Actions</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for message in messages %}
+
+<tr>
+
+<td>
+
+{{message.full_name}}
+
+</td>
+
+<td>
+
+{{message.email}}
+
+</td>
+
+<td>
+
+{{message.subject}}
+
+</td>
+
+<td>
+
+{{message.created|date:"d M Y"}}
+
+</td>
+
+<td>
+
+<a
+href="{% url 'message_detail' message.id %}"
+class="btn btn-primary btn-sm">
+
+View
+
+</a>
+
+<a
+href="{% url 'delete_message' message.id %}"
+class="btn btn-danger btn-sm">
+
+Delete
+
+</a>
+
+</td>
+
+</tr>
+
+{% empty %}
+
+<tr>
+
+<td
+colspan="5"
+class="text-center">
+
+No messages found
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+{% endblock %}

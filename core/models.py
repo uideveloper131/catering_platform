@@ -19,26 +19,6 @@ class FAQ(models.Model):
         return self.question
 
 
-class Service(models.Model):
-
-    title=models.CharField(
-        max_length=100
-    )
-    image=models.ImageField(
-        upload_to='services/'
-    )
-    description=models.TextField()
-    active=models.BooleanField(
-        default=True
-    )
-    created=models.DateTimeField(
-        auto_now_add=True
-    )
-
-    def __str__(self):
-
-        return self.title
-
 class Testimonial(models.Model):
 
     customer_name=models.CharField(

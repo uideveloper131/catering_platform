@@ -1,4 +1,4 @@
-from .models import FAQ, Service, Testimonial, ContactInfo, CTASection, Statistic, OfferPackage, PackageFeature, EventService, EventMenu, EventPackage, ContactMessage
+from .models import FAQ, Testimonial, ContactInfo, CTASection, Statistic, OfferPackage, PackageFeature, EventService, EventMenu, EventPackage, ContactMessage
 from django.contrib import admin
 from .models import (
     EventService,
@@ -26,28 +26,6 @@ class FAQAdmin(admin.ModelAdmin):
         'question',
     )
 
-
-
-@admin.register(Service)
-class ServiceAdmin(admin.ModelAdmin):
-
-    list_display=(
-
-        'title',
-        'active',
-        'created'
-
-    )
-
-    list_filter=(
-
-        'active',
-    )
-
-    search_fields=(
-
-        'title',
-    )
 
 
 @admin.register(Testimonial)

@@ -1,0 +1,135 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between mb-4">
+
+<h2>
+
+Brands Management
+
+</h2>
+
+<a
+href="{% url 'add_brand' %}"
+class="btn btn-warning">
+
+Add Brand
+
+</a>
+
+</div>
+
+
+<form method="GET">
+
+<input
+type="text"
+name="search"
+class="form-control mb-4"
+placeholder="Search Brand">
+
+</form>
+
+
+<div class="card shadow border-0">
+
+<div class="table-responsive">
+
+<table class="table">
+
+<thead>
+
+<tr>
+
+<th>Image</th>
+<th>Name</th>
+<th>Status</th>
+<th>Actions</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for brand in brands %}
+
+<tr>
+
+<td>
+
+{% if brand.image %}
+
+<img
+src="{{brand.image.url}}"
+width="70"
+height="70"
+style="object-fit:cover;border-radius:10px;">
+
+{% endif %}
+
+</td>
+
+<td>
+
+{{brand.name}}
+
+</td>
+
+<td>
+
+{% if brand.active %}
+
+<span class="badge bg-success">
+
+Active
+
+</span>
+
+{% else %}
+
+<span class="badge bg-danger">
+
+Inactive
+
+</span>
+
+{% endif %}
+
+</td>
+
+<td>
+
+<a
+href="{% url 'edit_brand' brand.id %}"
+class="btn btn-primary btn-sm">
+
+Edit
+
+</a>
+
+
+<a
+href="{% url 'delete_brand' brand.id %}"
+class="btn btn-danger btn-sm">
+
+Delete
+
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+{% endblock %}

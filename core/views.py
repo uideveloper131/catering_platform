@@ -1,7 +1,7 @@
 from brands.models import Brand
 from menu.models import MenuItem
 from gallery.models import Gallery
-from .models import FAQ, Service,Testimonial, ContactInfo ,CTASection,Statistic, OfferPackage, EventService
+from .models import FAQ,Testimonial, ContactInfo ,CTASection,Statistic, OfferPackage, EventService
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.core.mail import send_mail
@@ -20,10 +20,6 @@ def home(request):
     menu_items = MenuItem.objects.filter(
         available=True
     )[:6]
-
-    services = Service.objects.filter(
-        active=True
-    )
 
     testimonials = Testimonial.objects.filter(
         active=True
@@ -59,7 +55,6 @@ def home(request):
 
         'brands': brands,
         'menu_items': menu_items,
-        'services': services,
         'testimonials': testimonials,
         'cta': cta,
         'gallery_items': gallery_items,
