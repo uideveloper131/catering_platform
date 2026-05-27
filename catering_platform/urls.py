@@ -26,7 +26,10 @@ urlpatterns = [
     path('', include('core.urls') ),
     path('request-quote/', include('inquiries.urls')),
     path('dashboard/', include('dashboard.urls')),
-    path('accounts/',include( 'django.contrib.auth.urls' )),
+    path(
+        'accounts/',
+        include('accounts.urls')
+    ),
     path( 'brands/', include('brands.urls')),
     path('gallery/', include('gallery.urls')),
 
