@@ -1,10 +1,10 @@
-<nav class="navbar navbar-expand-lg custom-navbar sticky-top">
+<nav class="navbar navbar-expand-lg custom-navbar fixed-top">
 
     <div class="container">
 
-        <!-- =========================
-                LOGO
-        ========================== -->
+        <!-- =========================================================
+                                LOGO
+        ========================================================== -->
 
         <a class="navbar-brand" href="/">
 
@@ -37,9 +37,9 @@
         </a>
 
 
-        <!-- =========================
-                MOBILE TOGGLE
-        ========================== -->
+        <!-- =========================================================
+                            MOBILE TOGGLE
+        ========================================================== -->
 
         <button
             class="navbar-toggler"
@@ -55,9 +55,9 @@
         </button>
 
 
-        <!-- =========================
-                NAVIGATION
-        ========================== -->
+        <!-- =========================================================
+                                NAVIGATION
+        ========================================================== -->
 
         <div class="collapse navbar-collapse"
              id="navbarNav">
@@ -125,7 +125,9 @@
                 </li>
 
 
-                <!-- BUTTONS -->
+                <!-- =========================================================
+                                    BUTTONS
+                ========================================================== -->
 
                 <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
 
@@ -164,38 +166,38 @@
 
 <style>
 
-/* =========================
-        GLOBAL
-========================= */
-
-body{
-    font-family:'Poppins',sans-serif;
-}
-
-/* =========================
-        NAVBAR
-========================= */
+/* =========================================================
+                        NAVBAR
+========================================================= */
 
 .custom-navbar{
-    background:rgba(10,10,10,.92);
-    backdrop-filter:blur(18px);
-    padding:14px 0;
-    border-bottom:1px solid rgba(255,255,255,.06);
-    box-shadow:0 10px 35px rgba(0,0,0,.15);
+
+    background:
+    rgba(12,12,12,.88);
+
+    backdrop-filter:
+    blur(18px);
+
+    padding:16px 0;
+
+    border-bottom:
+    1px solid rgba(255,255,255,.06);
+
     z-index:999;
+
 }
 
-/* =========================
-        CONTAINER
-========================= */
+/* =========================================================
+                        CONTAINER
+========================================================= */
 
 .custom-navbar .container{
     max-width:1320px;
 }
 
-/* =========================
-        BRAND
-========================= */
+/* =========================================================
+                        BRAND
+========================================================= */
 
 .navbar-brand{
     text-decoration:none;
@@ -209,29 +211,38 @@ body{
     gap:14px;
 }
 
-/* =========================
-        LOGO BOX
-========================= */
+/* =========================================================
+                        LOGO BOX
+========================================================= */
 
 .logo-box{
+
     width:58px;
     height:58px;
-    background:linear-gradient(
+
+    background:
+    linear-gradient(
     135deg,
     #ffc107,
     #ffcd39
     );
+
     border-radius:18px;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     font-size:28px;
-    box-shadow:0 10px 25px rgba(255,193,7,.25);
+
+    box-shadow:
+    0 10px 25px rgba(255,193,7,.22);
+
 }
 
-/* =========================
-        TEXT
-========================= */
+/* =========================================================
+                        TEXT
+========================================================= */
 
 .brand-text{
     display:flex;
@@ -241,9 +252,9 @@ body{
 
 .logo-title{
     color:#ffffff;
-    font-size:28px;
+    font-size:27px;
     font-weight:800;
-    letter-spacing:.3px;
+    letter-spacing:.2px;
 }
 
 .logo-subtitle{
@@ -251,23 +262,30 @@ body{
     font-size:12px;
     font-weight:500;
     margin-top:4px;
-    letter-spacing:.3px;
 }
 
-/* =========================
-        TOGGLER
-========================= */
+/* =========================================================
+                        TOGGLER
+========================================================= */
 
 .navbar-toggler{
+
     border:none;
-    background:#1f1f1f;
+
+    background:
+    rgba(255,255,255,.05);
+
     width:52px;
     height:52px;
+
     border-radius:16px;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     padding:0;
+
 }
 
 .navbar-toggler:focus{
@@ -287,13 +305,20 @@ body{
 
 .navbar-toggler-icon::before,
 .navbar-toggler-icon::after{
+
     content:'';
+
     position:absolute;
+
     left:0;
+
     width:24px;
     height:2.5px;
+
     background:#ffffff;
+
     border-radius:10px;
+
 }
 
 .navbar-toggler-icon::before{
@@ -305,192 +330,216 @@ body{
     bottom:7px;
 }
 
-/* =========================
-        NAVIGATION
-========================= */
+/* =========================================================
+                        NAVIGATION
+========================================================= */
 
 .navbar-nav{
     gap:6px;
 }
 
 .nav-link{
+
     color:#f3f4f6 !important;
+
     font-size:15px;
+
     font-weight:500;
-    padding:11px 18px !important;
+
+    padding:12px 18px !important;
+
     border-radius:14px;
-    transition:.3s;
-    position:relative;
+
 }
 
-.nav-link:hover{
-    color:#ffc107 !important;
-    background:rgba(255,255,255,.04);
-}
-
-/* =========================
-        BUTTONS
-========================= */
+/* =========================================================
+                        BUTTONS
+========================================================= */
 
 .quote-btn{
-    background:linear-gradient(
+
+    background:
+    linear-gradient(
     135deg,
     #ffc107,
     #ffcd39
     );
-    color:#111111;
-    padding:13px 26px;
-    border-radius:50px;
-    font-size:15px;
-    font-weight:700;
-    border:none;
-    min-width:180px;
-    box-shadow:0 10px 25px rgba(255,193,7,.22);
-    transition:.3s;
-}
 
-.quote-btn:hover{
-    background:linear-gradient(
-    135deg,
-    #ffcd39,
-    #ffc107
-    );
     color:#111111;
-    transform:translateY(-2px);
+
+    padding:14px 28px;
+
+    border-radius:50px;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    border:none;
+
+    min-width:185px;
+
+    box-shadow:
+    0 10px 25px rgba(255,193,7,.22);
+
 }
 
 .admin-btn{
-    background:rgba(255,255,255,.04);
+
+    background:
+    rgba(255,255,255,.04);
+
     color:#ffffff;
-    padding:13px 24px;
+
+    padding:14px 26px;
+
     border-radius:50px;
-    border:1px solid rgba(255,255,255,.08);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
     font-size:15px;
+
     font-weight:600;
+
     min-width:120px;
-    transition:.3s;
+
 }
 
-.admin-btn:hover{
-    background:#ffffff;
-    color:#111111;
-}
-
-/* =========================
-        MOBILE NAVBAR
-========================= */
+/* =========================================================
+                        MOBILE NAVBAR
+========================================================= */
 
 @media(max-width:991px){
 
-    .custom-navbar{
-        padding:12px 0;
-    }
+.custom-navbar{
+    padding:12px 0;
+}
 
-    .navbar-collapse{
-        background:#171717;
-        margin-top:18px;
-        padding:24px;
-        border-radius:28px;
-        border:1px solid rgba(255,255,255,.06);
-        box-shadow:0 18px 45px rgba(0,0,0,.25);
-    }
+.navbar-collapse{
 
-    .navbar-nav{
-        gap:0;
-    }
+    background:
+    #171717;
 
-    .nav-link{
-        padding:15px 16px !important;
-        margin-bottom:6px;
-        border-radius:16px;
-        font-size:16px;
-    }
+    margin-top:18px;
 
-    .quote-btn,
-    .admin-btn{
-        width:100%;
-        margin-top:10px;
-        text-align:center;
-    }
+    padding:24px;
 
-    .logo-title{
-        font-size:22px;
-    }
+    border-radius:28px;
 
-    .logo-subtitle{
-        font-size:11px;
-    }
+    border:
+    1px solid rgba(255,255,255,.06);
 
-    .logo-box{
-        width:52px;
-        height:52px;
-        font-size:24px;
-    }
+    box-shadow:
+    0 18px 45px rgba(0,0,0,.25);
 
 }
 
-/* =========================
-        SMALL MOBILE
-========================= */
+.navbar-nav{
+    gap:0;
+}
+
+.nav-link{
+
+    padding:15px 16px !important;
+
+    margin-bottom:6px;
+
+    border-radius:16px;
+
+    font-size:16px;
+
+}
+
+.quote-btn,
+.admin-btn{
+
+    width:100%;
+
+    margin-top:10px;
+
+    text-align:center;
+
+}
+
+.logo-title{
+    font-size:22px;
+}
+
+.logo-subtitle{
+    font-size:11px;
+}
+
+.logo-box{
+    width:52px;
+    height:52px;
+    font-size:24px;
+}
+
+}
+
+/* =========================================================
+                        SMALL MOBILE
+========================================================= */
 
 @media(max-width:576px){
 
-    .custom-navbar{
-        padding:10px 0;
-    }
+.custom-navbar{
+    padding:10px 0;
+}
 
-    .logo-title{
-        font-size:19px;
-    }
+.logo-title{
+    font-size:19px;
+}
 
-    .logo-subtitle{
-        display:none;
-    }
+.logo-subtitle{
+    display:none;
+}
 
-    .logo-box{
-        width:46px;
-        height:46px;
-        font-size:22px;
-        border-radius:14px;
-    }
+.logo-box{
+    width:46px;
+    height:46px;
+    font-size:22px;
+    border-radius:14px;
+}
 
-    .navbar-toggler{
-        width:46px;
-        height:46px;
-        border-radius:14px;
-    }
+.navbar-toggler{
+    width:46px;
+    height:46px;
+    border-radius:14px;
+}
 
-    .navbar-collapse{
-        padding:18px;
-        border-radius:22px;
-    }
+.navbar-collapse{
+    padding:18px;
+    border-radius:22px;
+}
 
-    .nav-link{
-        font-size:15px;
-        padding:14px !important;
-    }
+.nav-link{
+    font-size:15px;
+    padding:14px !important;
+}
 
-    .quote-btn,
-    .admin-btn{
-        padding:14px 20px;
-        font-size:14px;
-    }
+.quote-btn,
+.admin-btn{
+    padding:14px 20px;
+    font-size:14px;
+}
 
 }
 
-/* =========================
-        LARGE SCREEN
-========================= */
+/* =========================================================
+                        LARGE SCREEN
+========================================================= */
 
 @media(min-width:1400px){
 
-    .logo-title{
-        font-size:30px;
-    }
+.logo-title{
+    font-size:30px;
+}
 
-    .nav-link{
-        font-size:16px;
-    }
+.nav-link{
+    font-size:16px;
+}
 
 }
 
