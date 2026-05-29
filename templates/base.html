@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-
-<html lang="en">
-
 <head>
 
 {% load static %}
 
 <!-- =========================
-        META TAGS
+        BASIC META
 ========================= -->
 
 <meta charset="UTF-8">
@@ -20,25 +16,107 @@ content="width=device-width, initial-scale=1.0">
 http-equiv="X-UA-Compatible"
 content="IE=edge">
 
-<title>
-Premium Catering Services | Catering Platform
-</title>
-
 <meta
-name="description"
-content="Luxury catering platform for weddings, private events, fine dining, and unforgettable celebrations.">
+name="robots"
+content="index,follow">
 
 <meta
 name="theme-color"
 content="#0f0f0f">
 
+<meta
+name="author"
+content="Catering Platform">
+
+<!-- =========================
+        DYNAMIC SEO
+========================= -->
+
+<title>
+{% block title %}
+Premium Catering Services | Catering Platform
+{% endblock %}
+</title>
+
+<meta
+name="description"
+content="{% block meta_description %}Premium catering services for weddings, birthdays, corporate events, private parties and luxury celebrations.{% endblock %}">
+
+<meta
+name="keywords"
+content="{% block meta_keywords %}catering services,wedding catering,birthday catering,corporate catering,luxury catering,event catering{% endblock %}">
+
+<link
+rel="canonical"
+href="{{ request.build_absolute_uri }}">
+
+<!-- =========================
+        OPEN GRAPH
+========================= -->
+
+<meta
+property="og:type"
+content="website">
+
+<meta
+property="og:site_name"
+content="Catering Platform">
+
+<meta
+property="og:title"
+content="{% block og_title %}Premium Catering Services | Catering Platform{% endblock %}">
+
+<meta
+property="og:description"
+content="{% block og_description %}Luxury catering services for weddings, corporate events, birthdays and special celebrations.{% endblock %}">
+
+<meta
+property="og:url"
+content="{{ request.build_absolute_uri }}">
+
+<meta
+property="og:image"
+content="{% static 'images/seo-banner.jpg' %}">
+
+<!-- =========================
+        TWITTER CARD
+========================= -->
+
+<meta
+name="twitter:card"
+content="summary_large_image">
+
+<meta
+name="twitter:title"
+content="{% block twitter_title %}Premium Catering Services | Catering Platform{% endblock %}">
+
+<meta
+name="twitter:description"
+content="{% block twitter_description %}Luxury catering services for weddings, birthdays, corporate events and private parties.{% endblock %}">
+
+<meta
+name="twitter:image"
+content="{% static 'images/seo-banner.jpg' %}">
+
+<!-- =========================
+        FAVICON
+========================= -->
+
+<link
+rel="icon"
+type="image/png"
+href="{% static 'images/favicon.png' %}">
+
 <!-- =========================
         GOOGLE FONTS
 ========================= -->
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
 
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
 
 <link
 href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
@@ -61,7 +139,23 @@ href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css"
 rel="stylesheet">
 
 <!-- =========================
-        PREMIUM GLOBAL CSS
+        STRUCTURED DATA SEO
+========================= -->
+
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"LocalBusiness",
+ "name":"Catering Platform",
+ "url":"https://cateringservices.pythonanywhere.com",
+ "description":"Premium catering services for weddings, birthdays, corporate events and luxury celebrations.",
+ "image":"https://cateringservices.pythonanywhere.com/static/images/seo-banner.jpg",
+ "telephone":"+1-000-000-0000"
+}
+</script>
+
+<!-- =========================
+        YOUR EXISTING CSS
 ========================= -->
 
 <style>
@@ -634,13 +728,10 @@ font-size:15px;
 }
 
 }
-
 </style>
 
 </head>
-
 <body>
-
 <!-- =========================================================
                         NAVBAR
 ========================================================= -->
@@ -756,5 +847,3 @@ observer.observe(el);
 </script>
 
 </body>
-
-</html>

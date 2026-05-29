@@ -1,30 +1,33 @@
 {% extends 'base.html' %}
+
 {% block content %}
 
-<!-- =========================================================
-                        HERO SECTION
-========================================================= -->
+<!-- =========================
+        HERO SECTION
+========================= -->
 
 <section class="hero-section">
 
-    <div class="hero-blur hero-blur-1"></div>
-    <div class="hero-blur hero-blur-2"></div>
+    <div class="hero-overlay"></div>
 
     <div class="container">
 
-        <div class="row align-items-center min-vh-100 gy-5">
+        <div class="row align-items-center min-vh-100">
+
+            <!-- LEFT CONTENT -->
 
             <div class="col-lg-6">
 
                 <span class="hero-badge">
 
-                    ✨ Premium Catering Experience
+                    PREMIUM CATERING EXPERIENCE
 
                 </span>
 
                 <h1 class="hero-title">
 
                     Elegant Catering
+
                     <span>For Every Occasion</span>
 
                 </h1>
@@ -32,23 +35,23 @@
                 <p class="hero-description">
 
                     Wedding • Corporate • Birthday • Anniversary •
-                    Luxury Events • Private Celebrations • Fine Dining
+                    Private Parties • Cultural Celebrations
 
                 </p>
 
                 <div class="hero-buttons">
 
                     <a
-                        href="/request-quote/"
-                        class="btn hero-btn-primary">
+                    href="/request-quote/"
+                    class="hero-btn-primary">
 
                         Request Quote
 
                     </a>
 
                     <a
-                        href="/brands/"
-                        class="btn hero-btn-secondary">
+                    href="/brands/"
+                    class="hero-btn-secondary">
 
                         Explore Brands
 
@@ -56,56 +59,44 @@
 
                 </div>
 
+                <!-- STATS -->
+
                 <div class="hero-stats">
 
-                    <div class="hero-stat">
+                    {% for stat in statistics %}
+
+                    <div class="hero-stat-card">
 
                         <h3>
-                            500+
+
+                            {{ stat.value }}
+
                         </h3>
 
-                        <p>
-                            Events Served
-                        </p>
+                        <span>
+
+                            {{ stat.title }}
+
+                        </span>
 
                     </div>
 
-                    <div class="hero-stat">
-
-                        <h3>
-                            50+
-                        </h3>
-
-                        <p>
-                            Premium Menus
-                        </p>
-
-                    </div>
-
-                    <div class="hero-stat">
-
-                        <h3>
-                            4.9★
-                        </h3>
-
-                        <p>
-                            Customer Rating
-                        </p>
-
-                    </div>
+                    {% endfor %}
 
                 </div>
 
             </div>
+
+            <!-- RIGHT IMAGE -->
 
             <div class="col-lg-6">
 
                 <div class="hero-image-box">
 
                     <img
-                        src="https://images.unsplash.com/photo-1555244162-803834f70033?w=1400"
-                        class="hero-image"
-                        alt="Premium Catering">
+                    src="https://images.unsplash.com/photo-1555244162-803834f70033?w=1400"
+                    class="hero-image"
+                    alt="Premium Catering">
 
                 </div>
 
@@ -117,53 +108,48 @@
 
 </section>
 
+<!-- =========================
+        STATISTICS
+========================= -->
 
-<!-- =========================================================
-                        STATISTICS
-========================================================= -->
+{#<div class="stats-section">#}
+{##}
+{#    <div class="container">#}
+{##}
+{#        <div class="row">#}
+{##}
+{#            {% for stat in statistics %}#}
+{##}
+{#            <div class="col-lg-3 col-md-6 col-6 mb-4">#}
+{##}
+{#                <div class="stats-card">#}
+{##}
+{#                    <h2>#}
+{#                        {{stat.value}}#}
+{#                    </h2>#}
+{##}
+{#                    <p>#}
+{#                        {{stat.title}}#}
+{#                    </p>#}
+{##}
+{#                </div>#}
+{##}
+{#            </div>#}
+{##}
+{#            {% endfor %}#}
+{##}
+{#        </div>#}
+{##}
+{#    </div>#}
+{##}
+{#</div>#}
+{##}
 
-<section class="stats-section">
+<!-- =========================
+        BRANDS
+========================= -->
 
-    <div class="container">
-
-        <div class="row g-4">
-
-            {% for stat in statistics %}
-
-            <div class="col-lg-3 col-md-6 col-6">
-
-                <div class="stats-card">
-
-                    <h2>
-
-                        {{stat.value}}
-
-                    </h2>
-
-                    <p>
-
-                        {{stat.title}}
-
-                    </p>
-
-                </div>
-
-            </div>
-
-            {% endfor %}
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-                        BRANDS
-========================================================= -->
-
-<section class="section-padding">
+<section class="brands-section">
 
     <div class="container">
 
@@ -177,69 +163,119 @@
 
             <h2 class="section-title">
 
-                Premium Catering Brands
+                Discover Our Premium
+                Catering Brands
 
             </h2>
 
             <p class="section-description">
 
-                Discover our premium catering partners delivering
-                unforgettable dining experiences.
+                Explore our carefully selected catering brands,
+                each offering unique flavors, exceptional service,
+                and unforgettable dining experiences.
 
             </p>
 
         </div>
 
-        <div class="row g-4">
+        <div class="row">
 
-            {% for brand in brands %}
+            {% if brands %}
 
-            <div class="col-lg-3 col-md-6">
+                {% for brand in brands %}
 
-                <a
+                <div class="col-lg-3 col-md-6 mb-4">
+
+                    <a
                     href="{% url 'brand_detail' brand.id %}"
                     class="text-decoration-none">
 
-                    <div class="premium-card">
+                        <div class="brand-card">
 
-                        {% if brand.image %}
+                            {% if brand.image %}
 
-                        <img
-                            src="{{brand.image.url}}"
-                            class="premium-card-image"
-                            alt="{{brand.name}}">
+                            <div class="brand-image-wrapper">
 
-                        {% endif %}
+                                <img
+                                src="{{brand.image.url}}"
+                                class="brand-image"
+                                alt="{{brand.name}}">
 
-                        <div class="premium-card-content">
+                            </div>
 
-                            <h4>
+                            {% endif %}
 
-                                {{brand.name}}
+                            <div class="brand-content">
 
-                            </h4>
+                                <h4>
 
-                            <p>
+                                    {{brand.name}}
 
-                                {{brand.description|truncatewords:15}}
+                                </h4>
 
-                            </p>
+                                <p>
 
-                            <span class="card-link">
+                                    {{brand.description|truncatewords:15}}
 
-                                Explore Brand →
+                                </p>
 
-                            </span>
+                                <span class="brand-link">
+
+                                    Explore Brand →
+
+                                </span>
+
+                            </div>
 
                         </div>
 
+                    </a>
+
+                </div>
+
+                {% endfor %}
+
+            {% else %}
+
+            <div class="col-12">
+
+                <div class="empty-brand-state">
+
+                    <div class="empty-brand-icon">
+
+                        <i class="fas fa-store"></i>
+
                     </div>
 
-                </a>
+                    <h3>
+
+                        Brands Coming Soon
+
+                    </h3>
+
+                    <p>
+
+                        We are currently preparing our premium
+                        catering brand collection.
+
+                        Please check back soon for exciting
+                        culinary experiences and featured menus.
+
+                    </p>
+
+                    <a
+                    href="/contact/"
+                    class="empty-brand-btn">
+
+                        Contact Us
+
+                    </a>
+
+                </div>
 
             </div>
 
-            {% endfor %}
+            {% endif %}
 
         </div>
 
@@ -247,12 +283,136 @@
 
 </section>
 
+<!-- =========================
+        FEATURED MENU
+========================= -->
 
-<!-- =========================================================
-                        SERVICES
-========================================================= -->
+<section class="menu-section">
 
-<section class="section-padding services-section">
+    <div class="container">
+
+        <div class="section-header">
+
+            <span class="section-tag">
+
+                FEATURED MENU
+
+            </span>
+
+            <h2 class="section-title">
+
+                Signature Dishes
+
+            </h2>
+
+            <p class="section-description">
+
+                Explore our chef-crafted signature dishes,
+                prepared with premium ingredients and
+                exceptional culinary expertise.
+
+            </p>
+
+        </div>
+
+        <div class="row">
+
+            {% if menu_items %}
+
+                {% for item in menu_items %}
+
+                <div class="col-lg-4 col-md-6 mb-4">
+
+                    <div class="menu-card">
+
+                        {% if item.image %}
+
+                        <div class="menu-image-wrapper">
+
+                            <img
+                            src="{{item.image.url}}"
+                            class="menu-image"
+                            alt="{{item.name}}">
+
+                        </div>
+
+                        {% endif %}
+
+                        <div class="menu-content">
+
+                            <div class="menu-top">
+
+                                <h4>
+
+                                    {{item.name}}
+
+                                </h4>
+
+                                <span class="menu-badge">
+
+                                    {{item.brand}}
+
+                                </span>
+
+                            </div>
+
+                            <p>
+
+                                {{item.description|truncatewords:18}}
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <div class="col-12">
+
+                    <div class="empty-menu-state">
+
+                        <div class="empty-menu-icon">
+
+                            <i class="fas fa-utensils"></i>
+
+                        </div>
+
+                        <h3>
+
+                            Signature Dishes Coming Soon
+
+                        </h3>
+
+                        <p>
+
+                            Our featured menu is currently being
+                            updated with delicious signature dishes.
+                            Please check back soon.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+        SERVICES
+========================= -->
+
+<section class="services-section">
 
     <div class="container">
 
@@ -273,69 +433,122 @@
             <p class="section-description">
 
                 Professional catering services designed
-                for unforgettable celebrations and luxury events.
+                for weddings, corporate events, birthdays,
+                private parties, and memorable celebrations.
 
             </p>
 
         </div>
 
-        <div class="row g-4">
+        <div class="row">
 
-            {% for event in events %}
+            {% if events %}
 
-            <div class="col-lg-3 col-md-6">
+                {% for event in events %}
 
-                <a
+                <div class="col-lg-3 col-md-6 mb-4">
+
+                    <a
                     href="{% url 'event_detail' event.id %}"
                     class="text-decoration-none">
 
-                    <div class="premium-card">
+                        <div class="service-card">
 
-                        {% if event.image %}
+                            <div class="service-image-wrapper">
 
-                        <img
-                            src="{{event.image.url}}"
-                            class="event-image"
-                            alt="{{event.title}}">
+                                {% if event.image %}
 
-                        {% else %}
+                                <img
+                                src="{{event.image.url}}"
+                                class="service-image"
+                                alt="{{event.title}}">
 
-                        <img
-                            src="https://images.unsplash.com/photo-1555244162-803834f70033?w=1000"
-                            class="event-image"
-                            alt="{{event.title}}">
+                                {% else %}
 
-                        {% endif %}
+                                <img
+                                src="https://images.unsplash.com/photo-1555244162-803834f70033?w=1000"
+                                class="service-image"
+                                alt="{{event.title}}">
 
-                        <div class="premium-card-content">
+                                {% endif %}
 
-                            <h4>
+                                <div class="service-overlay">
 
-                                {{event.title}}
+                                    <span>
 
-                            </h4>
+                                        Premium Service
 
-                            <p>
+                                    </span>
 
-                                {{event.description|truncatewords:14}}
+                                </div>
 
-                            </p>
+                            </div>
 
-                            <span class="card-link">
+                            <div class="service-content">
 
-                                View Details →
+                                <h4>
 
-                            </span>
+                                    {{event.title}}
+
+                                </h4>
+
+                                <p>
+
+                                    {{event.description|truncatewords:15}}
+
+                                </p>
+
+                                <div class="service-footer">
+
+                                    <span class="service-link">
+
+                                        View Details →
+
+                                    </span>
+
+                                </div>
+
+                            </div>
 
                         </div>
 
+                    </a>
+
+                </div>
+
+                {% endfor %}
+
+            {% else %}
+
+            <div class="col-12">
+
+                <div class="empty-service-state">
+
+                    <div class="empty-service-icon">
+
+                        <i class="fas fa-calendar-check"></i>
+
                     </div>
 
-                </a>
+                    <h3>
+
+                        Services Coming Soon
+
+                    </h3>
+
+                    <p>
+
+                        We are currently preparing our event
+                        catering services. Please check back
+                        soon for updated service offerings.
+
+                    </p>
+
+                </div>
 
             </div>
 
-            {% endfor %}
+            {% endif %}
 
         </div>
 
@@ -343,10 +556,116 @@
 
 </section>
 
+<!-- =========================
+        GALLERY
+========================= -->
 
-<!-- =========================================================
-                        TESTIMONIALS
-========================================================= -->
+<section class="gallery-section">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <span class="section-tag gallery-tag">
+
+                EVENT GALLERY
+
+            </span>
+
+            <h2 class="section-title text-white">
+
+                Memorable Event Moments
+
+            </h2>
+
+            <p class="gallery-description">
+
+                Explore our weddings, corporate events,
+                private celebrations, and unforgettable
+                catering experiences.
+
+            </p>
+
+        </div>
+
+        <div class="row">
+
+            {% if gallery_items %}
+
+                {% for item in gallery_items %}
+
+                <div class="col-lg-4 col-md-6 mb-4">
+
+                    <div class="gallery-card">
+
+                        <img
+                        src="{{item.image.url}}"
+                        class="gallery-image"
+                        alt="{{item.title}}">
+
+                        <div class="gallery-overlay">
+
+                            <span class="gallery-category">
+
+                                {{item.category}}
+
+                            </span>
+
+                            <h5>
+
+                                {{item.title}}
+
+                            </h5>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            {% else %}
+
+            <div class="col-12">
+
+                <div class="empty-gallery-state">
+
+                    <div class="empty-gallery-icon">
+
+                        <i class="fas fa-images"></i>
+
+                    </div>
+
+                    <h3>
+
+                        Gallery Coming Soon
+
+                    </h3>
+
+                    <p>
+
+                        We're currently updating our event
+                        gallery with beautiful catering
+                        experiences and memorable moments.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+        TESTIMONIALS
+========================= -->
 
 <section class="testimonial-section">
 
@@ -355,15 +674,11 @@
         <div class="section-header text-center">
 
             <span class="section-tag">
-
                 TESTIMONIALS
-
             </span>
 
             <h2 class="section-title text-white">
-
                 What Customers Say
-
             </h2>
 
             <p class="testimonial-subtitle">
@@ -373,6 +688,8 @@
             </p>
 
         </div>
+
+        <!-- SAME LOGIC -->
 
         <div class="testimonial-wrapper">
 
@@ -405,15 +722,11 @@
                         <div>
 
                             <h5>
-
                                 {{testimonial.customer_name}}
-
                             </h5>
 
                             <small>
-
                                 Verified Customer
-
                             </small>
 
                         </div>
@@ -431,11 +744,9 @@
     </div>
 
 </section>
-
-
-<!-- =========================================================
-                        FAQ
-========================================================= -->
+<!-- =========================
+            FAQ
+========================= -->
 
 <section class="faq-section">
 
@@ -444,15 +755,11 @@
         <div class="section-header">
 
             <span class="section-tag">
-
                 FAQ
-
             </span>
 
             <h2 class="section-title">
-
                 Frequently Asked Questions
-
             </h2>
 
         </div>
@@ -500,316 +807,1511 @@
 
 </section>
 
-
-<!-- =========================================================
-                        CTA
-========================================================= -->
+<!-- =========================
+        PREMIUM CTA
+========================= -->
 
 <section class="cta-section">
 
-    <div class="container text-center">
+    <div class="container">
 
-        <h2>
+        <div class="cta-card">
 
-            Need Catering For Your Event?
+            <div class="cta-content">
 
-        </h2>
+                <span class="cta-tag">
 
-        <p>
+                    LET'S PLAN YOUR EVENT
 
-            Get a customized catering quote for your next celebration.
+                </span>
 
-        </p>
+                <h2 class="cta-title">
 
-        <a
-            href="/request-quote/"
-            class="btn cta-btn">
+                    {{cta.title|default:"Need Catering For Your Event?"}}
 
-            Request Quote
+                </h2>
 
-        </a>
+                <p class="cta-description">
+
+                    {{cta.description|default:"Get a customized catering quote for your next celebration. Our team is ready to help make your event unforgettable."}}
+
+                </p>
+
+                <div class="cta-buttons">
+
+                    <a
+                    href="/request-quote/"
+                    class="cta-btn-primary">
+
+                        {{cta.button_text|default:"Request Quote"}}
+
+                    </a>
+
+                    <a
+                    href="/contact/"
+                    class="cta-btn-secondary">
+
+                        Contact Us
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
 
 </section>
 
-
 <style>
-
-/* =========================================================
-                        GLOBAL
-========================================================= */
-
-body{
-    background:#ffffff;
-    overflow-x:hidden;
-}
-
-.section-padding{
-    padding:120px 0;
-}
-
-.section-header{
-    text-align:center;
-    margin-bottom:70px;
-}
-
-.section-tag{
-    display:inline-block;
-    padding:12px 24px;
-    border-radius:50px;
-    background:#fff4d8;
-    color:#c68b00;
-    font-size:13px;
-    font-weight:700;
-    letter-spacing:1px;
-    margin-bottom:24px;
-}
-
-.section-title{
-    font-size:58px;
-    font-weight:900;
-    line-height:1.1;
-    letter-spacing:-2px;
-    margin-bottom:20px;
-}
-
-.section-description{
-    max-width:720px;
-    margin:auto;
-    color:#6b7280;
-    font-size:17px;
-    line-height:2;
-}
-
-/* =========================================================
-                        HERO
-========================================================= */
+/* =========================
+        PREMIUM HERO
+========================= */
 
 .hero-section{
+
     position:relative;
+
+    background:#0f0f0f;
+
     overflow:hidden;
-    background:
-    linear-gradient(
-    135deg,
-    #0f0f0f,
-    #171717,
-    #111111
-    );
-    padding-top:160px;
-    padding-bottom:120px;
+
+    padding:80px 0;
+
 }
 
-.hero-blur{
+.hero-overlay{
+
     position:absolute;
-    border-radius:50%;
-    filter:blur(90px);
-}
 
-.hero-blur-1{
-    width:420px;
-    height:420px;
-    background:rgba(255,193,7,.18);
-    top:-180px;
-    right:-120px;
-}
+    width:800px;
+    height:800px;
 
-.hero-blur-2{
-    width:300px;
-    height:300px;
-    background:rgba(255,255,255,.05);
-    bottom:-100px;
-    left:-80px;
+    background:
+    radial-gradient(
+    circle,
+    rgba(255,193,7,.10),
+    transparent 70%
+    );
+
+    top:-300px;
+    right:-150px;
+
 }
 
 .hero-badge{
+
     display:inline-block;
+
     background:
-    rgba(255,255,255,.08);
-    border:
-    1px solid rgba(255,255,255,.08);
-    color:#ffffff;
+    rgba(255,193,7,.12);
+
+    color:#ffc107;
+
     padding:12px 24px;
+
     border-radius:50px;
+
     font-size:13px;
+
     font-weight:700;
-    margin-bottom:30px;
-    backdrop-filter:blur(14px);
+
+    letter-spacing:1px;
+
+    margin-bottom:25px;
+
+    border:1px solid rgba(255,193,7,.2);
+
 }
 
 .hero-title{
+
     color:#ffffff;
-    font-size:82px;
-    line-height:1.02;
-    font-weight:900;
-    margin-bottom:28px;
-    letter-spacing:-3px;
+
+    font-size:78px;
+
+    line-height:1.05;
+
+    font-weight:800;
+
+    margin-bottom:25px;
+
 }
 
 .hero-title span{
-    background:
-    linear-gradient(
-    135deg,
-    #ffc107,
-    #ffe082
-    );
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
+
+    display:block;
+
+    color:#ffc107;
+
 }
 
 .hero-description{
+
     color:#d1d5db;
+
     font-size:18px;
-    line-height:2;
-    max-width:650px;
+
+    line-height:1.9;
+
+    max-width:600px;
+
 }
 
 .hero-buttons{
-    margin-top:42px;
+
     display:flex;
+
     gap:18px;
+
+    margin-top:35px;
+
     flex-wrap:wrap;
+
 }
 
 .hero-btn-primary{
+
+    background:#ffc107;
+
+    color:#111111;
+
+    padding:18px 38px;
+
+    border-radius:50px;
+
+    font-weight:700;
+
+    text-decoration:none;
+
+    transition:.3s;
+
+}
+
+.hero-btn-primary:hover{
+
+    transform:translateY(-3px);
+
+    color:#111111;
+
+}
+
+.hero-btn-secondary{
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.1);
+
+    color:#ffffff;
+
+    padding:18px 38px;
+
+    border-radius:50px;
+
+    text-decoration:none;
+
+    font-weight:700;
+
+}
+
+.hero-btn-secondary:hover{
+
+    background:#ffffff;
+
+    color:#111111;
+
+}
+
+.hero-image-box{
+
+    position:relative;
+
+}
+
+.hero-image{
+
+    width:100%;
+
+    border-radius:35px;
+
+    box-shadow:
+    0 30px 80px rgba(0,0,0,.35);
+
+}
+
+/* =========================
+        BRANDS SECTION
+========================= */
+
+.brands-section{
+
+    padding:110px 0;
+
+    background:#ffffff;
+
+}
+
+/* =========================
+        BRAND CARD
+========================= */
+
+.brand-card{
+
+    background:#ffffff;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    height:100%;
+
+    border:1px solid #f3f4f6;
+
+    box-shadow:
+    0 12px 40px rgba(0,0,0,.06);
+
+    transition:.4s;
+
+    position:relative;
+
+}
+
+.brand-card:hover{
+
+    transform:
+    translateY(-10px);
+
+    box-shadow:
+    0 25px 60px rgba(0,0,0,.12);
+
+}
+
+/* =========================
+        IMAGE
+========================= */
+
+.brand-image-wrapper{
+
+    overflow:hidden;
+
+    position:relative;
+
+}
+
+.brand-image-wrapper::before{
+
+    content:'';
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    linear-gradient(
+    transparent,
+    rgba(0,0,0,.10)
+    );
+
+    opacity:0;
+
+    transition:.4s;
+
+    z-index:1;
+
+}
+
+.brand-card:hover
+.brand-image-wrapper::before{
+
+    opacity:1;
+
+}
+
+.brand-image{
+
+    width:100%;
+
+    height:300px;
+
+    object-fit:cover;
+
+    transition:.6s;
+
+}
+
+.brand-card:hover
+.brand-image{
+
+    transform:scale(1.08);
+
+}
+
+/* =========================
+        CONTENT
+========================= */
+
+.brand-content{
+
+    padding:28px;
+
+}
+
+.brand-content h4{
+
+    font-size:24px;
+
+    font-weight:700;
+
+    color:#111111;
+
+    margin-bottom:15px;
+
+}
+
+.brand-content p{
+
+    color:#6b7280;
+
+    line-height:1.8;
+
+    min-height:85px;
+
+}
+
+.brand-link{
+
+    display:inline-block;
+
+    margin-top:18px;
+
+    color:#f4b400;
+
+    font-weight:700;
+
+    transition:.3s;
+
+}
+
+.brand-card:hover
+.brand-link{
+
+    transform:
+    translateX(5px);
+
+}
+
+/* GOLD LINE */
+
+.brand-card::after{
+
+    content:'';
+
+    position:absolute;
+
+    left:0;
+    right:0;
+    bottom:0;
+
+    height:4px;
+
+    background:
+    linear-gradient(
+    90deg,
+    #ffc107,
+    #ffda6a
+    );
+
+    transform:
+    scaleX(0);
+
+    transition:.4s;
+
+}
+
+.brand-card:hover::after{
+
+    transform:
+    scaleX(1);
+
+}
+
+/* =========================
+        EMPTY STATE
+========================= */
+
+.empty-brand-state{
+
+    background:#ffffff;
+
+    border-radius:35px;
+
+    padding:80px 40px;
+
+    text-align:center;
+
+    border:1px solid #f1f1f1;
+
+    box-shadow:
+    0 15px 50px rgba(0,0,0,.06);
+
+}
+
+.empty-brand-icon{
+
+    width:100px;
+    height:100px;
+
+    margin:auto;
+
     background:
     linear-gradient(
     135deg,
     #ffc107,
-    #ffca2c
+    #ffda6a
     );
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:40px;
+
     color:#111111;
-    padding:16px 38px;
-    border-radius:60px;
-    font-weight:700;
-    border:none;
+
+    margin-bottom:25px;
+
 }
 
-.hero-btn-secondary{
-    background:
-    rgba(255,255,255,.08);
+.empty-brand-state h3{
+
+    font-size:38px;
+
+    font-weight:800;
+
+    color:#111111;
+
+    margin-bottom:15px;
+
+}
+
+.empty-brand-state p{
+
+    max-width:650px;
+
+    margin:auto;
+
+    color:#6b7280;
+
+    line-height:1.9;
+
+    font-size:17px;
+
+}
+
+.empty-brand-btn{
+
+    display:inline-block;
+
+    margin-top:30px;
+
+    background:#111111;
+
     color:#ffffff;
-    border:
-    1px solid rgba(255,255,255,.12);
-    padding:16px 38px;
-    border-radius:60px;
+
+    padding:16px 36px;
+
+    border-radius:50px;
+
     font-weight:700;
+
 }
 
-.hero-image{
-    width:100%;
-    border-radius:40px;
-    box-shadow:
-    0 30px 90px rgba(0,0,0,.4);
+.empty-brand-btn:hover{
+
+    background:#ffc107;
+
+    color:#111111;
+
+}
+
+/* =========================
+        TABLET
+========================= */
+
+@media(max-width:992px){
+
+.brand-image{
+
+height:260px;
+
+}
+
+.brand-content p{
+
+min-height:auto;
+
+}
+
+}
+
+/* =========================
+        MOBILE
+========================= */
+
+@media(max-width:768px){
+
+.brands-section{
+
+padding:70px 0;
+
+}
+
+.brand-image{
+
+height:240px;
+
+}
+
+.brand-content{
+
+padding:22px;
+
+}
+
+.brand-content h4{
+
+font-size:22px;
+
+}
+
+.empty-brand-state{
+
+padding:50px 20px;
+
+}
+
+.empty-brand-icon{
+
+width:80px;
+height:80px;
+
+font-size:30px;
+
+}
+
+.empty-brand-state h3{
+
+font-size:28px;
+
+}
+
+.empty-brand-state p{
+
+font-size:15px;
+
+}
+
+.empty-brand-btn{
+
+width:100%;
+
+text-align:center;
+
+}
+
+}
+
+/* =========================
+        STATS
+========================= */
+
+.hero-stats{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:18px;
+
+    margin-top:45px;
+
+}
+
+.hero-stat-card{
+
+    min-width:160px;
+
+    padding:22px;
+
+    border-radius:24px;
+
+    background:
+    rgba(255,255,255,.06);
+
+    backdrop-filter:blur(15px);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    transition:.35s;
+
+}
+
+.hero-stat-card:hover{
+
+    transform:
+    translateY(-6px);
+
+    border-color:
+    rgba(255,193,7,.35);
+
+}
+
+.hero-stat-card h3{
+
+    color:#ffc107;
+
+    font-size:34px;
+
+    font-weight:800;
+
+    margin-bottom:6px;
+
+}
+
+.hero-stat-card span{
+
+    color:#d1d5db;
+
+    font-size:14px;
+
+}
+
+/* =========================
+        TABLET
+========================= */
+
+@media(max-width:992px){
+
+.hero-section{
+
+text-align:center;
+
+padding:70px 0;
+
+}
+
+.hero-title{
+
+font-size:58px;
+
+}
+
+.hero-description{
+
+margin:auto;
+
+}
+
+.hero-buttons{
+
+justify-content:center;
+
 }
 
 .hero-stats{
-    display:flex;
-    gap:20px;
-    margin-top:50px;
-    flex-wrap:wrap;
+
+justify-content:center;
+
 }
 
-.hero-stat{
-    background:
-    rgba(255,255,255,.08);
-    border:
-    1px solid rgba(255,255,255,.08);
-    padding:24px 30px;
-    border-radius:28px;
-    min-width:170px;
-    text-align:center;
+.hero-image{
+
+margin-top:50px;
+
 }
 
-.hero-stat h3{
-    color:#ffc107;
-    font-size:34px;
-    font-weight:800;
-    margin-bottom:6px;
 }
 
-.hero-stat p{
-    color:#d1d5db;
-    margin:0;
-    font-size:14px;
+/* =========================
+        MOBILE
+========================= */
+
+@media(max-width:768px){
+
+.hero-section{
+
+padding:60px 0;
+
 }
 
-/* =========================================================
-                        STATS
-========================================================= */
+.hero-title{
 
-.stats-section{
-    padding:90px 0 50px;
+font-size:42px;
+
+line-height:1.15;
+
 }
 
-.stats-card{
+.hero-description{
+
+font-size:16px;
+
+}
+
+.hero-buttons{
+
+flex-direction:column;
+
+gap:15px;
+
+}
+
+.hero-btn-primary,
+.hero-btn-secondary{
+
+width:100%;
+
+text-align:center;
+
+}
+
+.hero-stats{
+
+display:grid;
+
+grid-template-columns:
+repeat(2,1fr);
+
+gap:15px;
+
+margin-top:35px;
+
+}
+
+.hero-stat-card{
+padding:18px;
+min-width:auto;
+text-align:center;
+
+}
+
+.hero-stat-card h3{
+
+font-size:26px;
+
+}
+
+.hero-stat-card span{
+
+font-size:12px;
+
+}
+
+.hero-image{
+
+margin-top:40px;
+
+border-radius:25px;
+
+}
+
+}
+
+@media(max-width:480px){
+
+.hero-title{
+
+font-size:34px;
+
+}
+
+.hero-stats{
+
+grid-template-columns:1fr 1fr;
+
+}
+
+}
+/* =========================
+        MENU SECTION
+========================= */
+
+.menu-section{
+
+    background:#f8fafc;
+
+    padding:110px 0;
+
+}
+
+/* =========================
+        MENU CARD
+========================= */
+
+.menu-card{
+
     background:#ffffff;
-    padding:40px 24px;
+
     border-radius:30px;
-    text-align:center;
-    border:1px solid #f1f1f1;
-    box-shadow:
-    0 15px 50px rgba(0,0,0,.05);
-}
 
-.stats-card h2{
-    color:#f4b400;
-    font-size:46px;
-    font-weight:900;
-    margin-bottom:12px;
-}
-
-.stats-card p{
-    margin:0;
-    color:#6b7280;
-}
-
-/* =========================================================
-                        CARDS
-========================================================= */
-
-.premium-card{
-    background:#ffffff;
-    border-radius:34px;
     overflow:hidden;
+
     height:100%;
-    border:1px solid #f3f4f6;
+
+    border:1px solid #f1f5f9;
+
     box-shadow:
-    0 15px 50px rgba(0,0,0,.05);
+    0 15px 45px rgba(0,0,0,.06);
+
+    transition:.4s;
+
 }
 
-.premium-card-image,
-.event-image{
+.menu-card:hover{
+
+    transform:
+    translateY(-10px);
+
+    box-shadow:
+    0 25px 60px rgba(0,0,0,.12);
+
+}
+
+.menu-image-wrapper{
+
+    overflow:hidden;
+
+    position:relative;
+
+}
+
+.menu-image{
+
     width:100%;
-    height:270px;
+
+    height:300px;
+
     object-fit:cover;
+
+    transition:.6s;
+
 }
 
-.premium-card-content{
-    padding:30px;
+.menu-card:hover .menu-image{
+
+    transform:scale(1.08);
+
 }
 
-.premium-card-content h4{
+.menu-content{
+
+    padding:28px;
+
+}
+
+.menu-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-bottom:16px;
+
+}
+
+.menu-top h4{
+
+    margin:0;
+
     font-size:24px;
-    font-weight:800;
-    margin-bottom:15px;
-}
 
-.premium-card-content p{
-    color:#6b7280;
-    line-height:1.9;
-}
-
-.card-link{
-    display:inline-block;
-    margin-top:18px;
-    color:#f4b400;
     font-weight:700;
+
+    color:#111111;
+
 }
 
-/* =========================================================
-                        TESTIMONIALS
-========================================================= */
+.menu-badge{
+
+    background:#111111;
+
+    color:#ffffff;
+
+    padding:8px 15px;
+
+    border-radius:30px;
+
+    font-size:12px;
+
+    font-weight:700;
+
+}
+
+.menu-content p{
+
+    color:#6b7280;
+
+    line-height:1.9;
+
+    margin:0;
+
+}
+
+/* =========================
+        EMPTY STATE
+========================= */
+
+.empty-menu-state{
+
+    background:#ffffff;
+
+    padding:80px 30px;
+
+    border-radius:35px;
+
+    text-align:center;
+
+    border:1px solid #f1f1f1;
+
+    box-shadow:
+    0 15px 50px rgba(0,0,0,.06);
+
+}
+
+.empty-menu-icon{
+
+    width:100px;
+    height:100px;
+
+    margin:auto;
+
+    background:
+    linear-gradient(
+    135deg,
+    #ffc107,
+    #ffda6a
+    );
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:40px;
+
+    color:#111111;
+
+    margin-bottom:25px;
+
+}
+
+.empty-menu-state h3{
+
+    font-size:38px;
+
+    font-weight:800;
+
+    color:#111111;
+
+    margin-bottom:15px;
+
+}
+
+.empty-menu-state p{
+
+    max-width:650px;
+
+    margin:auto;
+
+    color:#6b7280;
+
+    line-height:1.9;
+
+}
+
+/* =========================
+        TABLET
+========================= */
+
+@media(max-width:992px){
+
+.menu-image{
+
+height:260px;
+
+}
+
+}
+
+/* =========================
+        MOBILE
+========================= */
+
+@media(max-width:768px){
+
+.menu-section{
+
+padding:70px 0;
+
+}
+
+.menu-image{
+
+height:230px;
+
+}
+
+.menu-content{
+
+padding:22px;
+
+}
+
+.menu-top{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+}
+
+.menu-top h4{
+
+font-size:22px;
+
+}
+
+.menu-badge{
+
+margin-top:5px;
+
+}
+
+.empty-menu-state{
+
+padding:50px 20px;
+
+}
+
+.empty-menu-icon{
+
+width:80px;
+height:80px;
+
+font-size:30px;
+
+}
+
+.empty-menu-state h3{
+
+font-size:28px;
+
+}
+
+.empty-menu-state p{
+
+font-size:15px;
+
+}
+
+}
+
+/* =========================
+        GALLERY SECTION
+========================= */
+
+.gallery-section{
+
+    background:#111111;
+
+    padding:120px 0;
+
+}
+
+/* DESCRIPTION */
+
+.gallery-description{
+
+    max-width:700px;
+
+    margin:auto;
+
+    color:#d1d5db;
+
+    font-size:17px;
+
+    line-height:1.9;
+
+}
+
+/* =========================
+        GALLERY CARD
+========================= */
+
+.gallery-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:30px;
+
+    cursor:pointer;
+
+    height:380px;
+
+    box-shadow:
+    0 20px 50px rgba(0,0,0,.25);
+
+}
+
+.gallery-image{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    transition:.7s;
+
+}
+
+.gallery-card:hover .gallery-image{
+
+    transform:scale(1.08);
+
+}
+
+/* OVERLAY */
+
+.gallery-overlay{
+
+    position:absolute;
+
+    left:0;
+    right:0;
+    bottom:0;
+
+    padding:30px;
+
+    background:
+    linear-gradient(
+    transparent,
+    rgba(0,0,0,.92)
+    );
+
+}
+
+.gallery-category{
+
+    display:inline-block;
+
+    background:#ffc107;
+
+    color:#111111;
+
+    padding:8px 15px;
+
+    border-radius:30px;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    margin-bottom:12px;
+
+}
+
+.gallery-overlay h5{
+
+    color:#ffffff;
+
+    font-size:24px;
+
+    font-weight:700;
+
+    margin:0;
+
+}
+
+/* =========================
+        EMPTY STATE
+========================= */
+
+.empty-gallery-state{
+
+    background:#1b1b1b;
+
+    border-radius:35px;
+
+    padding:80px 40px;
+
+    text-align:center;
+
+    border:1px solid rgba(255,255,255,.08);
+
+}
+
+.empty-gallery-icon{
+
+    width:100px;
+    height:100px;
+
+    margin:auto;
+
+    background:
+    linear-gradient(
+    135deg,
+    #ffc107,
+    #ffda6a
+    );
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:40px;
+
+    color:#111111;
+
+    margin-bottom:25px;
+
+}
+
+.empty-gallery-state h3{
+
+    color:#ffffff;
+
+    font-size:38px;
+
+    font-weight:800;
+
+    margin-bottom:15px;
+
+}
+
+.empty-gallery-state p{
+
+    color:#d1d5db;
+
+    max-width:650px;
+
+    margin:auto;
+
+    line-height:1.9;
+
+}
+
+/* =========================
+        TABLET
+========================= */
+
+@media(max-width:992px){
+
+.gallery-card{
+
+height:320px;
+
+}
+
+}
+
+/* =========================
+        MOBILE
+========================= */
+
+@media(max-width:768px){
+
+.gallery-section{
+
+padding:70px 0;
+
+}
+
+.gallery-card{
+
+height:280px;
+
+}
+
+.gallery-overlay{
+
+padding:20px;
+
+}
+
+.gallery-overlay h5{
+
+font-size:20px;
+
+}
+
+.gallery-category{
+
+font-size:11px;
+
+padding:6px 12px;
+
+}
+
+.gallery-description{
+
+font-size:15px;
+
+}
+
+.empty-gallery-state{
+
+padding:50px 20px;
+
+}
+
+.empty-gallery-icon{
+
+width:80px;
+height:80px;
+
+font-size:30px;
+
+}
+
+.empty-gallery-state h3{
+
+font-size:28px;
+
+}
+
+.empty-gallery-state p{
+
+font-size:15px;
+
+}
+
+}
+
+/* =========================
+        SERVICES SECTION
+========================= */
+
+.services-section{
+
+    padding:120px 0;
+
+    background:#f8fafc;
+
+}
+
+/* =========================
+        CARD
+========================= */
+
+.service-card{
+
+    background:#ffffff;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    height:100%;
+
+    border:1px solid #f1f5f9;
+
+    box-shadow:
+    0 15px 45px rgba(0,0,0,.06);
+
+    transition:.4s;
+
+    position:relative;
+
+}
+
+.service-card:hover{
+
+    transform:
+    translateY(-10px);
+
+    box-shadow:
+    0 25px 60px rgba(0,0,0,.12);
+
+}
+
+/* =========================
+        IMAGE
+========================= */
+
+.service-image-wrapper{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.service-image{
+
+    width:100%;
+
+    height:300px;
+
+    object-fit:cover;
+
+    transition:.6s;
+
+}
+
+.service-card:hover
+.service-image{
+
+    transform:scale(1.08);
+
+}
+
+/* OVERLAY */
+
+.service-overlay{
+
+    position:absolute;
+
+    top:20px;
+    left:20px;
+
+}
+
+.service-overlay span{
+
+    background:#ffc107;
+
+    color:#111111;
+
+    padding:8px 16px;
+
+    border-radius:30px;
+
+    font-size:12px;
+
+    font-weight:700;
+
+}
+/* =========================
+        TESTIMONIALS
+========================= */
 
 .testimonial-section{
     background:#161616;
@@ -829,7 +2331,6 @@ body{
     overflow-x:auto;
     scroll-behavior:smooth;
     padding:10px 5px;
-    scrollbar-width:none;
 }
 
 .testimonial-wrapper::-webkit-scrollbar{
@@ -837,7 +2338,7 @@ body{
 }
 
 .testimonial-item{
-    min-width:31.5%;
+    min-width:380px;
     flex-shrink:0;
 }
 
@@ -887,189 +2388,908 @@ body{
     color:#d1d5db;
 }
 
-/* =========================================================
-                        FAQ
-========================================================= */
+/* =========================
+        CONTENT
+========================= */
+
+.service-content{
+
+    padding:28px;
+
+}
+
+.service-content h4{
+
+    font-size:24px;
+
+    font-weight:700;
+
+    color:#111111;
+
+    margin-bottom:15px;
+
+}
+
+.service-content p{
+
+    color:#6b7280;
+
+    line-height:1.8;
+
+    min-height:90px;
+
+}
+
+.service-footer{
+
+    margin-top:18px;
+
+}
+
+.service-link{
+
+    color:#f4b400;
+
+    font-weight:700;
+
+}
+
+/* GOLD BORDER */
+
+.service-card::after{
+
+    content:'';
+
+    position:absolute;
+
+    left:0;
+    right:0;
+    bottom:0;
+
+    height:4px;
+
+    background:
+    linear-gradient(
+    90deg,
+    #ffc107,
+    #ffda6a
+    );
+
+    transform:scaleX(0);
+
+    transition:.4s;
+
+}
+
+.service-card:hover::after{
+
+    transform:scaleX(1);
+
+}
+
+/* =========================
+        EMPTY STATE
+========================= */
+
+.empty-service-state{
+
+    background:#ffffff;
+
+    border-radius:35px;
+
+    padding:80px 40px;
+
+    text-align:center;
+
+    border:1px solid #f1f1f1;
+
+    box-shadow:
+    0 15px 50px rgba(0,0,0,.06);
+
+}
+
+.empty-service-icon{
+
+    width:100px;
+    height:100px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:
+    linear-gradient(
+    135deg,
+    #ffc107,
+    #ffda6a
+    );
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:40px;
+
+    color:#111111;
+
+    margin-bottom:25px;
+
+}
+
+.empty-service-state h3{
+
+    font-size:38px;
+
+    font-weight:800;
+
+    color:#111111;
+
+    margin-bottom:15px;
+
+}
+
+.empty-service-state p{
+
+    max-width:650px;
+
+    margin:auto;
+
+    color:#6b7280;
+
+    line-height:1.9;
+
+}
+
+/* =========================
+        TABLET
+========================= */
+
+@media(max-width:992px){
+
+.service-image{
+
+height:260px;
+
+}
+
+.service-content p{
+
+min-height:auto;
+
+}
+
+}
+
+/* =========================
+        MOBILE
+========================= */
+
+@media(max-width:768px){
+
+.services-section{
+
+padding:70px 0;
+
+}
+
+.service-image{
+
+height:240px;
+
+}
+
+.service-content{
+
+padding:22px;
+
+}
+
+.service-content h4{
+
+font-size:22px;
+
+}
+
+.service-content p{
+
+min-height:auto;
+
+}
+
+.empty-service-state{
+
+padding:50px 20px;
+
+}
+
+.empty-service-icon{
+
+width:80px;
+height:80px;
+
+font-size:30px;
+
+}
+
+.empty-service-state h3{
+
+font-size:28px;
+
+}
+
+.empty-service-state p{
+
+font-size:15px;
+
+}
+
+}
+
+
+/* =========================
+        PREMIUM CTA
+========================= */
+
+.cta-section{
+
+    padding:120px 0;
+
+    background:#111111;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+/* CARD */
+
+.cta-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:40px;
+
+    padding:90px 60px;
+
+    text-align:center;
+
+    background:
+    linear-gradient(
+    135deg,
+    #181818,
+    #0f0f0f
+    );
+
+    border:1px solid rgba(255,193,7,.15);
+
+    box-shadow:
+    0 25px 80px rgba(0,0,0,.4);
+
+}
+
+/* GOLD GLOW */
+
+.cta-card::before{
+
+    content:'';
+
+    position:absolute;
+
+    width:500px;
+    height:500px;
+
+    background:
+    radial-gradient(
+    circle,
+    rgba(255,193,7,.18),
+    transparent 70%
+    );
+
+    top:-250px;
+    right:-150px;
+
+}
+
+.cta-card::after{
+
+    content:'';
+
+    position:absolute;
+
+    width:400px;
+    height:400px;
+
+    background:
+    radial-gradient(
+    circle,
+    rgba(255,193,7,.08),
+    transparent 70%
+    );
+
+    bottom:-200px;
+    left:-150px;
+
+}
+
+/* CONTENT */
+
+.cta-content{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+/* TAG */
+
+.cta-tag{
+
+    display:inline-block;
+
+    padding:12px 24px;
+
+    border-radius:50px;
+
+    background:
+    rgba(255,193,7,.12);
+
+    color:#ffc107;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    margin-bottom:25px;
+
+}
+
+/* TITLE */
+
+.cta-title{
+
+    font-size:64px;
+
+    font-weight:800;
+
+    color:#ffffff !important;
+
+    line-height:1.15;
+
+    margin-bottom:25px;
+
+}
+
+/* DESCRIPTION */
+
+.cta-description{
+
+    max-width:750px;
+
+    margin:auto;
+
+    color:#d1d5db !important;
+
+    font-size:18px;
+
+    line-height:1.9;
+
+}
+
+/* BUTTONS */
+
+.cta-buttons{
+
+    margin-top:40px;
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+}
+
+/* PRIMARY BUTTON */
+
+.cta-btn-primary{
+
+    padding:18px 42px;
+
+    border-radius:50px;
+
+    text-decoration:none;
+
+    font-weight:700;
+
+    font-size:16px;
+
+    background:
+    linear-gradient(
+    135deg,
+    #ffc107,
+    #ffda6a
+    );
+
+    color:#111111;
+
+    transition:.3s;
+
+    box-shadow:
+    0 15px 35px rgba(255,193,7,.25);
+
+}
+
+.cta-btn-primary:hover{
+
+    transform:
+    translateY(-4px);
+
+    color:#111111;
+
+}
+
+/* SECONDARY BUTTON */
+
+.cta-btn-secondary{
+
+    padding:18px 42px;
+
+    border-radius:50px;
+
+    text-decoration:none;
+
+    font-weight:700;
+
+    font-size:16px;
+
+    border:1px solid rgba(255,255,255,.15);
+
+    background:
+    rgba(255,255,255,.05);
+
+    color:#ffffff;
+
+    transition:.3s;
+
+}
+
+.cta-btn-secondary:hover{
+
+    background:#ffffff;
+
+    color:#111111;
+
+}
+
+/* =========================
+        TABLET
+========================= */
+
+@media(max-width:992px){
+
+.cta-card{
+
+padding:70px 40px;
+
+}
+
+.cta-title{
+
+font-size:48px;
+
+}
+
+}
+
+/* =========================
+        MOBILE
+========================= */
+
+@media(max-width:768px){
+
+.cta-section{
+
+padding:70px 0;
+
+}
+
+.cta-card{
+
+padding:50px 25px;
+
+border-radius:30px;
+
+}
+
+.cta-title{
+
+font-size:32px;
+
+line-height:1.3;
+
+}
+
+.cta-description{
+
+font-size:15px;
+
+}
+
+.cta-buttons{
+
+flex-direction:column;
+
+}
+
+.cta-btn-primary,
+.cta-btn-secondary{
+
+width:100%;
+
+text-align:center;
+
+padding:16px;
+
+}
+
+}
+
+/* =========================
+        GLOBAL
+========================= */
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:#ffffff;
+
+    color:#111111;
+
+    overflow-x:hidden;
+
+    line-height:1.7;
+
+}
+
+/* =========================
+        SECTION SPACING
+========================= */
+
+.section-padding{
+
+    padding:120px 0;
+
+}
+
+/* =========================
+        SECTION HEADER
+========================= */
+
+.section-header{
+
+    text-align:center;
+
+    margin-bottom:70px;
+
+}
+
+/* =========================
+        SECTION TAG
+========================= */
+
+.section-tag{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:12px 24px;
+
+    border-radius:50px;
+
+    background:
+    linear-gradient(
+    135deg,
+    rgba(255,193,7,.12),
+    rgba(255,193,7,.20)
+    );
+
+    color:#c98a00;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    letter-spacing:1.5px;
+
+    text-transform:uppercase;
+
+    margin-bottom:22px;
+
+    border:1px solid rgba(255,193,7,.15);
+
+}
+
+/* =========================
+        SECTION TITLE
+========================= */
+
+.section-title{
+
+    font-size:56px;
+
+    font-weight:800;
+
+    color:#111111;
+
+    line-height:1.15;
+
+    margin-bottom:20px;
+
+}
+
+/* =========================
+        SECTION DESCRIPTION
+========================= */
+
+.section-description{
+
+    max-width:760px;
+
+    margin:auto;
+
+    color:#6b7280;
+
+    line-height:1.9;
+
+    font-size:18px;
+
+}
+
+/* =========================
+        COMMON CARD STYLE
+========================= */
+
+.premium-card{
+
+    background:#ffffff;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    height:100%;
+
+    border:1px solid #f1f5f9;
+
+    box-shadow:
+    0 15px 45px rgba(0,0,0,.06);
+
+    transition:.4s;
+
+}
+
+.premium-card:hover{
+
+    transform:
+    translateY(-8px);
+
+    box-shadow:
+    0 25px 60px rgba(0,0,0,.12);
+
+}
+
+/* =========================
+        IMAGE COMMON
+========================= */
+
+.premium-card img{
+
+    width:100%;
+
+    object-fit:cover;
+
+    transition:.6s;
+
+}
+
+.premium-card:hover img{
+
+    transform:scale(1.06);
+
+}
+
+/* =========================
+        CARD CONTENT
+========================= */
+
+.premium-card-content{
+
+    padding:28px;
+
+}
+
+.premium-card-content h4{
+
+    font-size:24px;
+
+    font-weight:700;
+
+    color:#111111;
+
+    margin-bottom:15px;
+
+}
+
+.premium-card-content p{
+
+    color:#6b7280;
+
+    line-height:1.8;
+
+}
+
+/* =========================
+        LINKS
+========================= */
+
+.card-link{
+
+    display:inline-block;
+
+    margin-top:18px;
+
+    color:#f4b400;
+
+    font-weight:700;
+
+    transition:.3s;
+
+}
+
+.card-link:hover{
+
+    transform:translateX(4px);
+
+}
+
+/* =========================
+        TABLET
+========================= */
+
+@media(max-width:992px){
+
+.section-padding{
+
+padding:90px 0;
+
+}
+
+.section-title{
+
+font-size:42px;
+
+}
+
+.section-description{
+
+font-size:16px;
+
+}
+
+}
+
+/* =========================
+        MOBILE
+========================= */
+
+@media(max-width:768px){
+
+.section-padding{
+
+padding:70px 0;
+
+}
+
+.section-header{
+
+margin-bottom:45px;
+
+}
+
+.section-tag{
+
+font-size:11px;
+
+padding:8px 18px;
+
+}
+
+.section-title{
+
+font-size:32px;
+
+line-height:1.3;
+
+}
+
+.section-description{
+
+font-size:15px;
+
+line-height:1.8;
+
+}
+
+.premium-card-content{
+
+padding:22px;
+
+}
+
+.premium-card-content h4{
+
+font-size:22px;
+
+}
+
+}
+/* =========================
+        FAQ
+========================= */
 
 .faq-section{
-    padding:120px 0;
+    padding:100px 0;
+    background:#ffffff;
 }
 
 .accordion-item{
     border:none;
-    border-radius:26px !important;
+    border-radius:24px !important;
     overflow:hidden;
-    margin-bottom:22px;
-    box-shadow:
-    0 10px 40px rgba(0,0,0,.05);
+    margin-bottom:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
 }
 
 .accordion-button{
-    padding:26px;
+    padding:24px;
     background:#ffffff;
+    color:#111111;
+    font-weight:600;
     font-size:18px;
-    font-weight:700;
 }
 
 .accordion-button:not(.collapsed){
     background:#ffc107;
     color:#111111;
+    box-shadow:none;
 }
 
 .accordion-body{
-    padding:26px;
-    line-height:1.9;
-    color:#6b7280;
-}
-
-/* =========================================================
-                        CTA
-========================================================= */
-
-.cta-section{
-    background:
-    linear-gradient(
-    135deg,
-    #ffc107,
-    #f4b400
-    );
-    padding:120px 0;
-}
-
-.cta-section h2{
-    color:#111111;
-    font-size:64px;
-    font-weight:900;
-    margin-bottom:20px;
-}
-
-.cta-section p{
-    color:#333333;
-    font-size:18px;
-}
-
-.cta-btn{
-    background:#111111;
-    color:#ffffff;
-    padding:18px 42px;
-    border-radius:60px;
-    font-weight:700;
-    margin-top:28px;
-}
-
-/* =========================================================
-                        RESPONSIVE
-========================================================= */
-
-@media(max-width:992px){
-
-.hero-section{
-    text-align:center;
-}
-
-.hero-title{
-    font-size:58px;
-}
-
-.hero-buttons{
-    justify-content:center;
-}
-
-.hero-stats{
-    justify-content:center;
-}
-
-.hero-image{
-    margin-top:50px;
-}
-
-.section-title{
-    font-size:44px;
-}
-
-.testimonial-item{
-    min-width:48%;
-}
-
-}
-
-@media(max-width:768px){
-
-.section-padding,
-.faq-section,
-.cta-section{
-    padding:80px 0;
-}
-
-.hero-section{
-    padding-top:120px;
-    padding-bottom:80px;
-}
-
-.hero-title{
-    font-size:40px;
-    line-height:1.15;
-    letter-spacing:-1px;
-}
-
-.hero-description{
-    font-size:16px;
-}
-
-.hero-buttons{
-    flex-direction:column;
-}
-
-.hero-btn-primary,
-.hero-btn-secondary{
-    width:100%;
-}
-
-.hero-stat{
-    width:100%;
-}
-
-.section-title{
-    font-size:34px;
-}
-
-.section-description{
-    font-size:15px;
-}
-
-.premium-card-content{
     padding:24px;
+    color:#6b7280;
+    line-height:1.9;
 }
 
-.premium-card-image,
-.event-image{
-    height:240px;
-}
-
-.testimonial-item{
-    min-width:90%;
-}
-
-.testimonial-card{
-    padding:25px;
-}
-
-.cta-section h2{
-    font-size:38px;
-}
-
-.cta-btn{
-    width:100%;
-}
-
-}
 
 </style>
 
 
-<!-- =========================================================
-                TESTIMONIAL AUTO SLIDER
-========================================================= -->
+<!-- =========================
+    TESTIMONIAL AUTO SLIDER
+========================= -->
 
 <script>
 
@@ -1106,7 +3326,7 @@ scrollAmount = 0;
 
 let slide = setInterval(
 autoScroll,
-25
+30
 );
 
 /* Pause On Hover */
@@ -1130,8 +3350,11 @@ slider.addEventListener(
 ()=>{
 
 slide = setInterval(
+
 autoScroll,
-25
+
+30
+
 );
 
 }
@@ -1143,5 +3366,4 @@ autoScroll,
 );
 
 </script>
-
 {% endblock %}
