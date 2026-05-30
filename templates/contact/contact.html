@@ -1,4 +1,49 @@
 {% extends 'base.html' %}
+{% block title %}
+Contact Us | Catering Platform
+{% endblock %}
+
+{% block meta_description %}
+Contact Catering Platform for wedding catering, corporate events, birthday parties, private celebrations, and custom catering services. Request a quote today.
+{% endblock %}
+
+{% block meta_keywords %}
+contact catering services, catering inquiry, wedding catering contact, corporate catering contact, birthday catering, catering quote, event catering
+{% endblock %}
+
+{% block og_title %}
+Contact Us | Catering Platform
+{% endblock %}
+
+{% block og_description %}
+Get in touch with our catering team for weddings, corporate events, birthdays, and private celebrations.
+{% endblock %}
+
+{% block twitter_title %}
+Contact Us | Catering Platform
+{% endblock %}
+
+{% block twitter_description %}
+Contact our catering experts and request a customized catering quote for your next event.
+{% endblock %}
+
+{% block schema_markup %}
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"ContactPage",
+  "name":"Contact Catering Platform",
+  "url":"{{ request.build_absolute_uri }}",
+  "description":"Contact Catering Platform for wedding, corporate, birthday and event catering services.",
+  "mainEntity":{
+    "@type":"Organization",
+    "name":"Catering Platform",
+    "telephone":"{{ contact.phone }}",
+    "email":"{{ contact.email }}"
+  }
+}
+</script>
+{% endblock %}
 
 {% block content %}
 
@@ -114,7 +159,9 @@
                             </h5>
 
                             <p>
-                                {{contact.phone}}
+                                <a href="tel:{{contact.phone}}" aria-label="Call Catering Platform">
+                                    {{contact.phone}}
+                                </a>
                             </p>
 
                         </div>
@@ -137,7 +184,9 @@
                             </h5>
 
                             <p>
-                                {{contact.email}}
+                                <a href="mailto:{{contact.email}}" aria-label="Send email to Catering Platform">
+                                    {{contact.email}}
+                                </a>
                             </p>
 
                         </div>
@@ -186,7 +235,8 @@
 
                             <a
                                 href="{{contact.facebook}}"
-                                target="_blank">
+                                target="_blank"
+                                rel="noopener noreferrer">
 
                                 Facebook
 
@@ -199,7 +249,8 @@
 
                             <a
                                 href="{{contact.instagram}}"
-                                target="_blank">
+                                target="_blank"
+                                rel="noopener noreferrer">
 
                                 Instagram
 
@@ -212,7 +263,8 @@
 
                             <a
                                 href="{{contact.youtube}}"
-                                target="_blank">
+                                target="_blank"
+                                rel="noopener noreferrer">
 
                                 YouTube
 
@@ -515,6 +567,31 @@ body{
     color:#6b7280;
     line-height:1.8;
     margin:0;
+}
+
+/* =========================
+        PHONE & EMAIL LINKS
+========================= */
+
+.info-item a{
+    color:#111111;
+    text-decoration:none;
+    font-weight:500;
+    transition:.3s;
+}
+
+.info-item a:hover{
+    color:#111111;
+    text-decoration:none;
+}
+
+.info-item a:focus{
+    color:#111111;
+    text-decoration:none;
+}
+
+.info-item a:visited{
+    color:#111111;
 }
 
 /* =========================

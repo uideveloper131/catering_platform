@@ -1,4 +1,53 @@
 {% extends 'base.html' %}
+{% block title %}
+Request Catering Quote | Wedding, Corporate & Event Catering
+{% endblock %}
+
+{% block meta_description %}
+Request a customized catering quote for weddings, corporate events, birthdays, private parties, anniversaries, and special occasions. Get professional catering solutions tailored to your event.
+{% endblock %}
+
+{% block meta_keywords %}
+request catering quote,catering quotation,wedding catering quote,corporate catering quote,birthday catering quote,event catering inquiry,catering services
+{% endblock %}
+
+{% block og_title %}
+Request Catering Quote | Catering Platform
+{% endblock %}
+
+{% block og_description %}
+Submit your event details and receive a customized catering quotation for weddings, corporate events, birthdays, and private celebrations.
+{% endblock %}
+
+{% block twitter_title %}
+Request Catering Quote | Catering Platform
+{% endblock %}
+
+{% block twitter_description %}
+Get a personalized catering quote tailored to your event requirements and guest count.
+{% endblock %}
+
+{% block schema_markup %}
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"ContactPage",
+  "name":"Request Catering Quote",
+  "url":"{{ request.build_absolute_uri }}",
+  "description":"Online catering quotation request form for weddings, corporate events, birthdays and private celebrations.",
+  "mainEntity":{
+    "@type":"Service",
+    "name":"Catering Services",
+    "provider":{
+      "@type":"Organization",
+      "name":"Catering Platform"
+    }
+  }
+}
+</script>
+
+{% endblock %}
 
 {% block content %}
 

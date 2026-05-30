@@ -1,5 +1,53 @@
 {% extends 'base.html' %}
 
+{% block title %}
+{{ event.title }} Catering Services | Catering Platform
+{% endblock %}
+
+{% block meta_description %}
+{{ event.title }} - {{ event.description|truncatewords:25 }} Professional catering services for weddings, corporate events, birthdays, private parties, and special occasions.
+{% endblock %}
+
+{% block meta_keywords %}
+{{ event.title }}, event catering, wedding catering, corporate catering, birthday catering, private event catering, luxury catering services
+{% endblock %}
+
+{% block og_title %}
+{{ event.title }} Catering Services | Catering Platform
+{% endblock %}
+
+{% block og_description %}
+{{ event.description|truncatewords:25 }}
+{% endblock %}
+
+{% block twitter_title %}
+{{ event.title }} Catering Services | Catering Platform
+{% endblock %}
+
+{% block twitter_description %}
+{{ event.description|truncatewords:25 }}
+{% endblock %}
+
+{% block schema_markup %}
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Service",
+  "name":"{{ event.title|escapejs }}",
+  "description":"{{ event.description|striptags|truncatewords:25|escapejs }}",
+  "url":"{{ request.build_absolute_uri }}",
+  {% if event.image %}
+  "image":"{{ request.scheme }}://{{ request.get_host }}{{ event.image.url }}",
+  {% endif %}
+  "provider":{
+    "@type":"Organization",
+    "name":"Catering Platform"
+  },
+  "serviceType":"{{ event.title }}"
+}
+</script>
+{% endblock %}
+
 {% block content %}
 
 <!-- =========================
@@ -23,14 +71,16 @@
                     <img
                         src="{{event.image.url}}"
                         class="event-main-image"
-                        alt="{{event.title}}">
+                        alt="{{ event.title }} Catering Service"
+                        loading="lazy">
 
                     {% else %}
 
                     <img
                         src="https://images.unsplash.com/photo-1555244162-803834f70033?w=1000"
                         class="event-main-image"
-                        alt="{{event.title}}">
+                        alt="{{ event.title }} Catering Service"
+                        loading="lazy">
 
                     {% endif %}
 
@@ -123,14 +173,16 @@
                         <img
                             src="{{menu.menu_item.image.url}}"
                             class="premium-card-image"
-                            alt="{{menu.menu_item.name}}">
+                            alt="{{menu.menu_item.name }} - {{ event.title }}"
+                            loading="lazy">
 
                         {% else %}
 
                         <img
                             src="https://images.unsplash.com/photo-1544025162-d76694265947?w=1000"
                             class="premium-card-image"
-                            alt="{{menu.menu_item.name}}">
+                            alt="{{menu.menu_item.name}}"
+                            loading="lazy">
 
                         {% endif %}
 
@@ -147,13 +199,6 @@
                                 {{menu.menu_item.name}}
 
                             </h4>
-
-{#                            <span class="price-tag">#}
-{##}
-{#                                {{menu.menu_item.price}}#}
-{##}
-{#                            </span>#}
-
                         </div>
 
                         <p>
@@ -240,14 +285,16 @@
                         <img
                             src="{{package.package.image.url}}"
                             class="premium-card-image"
-                            alt="{{package.package.title}}">
+                            alt="{{package.package.title }} Package"
+                            loading="lazy">
 
                         {% else %}
 
                         <img
                             src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1000"
                             class="premium-card-image"
-                            alt="{{package.package.title}}">
+                            alt="{{package.package.title}} Package"
+                            loading="lazy">
 
                         {% endif %}
 

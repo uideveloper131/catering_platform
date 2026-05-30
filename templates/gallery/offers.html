@@ -1,4 +1,44 @@
 {% extends 'base.html' %}
+{% block title %}
+Catering Packages & Offers | Catering Platform
+{% endblock %}
+
+{% block meta_description %}
+Explore our premium catering packages for weddings, corporate events, birthdays, private parties, and special celebrations. Find the perfect catering package for your event.
+{% endblock %}
+
+{% block meta_keywords %}
+catering packages,wedding catering packages,corporate catering packages,birthday catering packages,event catering offers,luxury catering packages,catering deals
+{% endblock %}
+
+{% block og_title %}
+Catering Packages & Offers | Catering Platform
+{% endblock %}
+
+{% block og_description %}
+Browse our premium catering packages designed for weddings, corporate events, birthdays, and private celebrations.
+{% endblock %}
+
+{% block twitter_title %}
+Catering Packages & Offers | Catering Platform
+{% endblock %}
+
+{% block twitter_description %}
+Discover catering packages and special offers for your next event.
+{% endblock %}
+
+{% block schema_markup %}
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"ItemList",
+  "name":"Catering Packages",
+  "description":"Premium catering packages for weddings, corporate events, birthdays and private celebrations.",
+  "url":"{{ request.build_absolute_uri }}",
+  "numberOfItems":"{{ offers|length }}"
+}
+</script>
+{% endblock %}
 
 {% block content %}
 
@@ -66,16 +106,18 @@
                             {% if offer.image %}
 
                             <img
-                                src="{{offer.image.url}}"
+                                src="{{ offer.image.url }}"
                                 class="offer-image"
-                                alt="{{offer.title}}">
+                                alt="{{ offer.title }} Catering Package"
+                                loading="lazy">
 
                             {% else %}
 
                             <img
                                 src="https://images.unsplash.com/photo-1555244162-803834f70033?w=1000"
                                 class="offer-image"
-                                alt="{{offer.title}}">
+                                alt="{{ offer.title }} Catering Package"
+                                loading="lazy">
 
                             {% endif %}
 

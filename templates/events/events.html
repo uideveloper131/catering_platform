@@ -1,4 +1,44 @@
 {% extends 'base.html' %}
+{% block title %}
+Event Catering Services | Weddings, Corporate & Private Events
+{% endblock %}
+
+{% block meta_description %}
+Explore our professional catering services for weddings, corporate events, birthdays, private parties, anniversaries, and special occasions. Premium catering solutions tailored to your event.
+{% endblock %}
+
+{% block meta_keywords %}
+event catering,wedding catering,corporate catering,birthday catering,private party catering,catering services,event management,catering company
+{% endblock %}
+
+{% block og_title %}
+Event Catering Services | Catering Platform
+{% endblock %}
+
+{% block og_description %}
+Discover premium catering services for weddings, corporate events, birthdays, private celebrations, and special occasions.
+{% endblock %}
+
+{% block twitter_title %}
+Event Catering Services | Catering Platform
+{% endblock %}
+
+{% block twitter_description %}
+Professional catering services for weddings, corporate events, birthdays, and private celebrations.
+{% endblock %}
+
+{% block schema_markup %}
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"ItemList",
+  "name":"Event Catering Services",
+  "description":"Professional catering services for weddings, corporate events, birthdays and private celebrations.",
+  "url":"{{ request.build_absolute_uri }}",
+  "numberOfItems":"{{ events|length }}"
+}
+</script>
+{% endblock %}
 
 {% block content %}
 
@@ -60,14 +100,18 @@
                         {% if event.image %}
 
                         <img
-                        src="{{event.image.url}}"
-                        class="event-image">
+                            src="{{event.image.url}}"
+                            class="service-image"
+                            alt="{{event.title}} Catering Service"
+                            loading="lazy">
 
                         {% else %}
 
                         <img
-                        src="https://images.unsplash.com/photo-1555244162-803834f70033?w=1000"
-                        class="event-image">
+                            src="https://images.unsplash.com/photo-1555244162-803834f70033?w=1000"
+                            class="service-image"
+                            alt="{{event.title}} Catering Service"
+                            loading="lazy">
 
                         {% endif %}
 

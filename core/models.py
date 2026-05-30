@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.urls import reverse
 
 class FAQ(models.Model):
 
@@ -177,8 +177,13 @@ class OfferPackage(models.Model):
         auto_now_add=True
     )
 
-    def __str__(self):
+    def get_absolute_url(self):
+        return reverse(
+            'offer_detail',
+            args=[self.id]
+        )
 
+    def __str__(self):
         return self.title
 
 class PackageFeature(models.Model):
@@ -198,23 +203,34 @@ class PackageFeature(models.Model):
 
 
 class EventService(models.Model):
+
     title=models.CharField(
         max_length=200
     )
+
     description=models.TextField()
+
     image=models.ImageField(
         upload_to='events/',
         blank=True,
         null=True
     )
+
     active=models.BooleanField(
         default=True
     )
+
     created=models.DateTimeField(
         auto_now_add=True
     )
-    def __str__(self):
 
+    def get_absolute_url(self):
+        return reverse(
+            'event_detail',
+            args=[self.id]
+        )
+
+    def __str__(self):
         return self.title
 
 class EventMenu(models.Model):
@@ -227,7 +243,6 @@ class EventMenu(models.Model):
         'menu.MenuItem',
         on_delete=models.CASCADE
     )
-
 
     def __str__(self):
         return f"{self.event.title}"

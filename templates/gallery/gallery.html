@@ -1,4 +1,45 @@
 {% extends 'base.html' %}
+{% block title %}
+Event Gallery | Catering Platform
+{% endblock %}
+
+{% block meta_description %}
+Browse our catering gallery showcasing weddings, corporate events, birthday parties, private celebrations, premium dining experiences, and event setups.
+{% endblock %}
+
+{% block meta_keywords %}
+catering gallery,event gallery,wedding catering photos,corporate catering gallery,birthday catering images,event catering portfolio,catering showcase
+{% endblock %}
+
+{% block og_title %}
+Event Gallery | Catering Platform
+{% endblock %}
+
+{% block og_description %}
+Explore our gallery featuring catering events, weddings, corporate functions, birthdays, and luxury celebrations.
+{% endblock %}
+
+{% block twitter_title %}
+Event Gallery | Catering Platform
+{% endblock %}
+
+{% block twitter_description %}
+View our catering gallery and discover memorable events, premium food presentations, and luxury celebrations.
+{% endblock %}
+
+{% block schema_markup %}
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"ImageGallery",
+  "name":"Catering Platform Gallery",
+  "description":"Gallery of catering events, weddings, corporate functions, birthdays and private celebrations.",
+  "url":"{{ request.build_absolute_uri }}"
+}
+</script>
+
+{% endblock %}
 
 {% block content %}
 
@@ -60,7 +101,8 @@
                         <img
                             src="{{image.image.url}}"
                             class="gallery-image"
-                            alt="{{image.title}}">
+                            alt="{{image.title}}"
+                            loading="lazy">
 
                     </div>
 

@@ -1,5 +1,49 @@
 {% extends 'base.html' %}
 
+{% block title %}
+{{ brand.name }} | Premium Catering Brand | Catering Platform
+{% endblock %}
+
+{% block meta_description %}
+{{ brand.name }} - {{ brand.description|truncatewords:25 }} Premium catering services for weddings, corporate events, birthdays, private parties, and special occasions.
+{% endblock %}
+
+{% block meta_keywords %}
+{{ brand.name }}, catering services, wedding catering, corporate catering, birthday catering, event catering, luxury catering, food catering services
+{% endblock %}
+
+{% block og_title %}
+{{ brand.name }} | Premium Catering Brand
+{% endblock %}
+
+{% block og_description %}
+{{ brand.description|truncatewords:25 }}
+{% endblock %}
+
+{% block twitter_title %}
+{{ brand.name }} | Premium Catering Brand
+{% endblock %}
+
+{% block twitter_description %}
+{{ brand.description|truncatewords:25 }}
+{% endblock %}
+
+{% block schema_markup %}
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Restaurant",
+  "name":"{{ brand.name|escapejs }}",
+  "description":"{{ brand.description|striptags|truncatewords:25|escapejs }}",
+  "url":"{{ request.build_absolute_uri }}",
+  "image":"{% if brand.image %}{{ request.scheme }}://{{ request.get_host }}{{ brand.image.url }}{% endif %}",
+  "servesCuisine":"Multi Cuisine",
+  "priceRange":"$$",
+  "hasMenu":"{{ request.build_absolute_uri }}"
+}
+</script>
+{% endblock %}
+
 {% block content %}
 
 <!-- =========================
@@ -23,14 +67,16 @@
                     <img
                         src="{{brand.image.url}}"
                         class="brand-main-image"
-                        alt="{{brand.name}}">
+                        alt="{{brand.name}} Premium Catering Services"
+                        loading="lazy">
 
                     {% else %}
 
-                    <img
+                   <img
                         src="https://images.unsplash.com/photo-1555244162-803834f70033?w=1200"
                         class="brand-main-image"
-                        alt="{{brand.name}}">
+                        alt="{{brand.name}} Premium Catering Services"
+                        loading="lazy">
 
                     {% endif %}
 
@@ -139,7 +185,8 @@
                         <img
                             src="{{item.image.url}}"
                             class="menu-image"
-                            alt="{{item.name}}">
+                            alt="{{item.name}} - {{brand.name}} Menu Item"
+                            loading="lazy">
 
                     </div>
 

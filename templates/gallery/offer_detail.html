@@ -1,4 +1,62 @@
 {% extends 'base.html' %}
+{% block title %}
+{{ offer.title }} Catering Package | Catering Platform
+{% endblock %}
+
+{% block meta_description %}
+{{ offer.title }} - {{ offer.subtitle|truncatewords:20 }} Premium catering package for weddings, corporate events, birthdays, private parties and special celebrations.
+{% endblock %}
+
+{% block meta_keywords %}
+{{ offer.title }}, catering package, wedding catering package, corporate catering package, birthday catering package, event catering package, luxury catering
+{% endblock %}
+
+{% block og_title %}
+{{ offer.title }} Catering Package | Catering Platform
+{% endblock %}
+
+{% block og_description %}
+{{ offer.subtitle|truncatewords:20 }}
+{% endblock %}
+
+{% block twitter_title %}
+{{ offer.title }} Catering Package | Catering Platform
+{% endblock %}
+
+{% block twitter_description %}
+{{ offer.subtitle|truncatewords:20 }}
+{% endblock %}
+
+{% block schema_markup %}
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Offer",
+  "name":"{{ offer.title|escapejs }}",
+  "description":"{{ offer.description|striptags|truncatewords:30|escapejs }}",
+  "url":"{{ request.build_absolute_uri }}",
+
+  {% if offer.image %}
+  "image":"{{ request.scheme }}://{{ request.get_host }}{{ offer.image.url }}",
+  {% endif %}
+
+  "price":"{{ offer.price }}",
+  "priceCurrency":"USD",
+
+  "itemOffered":{
+    "@type":"Service",
+    "name":"{{ offer.title|escapejs }}",
+    "serviceType":"Catering Package",
+    "provider":{
+      "@type":"Organization",
+      "name":"Catering Platform"
+    }
+  }
+}
+</script>
+
+{% endblock %}
 
 {% block content %}
 
@@ -23,14 +81,16 @@
                     <img
                         src="{{offer.image.url}}"
                         class="offer-main-image"
-                        alt="{{offer.title}}">
+                        alt="{{offer.title}} Catering Package"
+                        loading="lazy">
 
                     {% else %}
 
                     <img
                         src="https://images.unsplash.com/photo-1555244162-803834f70033?w=1000"
                         class="offer-main-image"
-                        alt="{{offer.title}}">
+                        alt="{{offer.title}} Catering Package"
+                        loading="lazy">
 
                     {% endif %}
 

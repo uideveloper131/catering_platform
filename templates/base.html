@@ -1,9 +1,13 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
 <head>
 
 {% load static %}
 
 <!-- =========================
-        BASIC META
+        SEO META TAGS
 ========================= -->
 
 <meta charset="UTF-8">
@@ -11,26 +15,21 @@
 <meta
 name="viewport"
 content="width=device-width, initial-scale=1.0">
+<meta
+name="language"
+content="English">
+
+<meta
+name="geo.region"
+content="US">
+
+<meta
+name="geo.placename"
+content="United States">
 
 <meta
 http-equiv="X-UA-Compatible"
 content="IE=edge">
-
-<meta
-name="robots"
-content="index,follow">
-
-<meta
-name="theme-color"
-content="#0f0f0f">
-
-<meta
-name="author"
-content="Catering Platform">
-
-<!-- =========================
-        DYNAMIC SEO
-========================= -->
 
 <title>
 {% block title %}
@@ -40,18 +39,30 @@ Premium Catering Services | Catering Platform
 
 <meta
 name="description"
-content="{% block meta_description %}Premium catering services for weddings, birthdays, corporate events, private parties and luxury celebrations.{% endblock %}">
+content="{% block meta_description %}Premium multi-brand catering platform for weddings, corporate events, birthdays, private parties, and luxury dining experiences.{% endblock %}">
 
 <meta
 name="keywords"
-content="{% block meta_keywords %}catering services,wedding catering,birthday catering,corporate catering,luxury catering,event catering{% endblock %}">
+content="{% block meta_keywords %}catering services,wedding catering,corporate catering,birthday catering,event catering,luxury catering{% endblock %}">
+
+<meta
+name="author"
+content="Catering Platform">
+
+<meta
+name="robots"
+content="index,follow">
+
+<meta
+name="theme-color"
+content="#111111">
 
 <link
 rel="canonical"
-href="{{ request.build_absolute_uri }}">
+href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
 
 <!-- =========================
-        OPEN GRAPH
+        OPEN GRAPH SEO
 ========================= -->
 
 <meta
@@ -68,18 +79,18 @@ content="{% block og_title %}Premium Catering Services | Catering Platform{% end
 
 <meta
 property="og:description"
-content="{% block og_description %}Luxury catering services for weddings, corporate events, birthdays and special celebrations.{% endblock %}">
+content="{% block og_description %}Luxury catering services for weddings, corporate events, birthdays and private celebrations.{% endblock %}">
 
 <meta
 property="og:url"
-content="{{ request.build_absolute_uri }}">
+content="{{ request.build_absolute_uri|default:'https://cateringservices.pythonanywhere.com/' }}">
 
 <meta
 property="og:image"
 content="{% static 'images/seo-banner.jpg' %}">
 
 <!-- =========================
-        TWITTER CARD
+        TWITTER SEO
 ========================= -->
 
 <meta
@@ -92,11 +103,28 @@ content="{% block twitter_title %}Premium Catering Services | Catering Platform{
 
 <meta
 name="twitter:description"
-content="{% block twitter_description %}Luxury catering services for weddings, birthdays, corporate events and private parties.{% endblock %}">
+content="{% block twitter_description %}Luxury catering services for unforgettable celebrations.{% endblock %}">
 
 <meta
 name="twitter:image"
-content="{% static 'images/seo-banner.jpg' %}">
+content="{{ request.scheme }}://{{ request.get_host }}{% static 'images/seo-banner.jpg' %}">
+<!-- =========================
+        SCHEMA MARKUP
+========================= -->
+{% block schema_markup %}
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"LocalBusiness",
+  "name":"Catering Platform",
+  "url":"https://cateringservices.pythonanywhere.com",
+  "description":"Premium catering services for weddings, birthdays, corporate events and private celebrations.",
+  "image":"https://cateringservices.pythonanywhere.com/static/images/seo-banner.jpg",
+  "priceRange":"$$",
+  "serviceType":"Catering Services"
+}
+</script>
+{% endblock %}
 
 <!-- =========================
         FAVICON
@@ -107,20 +135,41 @@ rel="icon"
 type="image/png"
 href="{% static 'images/favicon.png' %}">
 
+
+
+<link
+rel="preload"
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+as="style">
+
+<link
+rel="apple-touch-icon"
+href="{% static 'images/favicon.png' %}">
+
 <!-- =========================
         GOOGLE FONTS
 ========================= -->
 
-<link rel="preconnect"
+<link
+rel="preconnect"
 href="https://fonts.googleapis.com">
 
-<link rel="preconnect"
+<link
+rel="preconnect"
 href="https://fonts.gstatic.com"
 crossorigin>
 
 <link
-href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
 rel="stylesheet">
+
+<meta
+property="og:image"
+content="{{ request.scheme }}://{{ request.get_host }}{% static 'images/seo-banner.jpg' %}">
+
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 
 <!-- =========================
         BOOTSTRAP
@@ -131,89 +180,29 @@ href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
 rel="stylesheet">
 
 <!-- =========================
-        REMIX ICONS
-========================= -->
-
-<link
-href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css"
-rel="stylesheet">
-
-<!-- =========================
-        STRUCTURED DATA SEO
-========================= -->
-
-<script type="application/ld+json">
-{
- "@context":"https://schema.org",
- "@type":"LocalBusiness",
- "name":"Catering Platform",
- "url":"https://cateringservices.pythonanywhere.com",
- "description":"Premium catering services for weddings, birthdays, corporate events and luxury celebrations.",
- "image":"https://cateringservices.pythonanywhere.com/static/images/seo-banner.jpg",
- "telephone":"+1-000-000-0000"
-}
-</script>
-
-<!-- =========================
-        YOUR EXISTING CSS
+        GLOBAL CSS
 ========================= -->
 
 <style>
 
-/* =========================================================
-                        ROOT VARIABLES
-========================================================= */
+/* =========================
+        ROOT
+========================= */
 
 :root{
 
---primary:#f4b400;
---primary-light:#ffd95e;
-
---dark:#0f0f0f;
---dark-2:#151515;
---dark-3:#1c1c1c;
-
+--primary:#ffc107;
+--dark:#111111;
+--dark-light:#1f1f1f;
+--gray:#6b7280;
+--light:#f8fafc;
 --white:#ffffff;
-
---gray-100:#f9fafb;
---gray-200:#f3f4f6;
---gray-300:#e5e7eb;
---gray-400:#d1d5db;
---gray-500:#9ca3af;
---gray-600:#6b7280;
---gray-700:#4b5563;
-
---gradient-primary:
-linear-gradient(
-135deg,
-#f4b400 0%,
-#ffd95e 100%
-);
-
---gradient-dark:
-linear-gradient(
-135deg,
-#0f0f0f 0%,
-#1c1c1c 100%
-);
-
---shadow-lg:
-0 20px 60px rgba(0,0,0,.08);
-
---shadow-hover:
-0 30px 80px rgba(0,0,0,.12);
-
---glass:
-rgba(255,255,255,.08);
-
---border:
-1px solid rgba(255,255,255,.08);
 
 }
 
-/* =========================================================
-                        GLOBAL RESET
-========================================================= */
+/* =========================
+        GLOBAL
+========================= */
 
 *{
 margin:0;
@@ -223,421 +212,27 @@ box-sizing:border-box;
 
 html{
 scroll-behavior:smooth;
-overflow-x:hidden;
 }
 
 body{
 
-font-family:'Inter',sans-serif;
+font-family:'Poppins',sans-serif;
 background:#ffffff;
 color:#111111;
 overflow-x:hidden;
--webkit-font-smoothing:antialiased;
+animation:fadeIn .5s ease;
 
 }
 
-/* =========================================================
-                        CUSTOM SELECTION
-========================================================= */
-
-::selection{
-background:#f4b400;
-color:#111111;
-}
-
-/* =========================================================
-                        SCROLLBAR
-========================================================= */
-
-::-webkit-scrollbar{
-width:8px;
-}
-
-::-webkit-scrollbar-track{
-background:#f3f4f6;
-}
-
-::-webkit-scrollbar-thumb{
-background:linear-gradient(
-180deg,
-#f4b400,
-#ffd95e
-);
-border-radius:20px;
-}
-
-/* =========================================================
-                        CONTAINER
-========================================================= */
-
-.container{
-max-width:1380px;
-padding-left:24px;
-padding-right:24px;
-}
-
-/* =========================================================
-                        SECTION SPACING
-========================================================= */
-
-section{
-position:relative;
-padding:120px 0;
-}
-
-/* =========================================================
-                        TYPOGRAPHY
-========================================================= */
-
-h1,h2,h3,h4,h5,h6{
-margin:0;
-color:#111111;
-font-weight:800;
-letter-spacing:-1px;
-}
-
-h1{
-font-size:72px;
-line-height:1.05;
-}
-
-h2{
-font-size:54px;
-line-height:1.1;
-}
-
-h3{
-font-size:36px;
-}
-
-p{
-font-size:16px;
-line-height:1.9;
-color:var(--gray-600);
-}
-
-/* =========================================================
-                        SECTION LABEL
-========================================================= */
-
-.section-label{
-
-display:inline-flex;
-align-items:center;
-gap:10px;
-
-padding:10px 18px;
-
-border-radius:50px;
-
-background:rgba(244,180,0,.12);
-
-color:#b58100;
-
-font-size:13px;
-font-weight:700;
-letter-spacing:1px;
-text-transform:uppercase;
-
-margin-bottom:24px;
-
-}
-
-/* =========================================================
-                        SECTION TITLE
-========================================================= */
-
-.section-title{
-margin-bottom:20px;
-}
-
-.section-subtitle{
-max-width:760px;
-margin:auto;
-font-size:17px;
-}
-
-/* =========================================================
-                        BUTTONS
-========================================================= */
-
-.btn{
-
-position:relative;
-overflow:hidden;
-
-border:none;
-border-radius:60px;
-
-padding:16px 34px;
-
-font-size:15px;
-font-weight:700;
-
-transition:.35s ease;
-
-z-index:1;
-
-}
-
-.btn-warning{
-
-background:var(--gradient-primary);
-color:#111111;
-
-box-shadow:
-0 15px 40px rgba(244,180,0,.28);
-
-}
-
-.btn-warning:hover{
-
-transform:translateY(-4px);
-
-box-shadow:
-0 25px 60px rgba(244,180,0,.4);
-
-color:#111111;
-
-}
-
-.btn-dark{
-
-background:#111111;
-color:#ffffff;
-
-}
-
-.btn-dark:hover{
-
-background:#000000;
-transform:translateY(-4px);
-color:#ffffff;
-
-}
-
-/* =========================================================
-                        PREMIUM CARDS
-========================================================= */
-
-.premium-card{
-
-position:relative;
-
-background:#ffffff;
-
-border-radius:32px;
-
-overflow:hidden;
-
-transition:.4s ease;
-
-box-shadow:var(--shadow-lg);
-
-height:100%;
-
-}
-
-.premium-card:hover{
-
-transform:translateY(-10px);
-
-box-shadow:var(--shadow-hover);
-
-}
-
-/* =========================================================
-                        IMAGE SYSTEM
-========================================================= */
-
-.image-wrapper{
-overflow:hidden;
-position:relative;
-}
-
-.image-wrapper img{
-
-width:100%;
-height:100%;
-object-fit:cover;
-
-transition:transform .7s ease;
-
-}
-
-.premium-card:hover img{
-transform:scale(1.08);
-}
-
-/* =========================================================
-                        GLASS EFFECT
-========================================================= */
-
-.glass-card{
-
-background:rgba(255,255,255,.12);
-
-backdrop-filter:blur(18px);
-
--webkit-backdrop-filter:blur(18px);
-
-border:var(--border);
-
-}
-
-/* =========================================================
-                        NAVBAR
-========================================================= */
-
-.custom-navbar{
-
-position:fixed;
-top:0;
-left:0;
-width:100%;
-
-z-index:999;
-
-padding:18px 0;
-
-background:rgba(10,10,10,.82);
-
-backdrop-filter:blur(18px);
-
--webkit-backdrop-filter:blur(18px);
-
-border-bottom:
-1px solid rgba(255,255,255,.06);
-
-transition:.35s ease;
-
-}
-
-/* =========================================================
-                        TEXT GRADIENT
-========================================================= */
-
-.text-gradient{
-
-background:linear-gradient(
-135deg,
-#f4b400,
-#ffd95e
-);
-
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-
-}
-
-/* =========================================================
-                        PREMIUM BADGE
-========================================================= */
-
-.premium-badge{
-
-display:inline-flex;
-align-items:center;
-gap:10px;
-
-padding:12px 20px;
-
-border-radius:50px;
-
-background:#ffffff;
-
-box-shadow:
-0 10px 30px rgba(0,0,0,.06);
-
-font-size:14px;
-font-weight:700;
-
-}
-
-/* =========================================================
-                        INPUTS
-========================================================= */
-
-.form-control{
-
-height:60px;
-
-border-radius:18px;
-
-border:1px solid #e5e7eb;
-
-padding-left:20px;
-
-font-size:15px;
-
-box-shadow:none !important;
-
-}
-
-.form-control:focus{
-
-border-color:#f4b400;
-
-box-shadow:
-0 0 0 5px rgba(244,180,0,.12) !important;
-
-}
-
-/* =========================================================
-                        FOOTER
-========================================================= */
-
-footer{
-
-background:#0f0f0f;
-color:#ffffff;
-
-padding-top:120px;
-
-position:relative;
-
-overflow:hidden;
-
-}
-
-footer::before{
-
-content:'';
-
-position:absolute;
-
-width:500px;
-height:500px;
-
-background:
-radial-gradient(
-circle,
-rgba(244,180,0,.12),
-transparent 70%
-);
-
-top:-250px;
-right:-200px;
-
-}
-
-/* =========================================================
-                        ANIMATIONS
-========================================================= */
-
-.fade-up{
-
-animation:fadeUp .8s ease forwards;
-
-opacity:0;
-
-}
-
-@keyframes fadeUp{
+/* =========================
+        PAGE ANIMATION
+========================= */
+
+@keyframes fadeIn{
 
 from{
 opacity:0;
-transform:translateY(40px);
+transform:translateY(10px);
 }
 
 to{
@@ -647,100 +242,536 @@ transform:translateY(0);
 
 }
 
-/* =========================================================
-                        FLOATING EFFECT
-========================================================= */
-
-.float-animation{
-
-animation:floating 5s ease-in-out infinite;
-
-}
-
-@keyframes floating{
-
-0%{
-transform:translateY(0px);
-}
-
-50%{
-transform:translateY(-10px);
-}
-
-100%{
-transform:translateY(0px);
-}
-
-}
-
-/* =========================================================
-                        MOBILE
-========================================================= */
-
-@media(max-width:992px){
+/* =========================
+        SECTION SPACING
+========================= */
 
 section{
 padding:90px 0;
 }
 
+/* =========================
+        CONTAINER
+========================= */
+
+.container{
+max-width:1320px;
+}
+
+/* =========================
+        HEADINGS
+========================= */
+
 h1{
-font-size:52px;
+font-size:64px;
+font-weight:800;
 line-height:1.1;
 }
 
 h2{
-font-size:42px;
+font-size:48px;
+font-weight:800;
+line-height:1.2;
+}
+
+h3{
+font-size:36px;
+font-weight:700;
+}
+
+h4{
+font-size:24px;
+font-weight:700;
+}
+
+p{
+font-size:16px;
+line-height:1.9;
+color:var(--gray);
+margin-bottom:0;
+}
+
+/* =========================
+        BUTTONS
+========================= */
+
+.btn{
+border:none;
+border-radius:50px;
+padding:14px 30px;
+font-weight:700;
+font-size:15px;
+transition:.3s;
+}
+
+.btn-warning{
+background:linear-gradient(
+135deg,
+#ffc107,
+#ffcd39
+);
+color:#111111;
+box-shadow:0 10px 25px rgba(255,193,7,.22);
+}
+
+.btn-warning:hover{
+background:linear-gradient(
+135deg,
+#ffcd39,
+#ffc107
+);
+color:#111111;
+transform:translateY(-2px);
+}
+
+.btn-dark{
+background:#111111;
+color:#ffffff;
+}
+
+.btn-dark:hover{
+background:#1f1f1f;
+color:#ffffff;
+}
+
+/* =========================
+        CARDS
+========================= */
+
+.card{
+
+border:none;
+border-radius:30px;
+overflow:hidden;
+box-shadow:0 12px 40px rgba(0,0,0,.06);
+transition:.35s;
+background:#ffffff;
+
+}
+
+.card:hover{
+
+transform:translateY(-6px);
+
+}
+
+/* =========================
+        IMAGES
+========================= */
+
+img{
+max-width:100%;
+display:block;
+}
+
+.card img{
+object-fit:cover;
+}
+
+/* =========================
+        SECTION TITLE
+========================= */
+
+.section-title{
+text-align:center;
+margin-bottom:15px;
+}
+
+.section-subtitle{
+text-align:center;
+max-width:720px;
+margin:auto;
+margin-bottom:60px;
+}
+
+/* =========================
+        BRAND SECTION
+========================= */
+
+.brand-section{
+background:#f8fafc;
+}
+
+.brand-link{
+text-decoration:none;
+color:inherit;
+}
+
+.brand-card{
+background:#ffffff;
+border-radius:30px;
+overflow:hidden;
+height:100%;
+border:1px solid #f1f1f1;
+box-shadow:0 12px 40px rgba(0,0,0,.06);
+transition:.35s;
+}
+
+.brand-card:hover{
+transform:translateY(-6px);
+}
+
+.brand-image{
+width:100%;
+height:280px;
+object-fit:cover;
+transition:.4s;
+}
+
+.brand-card:hover .brand-image{
+transform:scale(1.05);
+}
+
+.brand-content{
+padding:28px;
+}
+
+.brand-content p{
+margin-top:15px;
+min-height:85px;
+}
+
+.explore-btn{
+display:inline-block;
+margin-top:22px;
+padding:13px 22px;
+background:#111111;
+color:#ffffff;
+border-radius:50px;
+font-size:14px;
+font-weight:600;
+transition:.3s;
+}
+
+.brand-card:hover .explore-btn{
+background:#ffc107;
+color:#111111;
+}
+
+/* =========================
+        EVENT CARDS
+========================= */
+
+.event-card{
+background:#ffffff;
+border-radius:30px;
+overflow:hidden;
+height:100%;
+border:1px solid #f1f1f1;
+box-shadow:0 12px 40px rgba(0,0,0,.06);
+transition:.35s;
+}
+
+.event-card:hover{
+transform:translateY(-6px);
+}
+
+.event-image{
+width:100%;
+height:280px;
+object-fit:cover;
+transition:.4s;
+}
+
+.event-card:hover .event-image{
+transform:scale(1.05);
+}
+
+.event-content{
+padding:28px;
+}
+
+.event-content p{
+margin-top:15px;
+min-height:85px;
+}
+
+.event-btn{
+display:inline-block;
+margin-top:22px;
+padding:13px 22px;
+background:#111111;
+color:#ffffff;
+border-radius:50px;
+font-size:14px;
+font-weight:600;
+transition:.3s;
+}
+
+.event-card:hover .event-btn{
+background:#ffc107;
+color:#111111;
+}
+
+/* =========================
+        TESTIMONIALS
+========================= */
+
+.testimonial-section{
+background:#f8fafc;
+}
+
+.testimonial-wrapper{
+display:flex;
+gap:30px;
+overflow-x:auto;
+padding-bottom:10px;
+scroll-behavior:smooth;
+scrollbar-width:none;
+}
+
+.testimonial-wrapper::-webkit-scrollbar{
+display:none;
+}
+
+.testimonial-item{
+flex:0 0 32%;
+}
+
+.testimonial-card{
+background:#ffffff;
+border-radius:32px;
+padding:40px;
+height:100%;
+box-shadow:0 12px 40px rgba(0,0,0,.06);
+transition:.35s;
+}
+
+.testimonial-card:hover{
+transform:translateY(-6px);
+}
+
+.stars{
+font-size:24px;
+margin-bottom:20px;
+}
+
+.review-text{
+font-size:17px;
+line-height:1.9;
+color:#4b5563;
+min-height:180px;
+}
+
+.customer-info{
+display:flex;
+align-items:center;
+gap:16px;
+margin-top:30px;
+}
+
+.avatar{
+width:68px;
+height:68px;
+border-radius:50%;
+background:#ffc107;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:26px;
+font-weight:700;
+color:#111111;
+}
+
+.customer-info h5{
+margin:0;
+font-size:22px;
+font-weight:700;
+}
+
+.customer-info small{
+color:#6b7280;
+}
+
+/* =========================
+        FAQ
+========================= */
+
+.faq-section{
+background:#ffffff;
+}
+
+.faq-subtitle{
+color:#ffc107;
+font-size:14px;
+font-weight:700;
+letter-spacing:2px;
+margin-bottom:15px;
+}
+
+.faq-heading{
+font-size:52px;
+font-weight:800;
+margin-bottom:20px;
+}
+
+.faq-description{
+max-width:720px;
+margin:auto;
+margin-bottom:60px;
+}
+
+.faq-wrapper{
+max-width:900px;
+margin:auto;
+}
+
+.accordion-item{
+border:none;
+margin-bottom:20px;
+border-radius:24px !important;
+overflow:hidden;
+box-shadow:0 10px 35px rgba(0,0,0,.06);
+}
+
+.accordion-button{
+font-size:18px;
+font-weight:600;
+padding:25px;
+background:#ffffff;
+box-shadow:none !important;
+}
+
+.accordion-button:not(.collapsed){
+background:#ffc107;
+color:#111111;
+}
+
+.accordion-body{
+padding:25px;
+background:#ffffff;
+color:#6b7280;
+line-height:1.9;
+}
+
+/* =========================
+        SCROLLBAR
+========================= */
+
+::-webkit-scrollbar{
+width:8px;
+}
+
+::-webkit-scrollbar-thumb{
+background:#ffc107;
+border-radius:10px;
+}
+
+/* =========================
+        TABLET
+========================= */
+
+@media(max-width:992px){
+
+h1{
+font-size:52px;
+}
+
+h2{
+font-size:40px;
+}
+
+.testimonial-item{
+flex:0 0 48%;
 }
 
 }
+
+/* =========================
+        MOBILE
+========================= */
 
 @media(max-width:768px){
+
+section{
+padding:70px 0;
+}
+
+h1{
+font-size:38px;
+line-height:1.2;
+}
+
+h2{
+font-size:30px;
+line-height:1.3;
+}
+
+h3{
+font-size:28px;
+}
 
 .container{
 padding-left:18px;
 padding-right:18px;
 }
 
-section{
-padding:80px 0;
+.brand-image,
+.event-image{
+height:240px;
 }
 
-h1{
-font-size:40px;
-line-height:1.2;
+.brand-content,
+.event-content{
+padding:22px;
 }
 
-h2{
-font-size:32px;
-line-height:1.3;
+.brand-content p,
+.event-content p{
+min-height:auto;
 }
 
-h3{
-font-size:26px;
+.testimonial-item{
+flex:0 0 95%;
+}
+
+.review-text{
+min-height:auto;
+font-size:16px;
+}
+
+.testimonial-card{
+padding:28px;
+}
+
+.customer-info h5{
+font-size:18px;
+}
+
+.faq-heading{
+font-size:34px;
+}
+
+.accordion-button{
+font-size:16px;
+padding:20px;
+}
+
+.accordion-body{
+padding:20px;
 }
 
 .btn{
 width:100%;
 }
 
-.section-subtitle{
-font-size:15px;
 }
 
-}
 </style>
 
 </head>
+
 <body>
-<!-- =========================================================
-                        NAVBAR
-========================================================= -->
+
+<!-- =========================
+        NAVBAR
+========================= -->
 
 {% include 'components/navbar.html' %}
 
-<!-- =========================================================
-                        MAIN CONTENT
-========================================================= -->
+<!-- =========================
+        MAIN CONTENT
+========================= -->
 
 <main>
 
@@ -750,100 +781,52 @@ font-size:15px;
 
 </main>
 
-<!-- =========================================================
-                        FOOTER
-========================================================= -->
+<!-- =========================
+        FOOTER
+========================= -->
 
 {% include 'components/footer.html' %}
 
-<!-- =========================================================
-                        BOOTSTRAP JS
-========================================================= -->
+<!-- =========================
+        BOOTSTRAP JS
+========================= -->
 
 <script
 src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+
 </script>
 
-<!-- =========================================================
-                        PREMIUM JAVASCRIPT
-========================================================= -->
+<!-- =========================
+        CUSTOM JS
+========================= -->
 
 <script>
 
-/* =========================================================
-        PREMIUM NAVBAR EFFECT
-========================================================= */
+/* NAVBAR SCROLL EFFECT */
 
 window.addEventListener(
 
-"scroll",
+'scroll',
 
 function(){
 
-const navbar =
-document.querySelector(".custom-navbar");
+const navbar = document.querySelector('.custom-navbar');
 
-if(window.scrollY > 50){
+if(!navbar) return;
 
-navbar.style.background =
-"rgba(10,10,10,.94)";
-
-navbar.style.padding =
-"14px 0";
-
-navbar.style.boxShadow =
-"0 10px 40px rgba(0,0,0,.18)";
-
+if(window.scrollY > 30){
+    navbar.style.background = 'rgba(10,10,10,.96)';
+    navbar.style.backdropFilter = 'blur(18px)';
 }else{
-
-navbar.style.background =
-"rgba(10,10,10,.82)";
-
-navbar.style.padding =
-"18px 0";
-
-navbar.style.boxShadow =
-"none";
-
+    navbar.style.background = 'rgba(10,10,10,.92)';
 }
 
 }
 
 );
-
-/* =========================================================
-        FADE-UP ANIMATION
-========================================================= */
-
-const observer = new IntersectionObserver(
-
-(entries)=>{
-
-entries.forEach((entry)=>{
-
-if(entry.isIntersecting){
-
-entry.target.classList.add("show");
-
-}
-
-});
-
-},
-
-{
-threshold:0.15
-}
-
-);
-
-document.querySelectorAll(".fade-up")
-.forEach((el)=>{
-
-observer.observe(el);
-
-});
 
 </script>
 
 </body>
+
+</html>
