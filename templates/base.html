@@ -32,18 +32,20 @@ http-equiv="X-UA-Compatible"
 content="IE=edge">
 
 <title>
+
 {% block title %}
-Premium Catering Services | Catering Platform
+Wedding Catering, Corporate Catering & Event Catering Services | Bentonville Catering Platform
 {% endblock %}
+
 </title>
 
 <meta
 name="description"
-content="{% block meta_description %}Premium multi-brand catering platform for weddings, corporate events, birthdays, private parties, and luxury dining experiences.{% endblock %}">
+content="{% block meta_description %}Top-rated wedding catering, corporate catering, birthday party catering and private event catering services. Explore premium catering brands, event packages and custom catering solutions.{% endblock %}">
 
 <meta
 name="keywords"
-content="{% block meta_keywords %}catering services,wedding catering,corporate catering,birthday catering,event catering,luxury catering{% endblock %}">
+content="{% block meta_keywords %}wedding catering,corporate catering,birthday catering,event catering,private catering,catering near me,catering services,buffet catering,food catering,event planner catering,luxury catering{% endblock %}">
 
 <meta
 name="author"
@@ -87,7 +89,17 @@ content="{{ request.build_absolute_uri|default:'https://cateringservices.pythona
 
 <meta
 property="og:image"
-content="{% static 'images/seo-banner.jpg' %}">
+content="{{ request.scheme }}://{{ request.get_host }}{% static 'images/seo-banne.jpg' %}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+
+<meta property="og:image:secure_url"
+      content="https://cateringservices.pythonanywhere.com/static/images/seo-banne.jpg">
+
+<meta property="og:image:alt"
+      content="Premium Catering Services">
+
 
 <!-- =========================
         TWITTER SEO
@@ -107,7 +119,22 @@ content="{% block twitter_description %}Luxury catering services for unforgettab
 
 <meta
 name="twitter:image"
-content="{{ request.scheme }}://{{ request.get_host }}{% static 'images/seo-banner.jpg' %}">
+content="{{ request.scheme }}://{{ request.get_host }}{% static 'images/seo-banne.jpg' %}">
+
+<meta
+property="og:image:secure_url"
+content="https://cateringservices.pythonanywhere.com/static/images/seo-banne.jpg">
+
+<meta
+name="twitter:image:alt"
+content="Premium Catering Services">
+
+<meta property="og:image:url"
+      content="https://cateringservices.pythonanywhere.com/static/images/seo-banne.jpg">
+
+<meta property="og:image:secure_url"
+      content="https://cateringservices.pythonanywhere.com/static/images/seo-banne.jpg">
+
 <!-- =========================
         SCHEMA MARKUP
 ========================= -->
@@ -119,7 +146,7 @@ content="{{ request.scheme }}://{{ request.get_host }}{% static 'images/seo-bann
   "name":"Catering Platform",
   "url":"https://cateringservices.pythonanywhere.com",
   "description":"Premium catering services for weddings, birthdays, corporate events and private celebrations.",
-  "image":"https://cateringservices.pythonanywhere.com/static/images/seo-banner.jpg",
+  "image":"https://cateringservices.pythonanywhere.com/static/images/seo-banne.jpg",
   "priceRange":"$$",
   "serviceType":"Catering Services"
 }
@@ -163,13 +190,6 @@ crossorigin>
 href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
 rel="stylesheet">
 
-<meta
-property="og:image"
-content="{{ request.scheme }}://{{ request.get_host }}{% static 'images/seo-banner.jpg' %}">
-
-
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
 
 <!-- =========================
         BOOTSTRAP
@@ -757,6 +777,30 @@ width:100%;
 
 }
 
+#scrollTopBtn{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+    z-index:9999;
+    width:50px;
+    height:50px;
+    border:none;
+    border-radius:50%;
+    background:#ffc107;
+    color:#111;
+    font-size:22px;
+    font-weight:700;
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(0,0,0,.2);
+    display:none;
+    transition:.3s;
+}
+
+#scrollTopBtn:hover{
+    transform:translateY(-3px);
+    background:#ffcd39;
+}
+
 </style>
 
 </head>
@@ -787,6 +831,29 @@ width:100%;
 
 {% include 'components/footer.html' %}
 
+<!-- Scroll To Top Button -->
+<button id="scrollTopBtn" title="Back to Top">
+    ↑
+</button>
+
+<script>
+const scrollBtn = document.getElementById("scrollTopBtn");
+
+window.addEventListener("scroll", function() {
+    if (window.scrollY > 300) {
+        scrollBtn.style.display = "block";
+    } else {
+        scrollBtn.style.display = "none";
+    }
+});
+
+scrollBtn.addEventListener("click", function() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+</script>
 <!-- =========================
         BOOTSTRAP JS
 ========================= -->

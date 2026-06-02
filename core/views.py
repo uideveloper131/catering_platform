@@ -285,3 +285,55 @@ def event_detail(request,id):
         'events/event_detail.html',
         context
     )
+
+
+from django.shortcuts import render
+from django.db.models import Q
+
+from brands.models import Brand
+from gallery.models import Gallery
+from core.models import EventService, OfferPackage
+
+
+def search_view(request):
+
+    query = request.GET.get('q', '')
+
+    brands = Brand.objects.filter(
+        Q(name__icontains=query) |
+        Q(description__icontains=query),
+        active=True
+    )
+
+    gallery = Gallery.objects.filter(
+        Q(title__icontains=query) |
+        Q(category__icontains=query),
+        active=True
+    )
+
+    events = EventService.objects.filter(
+        Q(title__icontains=query) |
+        Q(description__icontains=query),
+        active=True
+    )
+
+    offers = OfferPackage.objects.filter(
+        Q(title__icontains=query) |
+        Q(subtitle__icontains=query) |
+        Q(description__icontains=query),
+        active=True
+    )
+
+    context = {
+        'query': query,
+        'brands': brands,
+        'gallery': gallery,
+        'events': events,
+        'offers': offers,
+    }
+
+    return render(
+        request,
+        'search_results.html',
+        context
+    )

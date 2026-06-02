@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import home, contact_view, offers_view, offer_detail, event_detail, event_services
+from .views import home, contact_view, offers_view, offer_detail, event_detail, event_services, search_view
 
 
 urlpatterns = [
@@ -35,4 +35,5 @@ urlpatterns = [
         event_detail,
         name='event_detail'
     ),
+    path('search/', search_view, name='search'),
 ]

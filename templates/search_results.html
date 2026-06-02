@@ -1,0 +1,538 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Search Results | Catering Platform
+{% endblock %}
+
+{% block content %}
+
+<!-- ==========================================
+                HERO SECTION
+=========================================== -->
+<section class="search-hero">
+<div class="container text-center">
+    <span class="search-tag">
+        SEARCH RESULTS
+    </span>
+    <h1>
+        Find Your Perfect
+        Catering Experience
+    </h1>
+    <p>
+        Explore brands, catering packages,
+        event services and gallery collections
+        tailored for your celebration.
+    </p>
+
+</div>
+</section>
+
+<!-- ==========================================
+                RESULTS SECTION
+=========================================== -->
+
+<section class="search-section">
+<div class="container">
+<div class="search-heading">
+    <h2>
+        Results for
+        <span>
+            "{{ query }}"
+        </span>
+
+    </h2>
+
+</div>
+
+{% if not brands and not gallery and not events and not offers %}
+
+<!-- ==========================================
+                NO RESULTS
+=========================================== -->
+
+<div class="no-results-card">
+
+    <div class="search-icon">
+
+        🔍
+
+    </div>
+
+    <h3>
+
+        No Results Found
+
+    </h3>
+
+    <p>
+
+        We couldn't find anything matching
+        "{{ query }}".
+
+    </p>
+
+    <p>
+
+        Explore our most popular sections below.
+
+    </p>
+
+    <div class="cta-buttons">
+
+        <a href="/brands/" class="btn btn-warning">
+
+            Explore Brands
+
+        </a>
+
+        <a href="/events/" class="btn btn-dark">
+
+            Event Services
+
+        </a>
+
+        <a href="/offers/" class="btn btn-dark">
+
+            Catering Packages
+
+        </a>
+
+        <a href="/gallery/" class="btn btn-dark">
+
+            Gallery
+
+        </a>
+
+        <a href="/request-quote/" class="btn btn-warning">
+
+            Request Quote
+
+        </a>
+
+    </div>
+
+</div>
+
+{% else %}
+
+<!-- ==========================================
+                BRANDS
+=========================================== -->
+
+{% if brands %}
+
+<div class="section-block">
+
+    <h3 class="section-title">
+
+        Brands
+
+    </h3>
+
+    {% for brand in brands %}
+
+    <div class="result-card">
+
+        {% if brand.image %}
+        <img
+            src="{{ brand.image.url }}"
+            alt="{{ brand.name }}">
+        {% endif %}
+
+        <div class="result-content">
+
+            <h4>
+
+                {{ brand.name }}
+
+            </h4>
+
+            <p>
+
+                {{ brand.description|truncatewords:30 }}
+
+            </p>
+
+            <a
+                href="{{ brand.get_absolute_url }}"
+                class="btn btn-warning">
+
+                View Brand
+
+            </a>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endif %}
+
+
+<!-- ==========================================
+                GALLERY
+=========================================== -->
+
+{% if gallery %}
+
+<div class="section-block">
+
+    <h3 class="section-title">
+
+        Gallery
+
+    </h3>
+
+    {% for item in gallery %}
+
+    <div class="result-card">
+
+        {% if item.image %}
+        <img
+            src="{{ item.image.url }}"
+            alt="{{ item.title }}">
+        {% endif %}
+
+        <div class="result-content">
+
+            <h4>
+
+                {{ item.title }}
+
+            </h4>
+
+            <p>
+
+                {{ item.category }}
+
+            </p>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endif %}
+
+
+<!-- ==========================================
+                EVENT SERVICES
+=========================================== -->
+
+{% if events %}
+
+<div class="section-block">
+    <h3 class="section-title">
+        Event Services
+    </h3>
+    {% for event in events %}
+    <div class="result-card">
+        {% if event.image %}
+        <img
+            src="{{ event.image.url }}"
+            alt="{{ event.title }}">
+        {% endif %}
+
+        <div class="result-content">
+
+            <h4>
+                {{ event.title }}
+            </h4>
+            <p>
+                {{ event.description|truncatewords:30 }}
+            </p>
+            <a
+                href="{{ event.get_absolute_url }}"
+                class="btn btn-warning">
+
+                View Service
+
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<!-- ==========================================
+                PACKAGES
+=========================================== -->
+
+{% if offers %}
+
+<div class="section-block">
+
+    <h3 class="section-title">
+
+        Packages & Offers
+
+    </h3>
+
+    {% for offer in offers %}
+
+    <div class="result-card">
+
+        {% if offer.image %}
+        <img
+            src="{{ offer.image.url }}"
+            alt="{{ offer.title }}">
+        {% endif %}
+
+        <div class="result-content">
+            <h4>
+
+                {{ offer.title }}
+
+            </h4>
+            <p class="price">
+                {{ offer.price }}
+            </p>
+            <p>
+                {{ offer.description|truncatewords:30 }}
+            </p>
+            <a
+                href="{{ offer.get_absolute_url }}"
+                class="btn btn-warning">
+
+                View Package
+            </a>
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+{% endif %}
+{% endif %}
+
+</div>
+</section>
+
+<style>
+
+/* ==========================================
+                HERO
+========================================== */
+.search-hero{
+
+    padding:180px 0 110px;
+
+    background:
+    linear-gradient(
+    rgba(10,10,10,.88),
+    rgba(10,10,10,.88)
+    ),
+    url('/static/images/seo-banne.jpeg');
+
+    background-size:cover;
+    background-position:center;
+
+    color:#fff;
+
+}
+
+.search-tag{
+
+    display:inline-block;
+
+    background:#ffc107;
+
+    color:#111;
+
+    padding:10px 22px;
+
+    border-radius:50px;
+
+    font-weight:700;
+
+    margin-bottom:25px;
+
+}
+
+.search-hero h1{
+
+    font-size:64px;
+
+    font-weight:800;
+
+    margin-bottom:20px;
+
+}
+
+.search-hero p{
+
+    max-width:750px;
+
+    margin:auto;
+
+    color:#d1d5db;
+
+}
+
+/* ==========================================
+                SECTION
+========================================== */
+
+.search-section{
+
+    background:#f8fafc;
+
+    padding:90px 0;
+
+}
+
+.search-heading{
+
+    text-align:center;
+
+    margin-bottom:50px;
+
+}
+
+.search-heading span{
+
+    color:#ffc107;
+
+}
+
+/* ==========================================
+                RESULT CARD
+========================================== */
+
+.result-card{
+
+    display:flex;
+
+    gap:25px;
+
+    background:#fff;
+
+    padding:25px;
+
+    border-radius:30px;
+
+    margin-bottom:25px;
+
+    box-shadow:
+    0 12px 40px rgba(0,0,0,.06);
+
+}
+
+.result-card img{
+
+    width:260px;
+
+    height:180px;
+
+    object-fit:cover;
+
+    border-radius:22px;
+
+}
+
+.result-content{
+
+    flex:1;
+
+}
+
+.result-content h4{
+
+    font-weight:800;
+
+    margin-bottom:10px;
+
+}
+
+.price{
+
+    color:#ffc107;
+
+    font-weight:700;
+
+}
+
+/* ==========================================
+                NO RESULTS
+========================================== */
+
+.no-results-card{
+
+    background:#fff;
+
+    border-radius:30px;
+
+    padding:70px 40px;
+
+    text-align:center;
+
+    box-shadow:
+    0 12px 40px rgba(0,0,0,.06);
+
+}
+
+.search-icon{
+
+    font-size:70px;
+
+    margin-bottom:20px;
+
+}
+
+.cta-buttons{
+
+    margin-top:30px;
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    gap:15px;
+
+}
+
+/* ==========================================
+                MOBILE
+========================================== */
+
+@media(max-width:768px){
+
+.search-hero{
+
+padding:150px 0 80px;
+
+}
+
+.search-hero h1{
+
+font-size:40px;
+
+}
+
+.result-card{
+
+flex-direction:column;
+
+}
+
+.result-card img{
+
+width:100%;
+height:220px;
+
+}
+
+}
+
+</style>
+
+{% endblock %}
